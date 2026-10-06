@@ -123,16 +123,27 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
             borderBottom: '1px solid var(--border-color)'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#EF4444' }} />
-              <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#F59E0B' }} />
-              <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#10B981' }} />
-              <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', marginLeft: '0.5rem', fontFamily: 'var(--font-mono)' }}>
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#333333' }} />
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#333333' }} />
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#333333' }} />
+              <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', marginLeft: '0.5rem', fontFamily: 'var(--font-mono)' }}>
                 api-sentinel-cluster-01
               </span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span className="badge badge-success" style={{ fontSize: '0.68rem' }}>
-                <span className="pulse-dot" style={{ backgroundColor: '#10B981' }} /> ACTIVE ENGINE
+              <span style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                padding: '0.2rem 0.55rem',
+                borderRadius: 'var(--radius-sm)',
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border-color)',
+                fontSize: '0.68rem',
+                fontWeight: 700,
+                color: 'var(--text-muted)'
+              }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#FFFFFF' }} /> ACTIVE ENGINE
               </span>
             </div>
           </div>
@@ -143,20 +154,20 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
             {/* Quick Metrics */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem' }}>
               <div style={{ padding: '0.75rem', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)' }}>
-                <div style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' }}>UPTIME (24H)</div>
-                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--success-text)', marginTop: '0.2rem' }}>
+                <div style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>UPTIME (24H)</div>
+                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.2rem' }}>
                   {uptimeData?.overallUptimePct || '99.9'}%
                 </div>
               </div>
               <div style={{ padding: '0.75rem', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)' }}>
-                <div style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' }}>AVG LATENCY</div>
-                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary)', marginTop: '0.2rem' }}>
+                <div style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>AVG LATENCY</div>
+                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.2rem' }}>
                   {latencyData?.avgLatencyMs || '42'} ms
                 </div>
               </div>
               <div style={{ padding: '0.75rem', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)' }}>
-                <div style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' }}>SCHEMA HEALTH</div>
-                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--purple-text)', marginTop: '0.2rem' }}>
+                <div style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>SCHEMA HEALTH</div>
+                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.2rem' }}>
                   1 Drift
                 </div>
               </div>
@@ -164,7 +175,7 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
 
             {/* Live Streaming Endpoint Rows */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--text-light)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                 LIVE ENDPOINT MONITORING STATUS
               </div>
 
@@ -179,13 +190,24 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
                 borderRadius: 'var(--radius-md)'
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <span className="badge badge-success" style={{ fontSize: '0.65rem' }}>200 OK</span>
-                  <span style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--primary)', fontFamily: 'var(--font-mono)' }}>GET</span>
-                  <span style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-main)' }}>/api/mock/users</span>
+                  <span style={{
+                    padding: '0.2rem 0.5rem',
+                    borderRadius: 'var(--radius-sm)',
+                    background: 'var(--bg-card)',
+                    border: '1px solid var(--border-color)',
+                    color: '#FFFFFF',
+                    fontSize: '0.68rem',
+                    fontWeight: 700,
+                    fontFamily: 'var(--font-mono)'
+                  }}>
+                    200 OK
+                  </span>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>GET</span>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#FFFFFF' }}>/api/mock/users</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.75rem', fontFamily: 'var(--font-mono)' }}>
-                  <span style={{ color: 'var(--success-text)' }}>Contract: Valid ✓</span>
-                  <span style={{ color: 'var(--text-muted)' }}>8ms</span>
+                  <span style={{ color: 'var(--text-muted)' }}>Contract: Valid ✓</span>
+                  <span style={{ color: 'var(--text-dim)' }}>8ms</span>
                 </div>
               </div>
 
@@ -195,18 +217,39 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 padding: '0.65rem 0.85rem',
-                background: 'var(--purple-bg)',
-                border: '1px solid rgba(139, 92, 246, 0.3)',
+                background: 'var(--bg-subtle)',
+                border: '1px solid var(--border-color)',
                 borderRadius: 'var(--radius-md)'
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <span className="badge badge-purple" style={{ fontSize: '0.65rem' }}>200 OK</span>
-                  <span style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--purple-text)', fontFamily: 'var(--font-mono)' }}>POST</span>
-                  <span style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-main)' }}>/api/mock/payment-info</span>
+                  <span style={{
+                    padding: '0.2rem 0.5rem',
+                    borderRadius: 'var(--radius-sm)',
+                    background: 'var(--bg-card)',
+                    border: '1px solid var(--border-color)',
+                    color: '#FFFFFF',
+                    fontSize: '0.68rem',
+                    fontWeight: 700,
+                    fontFamily: 'var(--font-mono)'
+                  }}>
+                    200 OK
+                  </span>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>POST</span>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#FFFFFF' }}>/api/mock/payment-info</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.75rem', fontFamily: 'var(--font-mono)' }}>
-                  <span style={{ color: 'var(--danger-text)' }}>DRIFT DETECTED ⚠️</span>
-                  <span style={{ color: 'var(--text-muted)' }}>14ms</span>
+                  <span style={{
+                    padding: '0.15rem 0.45rem',
+                    borderRadius: 'var(--radius-sm)',
+                    background: 'var(--bg-card)',
+                    border: '1px solid var(--border-color)',
+                    fontSize: '0.68rem',
+                    fontWeight: 700,
+                    color: '#FFFFFF'
+                  }}>
+                    DRIFT DETECTED
+                  </span>
+                  <span style={{ color: 'var(--text-dim)' }}>14ms</span>
                 </div>
               </div>
 
@@ -221,13 +264,24 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
                 borderRadius: 'var(--radius-md)'
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <span className="badge badge-success" style={{ fontSize: '0.65rem' }}>200 OK</span>
-                  <span style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--primary)', fontFamily: 'var(--font-mono)' }}>POST</span>
-                  <span style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-main)' }}>https://leetcode.com/graphql</span>
+                  <span style={{
+                    padding: '0.2rem 0.5rem',
+                    borderRadius: 'var(--radius-sm)',
+                    background: 'var(--bg-card)',
+                    border: '1px solid var(--border-color)',
+                    color: '#FFFFFF',
+                    fontSize: '0.68rem',
+                    fontWeight: 700,
+                    fontFamily: 'var(--font-mono)'
+                  }}>
+                    200 OK
+                  </span>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>POST</span>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#FFFFFF' }}>https://leetcode.com/graphql</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.75rem', fontFamily: 'var(--font-mono)' }}>
-                  <span style={{ color: 'var(--success-text)' }}>Operational ✓</span>
-                  <span style={{ color: 'var(--text-muted)' }}>371ms</span>
+                  <span style={{ color: 'var(--text-muted)' }}>Operational ✓</span>
+                  <span style={{ color: 'var(--text-dim)' }}>371ms</span>
                 </div>
               </div>
             </div>
@@ -236,16 +290,16 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
             <div style={{
               padding: '0.75rem 1rem',
               borderRadius: 'var(--radius-md)',
-              background: 'rgba(239, 68, 68, 0.1)',
-              border: '1px solid rgba(239, 68, 68, 0.3)',
+              background: 'var(--bg-subtle)',
+              border: '1px solid var(--border-color)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                <span style={{ fontSize: '1rem' }}>🚨</span>
+                <span style={{ fontSize: '0.95rem' }}>⚡</span>
                 <div>
-                  <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#F87171' }}>
+                  <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#FFFFFF' }}>
                     Incident: Contract Violation in Payment Info
                   </div>
                   <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>
@@ -253,7 +307,17 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
                   </div>
                 </div>
               </div>
-              <span className="badge badge-danger" style={{ fontSize: '0.65rem' }}>Cooldown Active</span>
+              <span style={{
+                padding: '0.2rem 0.55rem',
+                borderRadius: 'var(--radius-sm)',
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border-color)',
+                color: 'var(--text-muted)',
+                fontSize: '0.68rem',
+                fontWeight: 600
+              }}>
+                Cooldown Active
+              </span>
             </div>
 
           </div>
@@ -399,9 +463,9 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
               <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '0.06em' }}>
                 EXPECTED SCHEMA CONTRACT
               </span>
-              <span className="badge badge-success" style={{ fontSize: '0.68rem' }}>OPENAPI SPEC</span>
+              <span className="badge badge-subtle font-mono" style={{ fontSize: '0.68rem' }}>OPENAPI SPEC</span>
             </div>
-            <pre style={{ color: '#059669', fontSize: '0.82rem', fontFamily: 'var(--font-mono)', lineHeight: 1.7, margin: 0 }}>
+            <pre style={{ color: '#FFFFFF', fontSize: '0.82rem', fontFamily: 'var(--font-mono)', lineHeight: 1.7, margin: 0 }}>
               {`id:      number    ✓
 name:    string    ✓
 email:   string    ✓
@@ -412,37 +476,37 @@ role:    string    ✓`}
           {/* Right: Actual Observed (with drift highlights) */}
           <div style={{
             background: 'var(--bg-subtle)',
-            border: '1px solid rgba(239, 68, 68, 0.35)',
+            border: '1px solid var(--border-color)',
             borderRadius: 'var(--radius-md)',
             padding: '1.25rem'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
-              <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#DC2626', letterSpacing: '0.06em' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#FFFFFF', letterSpacing: '0.06em' }}>
                 ACTUAL OBSERVED RESPONSE (HTTP 200)
               </span>
-              <span className="badge badge-danger" style={{ fontSize: '0.68rem' }}>BREAKING CHANGE</span>
+              <span className="badge badge-subtle font-mono" style={{ fontSize: '0.68rem' }}>BREAKING CHANGE</span>
             </div>
             <pre style={{ fontSize: '0.82rem', fontFamily: 'var(--font-mono)', lineHeight: 1.7, margin: 0 }}>
-              <span style={{ color: '#DC2626' }}>id:      "usr-99"  ❌ TYPE_MISMATCH (Expected number)</span>{'\n'}
-              <span style={{ color: '#059669' }}>name:    "Alice"   ✓</span>{'\n'}
-              <span style={{ color: '#DC2626' }}>email:   undefined ❌ MISSING_REQUIRED_FIELD</span>{'\n'}
-              <span style={{ color: '#D97706' }}>extraKey: true     ⚠️ UNEXPECTED_FIELD (Drift)</span>
+              <span style={{ color: '#FFFFFF' }}>id:      "usr-99"  [TYPE_MISMATCH (Expected number)]</span>{'\n'}
+              <span style={{ color: 'var(--text-muted)' }}>name:    "Alice"   ✓</span>{'\n'}
+              <span style={{ color: '#FFFFFF' }}>email:   undefined [MISSING_REQUIRED_FIELD]</span>{'\n'}
+              <span style={{ color: 'var(--text-muted)' }}>extraKey: true     [UNEXPECTED_FIELD (Drift)]</span>
             </pre>
           </div>
         </div>
 
         <div style={{
           padding: '0.85rem 1.25rem',
-          background: 'rgba(239, 68, 68, 0.08)',
-          border: '1px solid rgba(239, 68, 68, 0.25)',
+          background: 'var(--bg-subtle)',
+          border: '1px solid var(--border-color)',
           borderRadius: 'var(--radius-md)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <span style={{ fontSize: '1.2rem' }}>⚡</span>
-            <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#F87171' }}>
+            <span style={{ fontSize: '1.1rem' }}>⚡</span>
+            <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#FFFFFF' }}>
               Contract Violation & Drift Confirmed: Alert Dispatched to DevOps Slack & PagerDuty
             </span>
           </div>
@@ -480,17 +544,17 @@ role:    string    ✓`}
               style={{
                 padding: '1rem 0.75rem',
                 borderRadius: 'var(--radius-md)',
-                background: activeWorkflowStep === idx ? 'rgba(0, 120, 212, 0.12)' : 'var(--bg-card)',
-                border: activeWorkflowStep === idx ? '1px solid var(--primary)' : '1px solid var(--border-color)',
+                background: activeWorkflowStep === idx ? 'var(--bg-subtle)' : 'var(--bg-card)',
+                border: activeWorkflowStep === idx ? '1px solid #FFFFFF' : '1px solid var(--border-color)',
                 cursor: 'pointer',
-                transition: 'all 0.2s ease',
+                transition: 'all 0.15s ease',
                 textAlign: 'center'
               }}
             >
               <div style={{
                 fontSize: '0.7rem',
                 fontWeight: 800,
-                color: activeWorkflowStep === idx ? 'var(--primary)' : 'var(--text-muted)',
+                color: activeWorkflowStep === idx ? '#FFFFFF' : 'var(--text-dim)',
                 fontFamily: 'var(--font-mono)'
               }}>
                 STEP {step.icon}
@@ -498,7 +562,7 @@ role:    string    ✓`}
               <div style={{
                 fontSize: '0.95rem',
                 fontWeight: 800,
-                color: activeWorkflowStep === idx ? 'var(--primary)' : 'var(--text-main)',
+                color: activeWorkflowStep === idx ? '#FFFFFF' : 'var(--text-main)',
                 marginTop: '0.25rem'
               }}>
                 {step.title}
@@ -522,12 +586,12 @@ role:    string    ✓`}
             width: 44,
             height: 44,
             borderRadius: '50%',
-            background: 'var(--primary)',
+            background: '#FFFFFF',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             fontWeight: 900,
-            color: '#FFFFFF',
+            color: '#0A0A0A',
             fontSize: '1rem',
             flexShrink: 0
           }}>
@@ -708,13 +772,13 @@ role:    string    ✓`}
                 <div style={{
                   height: '100%',
                   width: '68%',
-                  background: 'var(--primary)',
+                  background: '#FFFFFF',
                   borderRadius: 2
                 }} />
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
                 <span>Evaluating response payload...</span>
-                <span style={{ color: '#38BDF8', fontWeight: 600 }}>0 Drift Detected</span>
+                <span style={{ color: '#FFFFFF', fontWeight: 600 }}>0 Drift Detected</span>
               </div>
             </div>
 
@@ -789,7 +853,7 @@ role:    string    ✓`}
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#FFFFFF' }}>BullMQ Queue Pipeline</span>
-              <span className="badge badge-success" style={{ fontSize: '0.65rem' }}>ONLINE (5 SLOTS)</span>
+              <span style={{ padding: '0.2rem 0.55rem', borderRadius: 'var(--radius-sm)', background: 'var(--bg-card)', border: '1px solid var(--border-color)', color: '#FFFFFF', fontSize: '0.65rem', fontWeight: 700 }}>ONLINE (5 SLOTS)</span>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
               <div style={{ padding: '0.75rem', background: 'var(--bg-main)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
@@ -803,7 +867,7 @@ role:    string    ✓`}
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
               <span>Background Dispatch Rate</span>
-              <strong style={{ color: '#10B981' }}>100% Scheduled</strong>
+              <strong style={{ color: '#FFFFFF' }}>100% Scheduled</strong>
             </div>
           </div>
         </div>
