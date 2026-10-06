@@ -196,7 +196,7 @@ export default function WebsitesManager({ websites, endpoints, onRefreshAll, onC
         {selectedSite ? (
           <div>
             {/* Website Metadata Header Card */}
-            <div className="card" style={{ marginBottom: '1.5rem', background: 'white' }}>
+            <div className="card" style={{ marginBottom: '1.5rem', background: 'var(--bg-card)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>

@@ -21,26 +21,27 @@ import {
   Cloud,
   Play,
   Download,
-  Plus
+  Plus,
+  Sun,
+  Moon
 } from 'lucide-react';
 
-export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefreshAll }) {
+export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefreshAll, theme, onToggleTheme }) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [notificationsOpen, setNotificationsOpen] = useState(false);
 
   return (
     <div style={{ position: 'sticky', top: 0, zIndex: 100, display: 'flex', flexDirection: 'column' }}>
       
       {/* ================= 1. AZURE PORTAL GLOBAL SHELL HEADER ================= */}
       <div style={{
-        background: '#00183F', // Classic Microsoft Azure Portal Navy
+        background: '#0078D4', // Signature Azure Blue Header
         color: '#FFFFFF',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0 1.25rem',
         height: '42px',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
         fontSize: '0.82rem'
       }}>
         {/* Left: Azure Portal Identity & Breadcrumb */}
@@ -56,35 +57,35 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
               fontSize: '0.95rem'
             }}
           >
-            {/* Azure / Sentinel Cloud Mark */}
+            {/* Azure Cloud Mark */}
             <div style={{
               width: 24,
               height: 24,
-              borderRadius: '4px',
-              background: '#0078D4',
+              borderRadius: '3px',
+              background: '#FFFFFF',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#FFFFFF'
+              color: '#0078D4'
             }}>
               <Cloud size={15} />
             </div>
-            <span>Microsoft Azure</span>
-            <span style={{ color: 'rgba(255, 255, 255, 0.4)', fontWeight: 300 }}>|</span>
-            <span style={{ color: '#38BDF8', fontWeight: 700 }}>API Sentinel</span>
+            <span style={{ fontWeight: 800, letterSpacing: '-0.01em' }}>Microsoft Azure</span>
+            <span style={{ color: 'rgba(255, 255, 255, 0.5)', fontWeight: 300 }}>|</span>
+            <span style={{ color: '#FFFFFF', fontWeight: 700 }}>API Sentinel</span>
           </div>
 
           <div style={{
             display: 'flex',
             alignItems: 'center',
             gap: '0.4rem',
-            color: 'rgba(255, 255, 255, 0.65)',
+            color: 'rgba(255, 255, 255, 0.85)',
             fontSize: '0.75rem',
             marginLeft: '0.5rem'
           }}>
             <span>Portal</span>
             <span>&gt;</span>
-            <span>Production SLA Cluster (East US)</span>
+            <span>Observability Cluster (East US)</span>
           </div>
         </div>
 
@@ -94,7 +95,7 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
           width: '380px',
           maxWidth: '40%'
         }}>
-          <Search size={14} style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: 'rgba(255, 255, 255, 0.5)' }} />
+          <Search size={14} style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: 'rgba(255, 255, 255, 0.7)' }} />
           <input
             type="text"
             placeholder="Search resources, services, and docs (G+/)"
@@ -103,8 +104,8 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
             style={{
               width: '100%',
               padding: '0.3rem 0.75rem 0.3rem 2rem',
-              background: 'rgba(255, 255, 255, 0.1)',
-              border: '1px solid rgba(255, 255, 255, 0.15)',
+              background: 'rgba(255, 255, 255, 0.2)',
+              border: '1px solid rgba(255, 255, 255, 0.3)',
               borderRadius: '4px',
               color: '#FFFFFF',
               fontSize: '0.78rem',
@@ -113,38 +114,57 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
           />
         </div>
 
-        {/* Right: Cloud Shell, Notifications, Settings, User Tenant */}
+        {/* Right: Theme Toggle, Cloud Shell, Notifications, Settings, User Tenant */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
           
+          {/* Light / Dark White Theme Toggle Button */}
+          <button
+            onClick={onToggleTheme}
+            title={theme === 'dark' ? 'Switch to Clean White Theme' : 'Switch to Dark Theme'}
+            style={{
+              background: 'rgba(255, 255, 255, 0.15)',
+              border: '1px solid rgba(255, 255, 255, 0.25)',
+              color: '#FFFFFF',
+              borderRadius: '4px',
+              padding: '0.25rem 0.55rem',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              fontSize: '0.72rem',
+              fontWeight: 700
+            }}
+          >
+            {theme === 'dark' ? <Sun size={13} /> : <Moon size={13} />}
+            <span>{theme === 'dark' ? 'White Theme' : 'Dark Mode'}</span>
+          </button>
+
           <button
             onClick={() => setActiveTab('queue')}
             title="Cloud Shell (37+ Routes Console)"
             style={{
               background: 'transparent',
               border: 'none',
-              color: 'rgba(255, 255, 255, 0.8)',
+              color: '#FFFFFF',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.3rem',
-              fontSize: '0.75rem'
+              gap: '0.3rem'
             }}
           >
             <Terminal size={15} />
-            <span style={{ display: 'none' }}>Shell</span>
           </button>
 
           <button
             onClick={onRefreshAll}
-            title="Sync Azure Telemetry"
+            title="Sync Telemetry"
             style={{
               background: 'transparent',
               border: 'none',
-              color: 'rgba(255, 255, 255, 0.8)',
+              color: '#FFFFFF',
               cursor: 'pointer',
               display: 'flex',
-              alignItems: 'center',
-              gap: '0.2rem'
+              alignItems: 'center'
             }}
           >
             <RefreshCw size={14} />
@@ -157,19 +177,19 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
               position: 'relative',
               background: 'transparent',
               border: 'none',
-              color: 'rgba(255, 255, 255, 0.8)',
+              color: '#FFFFFF',
               cursor: 'pointer'
             }}
           >
             <Bell size={15} />
             <span style={{
               position: 'absolute',
-              top: -3,
-              right: -4,
+              top: -2,
+              right: -3,
               width: 7,
               height: 7,
               borderRadius: '50%',
-              background: '#0078D4'
+              background: '#FFFFFF'
             }} />
           </button>
 
@@ -178,15 +198,16 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
             alignItems: 'center',
             gap: '0.45rem',
             paddingLeft: '0.5rem',
-            borderLeft: '1px solid rgba(255, 255, 255, 0.15)',
+            borderLeft: '1px solid rgba(255, 255, 255, 0.25)',
             fontSize: '0.78rem',
-            color: 'rgba(255, 255, 255, 0.9)'
+            color: '#FFFFFF'
           }}>
             <div style={{
               width: 24,
               height: 24,
               borderRadius: '50%',
-              background: '#0078D4',
+              background: '#FFFFFF',
+              color: '#0078D4',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -201,18 +222,18 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
         </div>
       </div>
 
-      {/* ================= 2. AZURE COMMAND BAR & BLADE NAVIGATION ================= */}
+      {/* ================= 2. AZURE SERVICE BLADES & COMMAND BAR ================= */}
       <div style={{
-        background: '#070B14',
+        background: 'var(--bg-card)',
         borderBottom: '1px solid var(--border-color)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '0.35rem 1.25rem',
-        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
+        padding: '0.3rem 1.25rem',
+        boxShadow: 'var(--shadow-sm)'
       }}>
         {/* Azure Service Tabs */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', overflowX: 'auto' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem', overflowX: 'auto' }}>
           
           <button
             className={`nav-btn ${activeTab === 'landing' ? 'active' : ''}`}
@@ -226,7 +247,7 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
             className={`nav-btn ${activeTab === 'lucidflow' ? 'active' : ''}`}
             onClick={() => setActiveTab('lucidflow')}
             style={{
-              color: activeTab === 'lucidflow' ? '#FFFFFF' : '#38BDF8',
+              color: activeTab === 'lucidflow' ? 'var(--primary)' : 'var(--text-main)',
               fontWeight: 700
             }}
           >
@@ -297,7 +318,7 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
             <span
               className="pulse-dot"
               style={{
-                backgroundColor: globalStatus === 'OPERATIONAL' ? '#10B981' : '#F59E0B'
+                backgroundColor: globalStatus === 'OPERATIONAL' ? 'var(--success)' : 'var(--warning)'
               }}
             />
             {globalStatus === 'OPERATIONAL' ? 'Succeeded (100% SLA)' : 'Degraded Incident'}

@@ -15,6 +15,15 @@ import LucidFlowStudio from './components/LucidFlowStudio';
 export default function App() {
   const [activeTab, setActiveTab] = useState('landing');
   const [globalStatus, setGlobalStatus] = useState('OPERATIONAL');
+  const [theme, setTheme] = useState('light'); // Azure Clean White Theme by default!
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+  };
 
   const [websites, setWebsites] = useState([]);
   const [endpoints, setEndpoints] = useState([]);
@@ -149,6 +158,8 @@ export default function App() {
         setActiveTab={setActiveTab}
         globalStatus={globalStatus}
         onRefreshAll={fetchAllData}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
 
       <main className="main-content">

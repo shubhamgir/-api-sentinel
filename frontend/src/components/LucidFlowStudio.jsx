@@ -247,7 +247,7 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0.6rem 1rem',
-        background: '#0B1120',
+        background: 'var(--bg-card)',
         border: '1px solid var(--border-color)',
         borderRadius: 'var(--radius-md)'
       }}>
@@ -256,7 +256,7 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
           <span style={{ color: 'var(--text-light)' }}>/</span>
           <span style={{ color: 'var(--text-muted)' }}>API Sentinel</span>
           <span style={{ color: 'var(--text-light)' }}>/</span>
-          <span style={{ fontWeight: 700, color: '#38BDF8', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+          <span style={{ fontWeight: 700, color: 'var(--primary)', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
             <Layers size={14} /> Lucid Flow Studio
           </span>
           <span className="badge badge-subtle font-mono" style={{ fontSize: '0.68rem', padding: '0.15rem 0.5rem' }}>
@@ -303,14 +303,14 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
         <div style={{
           position: 'relative',
           background: showGrid
-            ? 'radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, #070B14 1px)'
-            : '#070B14',
+            ? 'radial-gradient(circle, rgba(100, 116, 139, 0.2) 1px, var(--bg-subtle) 1px)'
+            : 'var(--bg-subtle)',
           backgroundSize: '24px 24px',
           border: '1px solid var(--border-color)',
           borderRadius: 'var(--radius-lg)',
           height: '620px',
           overflow: 'hidden',
-          boxShadow: 'inset 0 0 40px rgba(0, 0, 0, 0.8)'
+          boxShadow: 'inset 0 0 20px rgba(0, 0, 0, 0.05)'
         }}>
           
           {/* Lucidchart Canvas Controls Top Floating Toolbar */}
@@ -323,7 +323,7 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
             alignItems: 'center',
             gap: '0.4rem',
             padding: '0.3rem 0.6rem',
-            background: 'rgba(11, 17, 32, 0.92)',
+            background: 'var(--bg-card)',
             backdropFilter: 'blur(8px)',
             border: '1px solid var(--border-color)',
             borderRadius: 'var(--radius-md)',
@@ -451,17 +451,17 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
                     top: `${node.y}px`,
                     width: '210px',
                     borderRadius: 'var(--radius-md)',
-                    background: isSelected ? '#0F1E38' : '#0B1324',
+                    background: isSelected ? 'var(--primary-light)' : 'var(--bg-card)',
                     border: isCurrentSim
-                      ? '2px solid #10B981'
+                      ? '2px solid #107C41'
                       : isSelected
-                      ? '2px solid #0078D4'
-                      : '1px solid #1E293B',
+                      ? '2px solid var(--primary)'
+                      : '1px solid var(--border-color)',
                     boxShadow: isCurrentSim
-                      ? '0 0 25px rgba(16, 185, 129, 0.5)'
+                      ? '0 0 20px rgba(16, 124, 65, 0.4)'
                       : isSelected
-                      ? '0 0 20px rgba(0, 120, 212, 0.4)'
-                      : '0 4px 12px rgba(0, 0, 0, 0.6)',
+                      ? '0 0 16px rgba(0, 120, 212, 0.3)'
+                      : 'var(--shadow-sm)',
                     cursor: 'pointer',
                     zIndex: isSelected ? 5 : 2,
                     transition: 'all 0.15s ease',
@@ -471,8 +471,8 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
                   {/* Lucid Top Category Header Bar */}
                   <div style={{
                     padding: '0.4rem 0.75rem',
-                    background: isSelected ? node.color : 'rgba(255, 255, 255, 0.04)',
-                    borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                    background: isSelected ? node.color : 'var(--bg-subtle)',
+                    borderBottom: '1px solid var(--border-color)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between'
@@ -491,8 +491,8 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
                       fontWeight: 700,
                       padding: '0.1rem 0.35rem',
                       borderRadius: 'var(--radius-sm)',
-                      background: 'rgba(0, 0, 0, 0.3)',
-                      color: '#FFFFFF'
+                      background: isSelected ? 'rgba(0, 0, 0, 0.25)' : 'rgba(0, 120, 212, 0.1)',
+                      color: isSelected ? '#FFFFFF' : 'var(--primary)'
                     }}>
                       {node.category}
                     </span>
@@ -500,7 +500,7 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
 
                   {/* Node Body */}
                   <div style={{ padding: '0.85rem' }}>
-                    <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#FFFFFF', lineHeight: 1.25 }}>
+                    <div style={{ fontSize: '0.88rem', fontWeight: 800, color: 'var(--text-main)', lineHeight: 1.25 }}>
                       {node.title}
                     </div>
                     <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
@@ -510,7 +510,7 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
                     <div style={{
                       marginTop: '0.75rem',
                       paddingTop: '0.65rem',
-                      borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+                      borderTop: '1px solid var(--border-color)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
@@ -519,7 +519,7 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
                       <span style={{ color: 'var(--text-light)' }}>Status:</span>
                       <span style={{
                         fontWeight: 700,
-                        color: isCurrentSim ? '#34D399' : '#38BDF8'
+                        color: isCurrentSim ? '#107C41' : 'var(--primary)'
                       }}>
                         {isCurrentSim ? 'Processing ⚡' : node.status}
                       </span>
@@ -534,8 +534,8 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
                     width: '8px',
                     height: '8px',
                     borderRadius: '50%',
-                    background: '#38BDF8',
-                    border: '1px solid #070B14'
+                    background: 'var(--primary)',
+                    border: '1.5px solid var(--bg-card)'
                   }} />
                   <span style={{
                     position: 'absolute',
@@ -544,8 +544,8 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
                     width: '8px',
                     height: '8px',
                     borderRadius: '50%',
-                    background: '#38BDF8',
-                    border: '1px solid #070B14'
+                    background: 'var(--primary)',
+                    border: '1.5px solid var(--bg-card)'
                   }} />
                 </div>
               );
@@ -556,7 +556,7 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
 
         {/* Right Side: Lucidchart Node Inspector Drawer (Azure Blade Style) */}
         <div style={{
-          background: '#0B1120',
+          background: 'var(--bg-card)',
           border: '1px solid var(--border-color)',
           borderRadius: 'var(--radius-lg)',
           padding: '1.25rem',
@@ -573,11 +573,11 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
                   <div style={{ fontSize: '0.68rem', fontWeight: 800, color: selectedNode.color, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                     NODE INSPECTOR • STEP 0{selectedNode.step}
                   </div>
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.15rem' }}>
+                  <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--text-main)', marginTop: '0.15rem' }}>
                     {selectedNode.title}
                   </h3>
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                    Category: <strong style={{ color: '#FFFFFF' }}>{selectedNode.category}</strong>
+                    Category: <strong style={{ color: 'var(--text-main)' }}>{selectedNode.category}</strong>
                   </div>
                 </div>
                 <span className="badge badge-success" style={{ fontSize: '0.68rem' }}>
@@ -601,7 +601,7 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
                   Configuration Parameters
                 </label>
                 <div style={{
-                  background: '#070B14',
+                  background: 'var(--bg-subtle)',
                   border: '1px solid var(--border-color)',
                   borderRadius: 'var(--radius-md)',
                   padding: '0.5rem 0.75rem',
@@ -613,7 +613,7 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
                   {Object.entries(selectedNode.config).map(([k, v]) => (
                     <div key={k} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <span style={{ color: 'var(--text-light)', fontFamily: 'var(--font-mono)' }}>{k}</span>
-                      <strong style={{ color: '#38BDF8', fontFamily: 'var(--font-mono)', fontSize: '0.75rem' }}>
+                      <strong style={{ color: 'var(--primary)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem' }}>
                         {Array.isArray(v) ? v.join(', ') : String(v)}
                       </strong>
                     </div>
@@ -625,14 +625,14 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
               <div style={{
                 padding: '0.75rem',
                 borderRadius: 'var(--radius-md)',
-                background: 'rgba(0, 120, 212, 0.1)',
-                border: '1px solid rgba(0, 120, 212, 0.25)',
+                background: 'rgba(0, 120, 212, 0.08)',
+                border: '1px solid rgba(0, 120, 212, 0.22)',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.6rem'
               }}>
-                <Info size={16} color="#38BDF8" />
-                <div style={{ fontSize: '0.75rem', color: '#E2E8F0', lineHeight: 1.4 }}>
+                <Info size={16} color="var(--primary)" />
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-main)', lineHeight: 1.4 }}>
                   Connected to active monitoring worker pipeline on port <strong>5000</strong>.
                 </div>
               </div>

@@ -1,61 +1,108 @@
 :root {
-  /* Dark Enterprise Technology Theme (#070B14 / #0B1120) */
-  --bg-main: #070B14;          /* Deepest navy near-black background */
-  --bg-subtle: #0B1120;        /* Secondary dark card fill */
-  --bg-card: #0F172A;          /* Enterprise dark slate surface */
-  --bg-card-hover: #1E293B;    /* Interactive card hover */
-  --bg-card-glass: rgba(15, 23, 42, 0.75);
-  
-  --text-main: #F8FAFC;        /* Crisp white headings */
-  --text-muted: #94A3B8;       /* Cool gray secondary body text */
-  --text-light: #64748B;       /* Low-contrast captions */
+  /* Microsoft Azure / Fluent Minimalistic White Theme (Default) */
+  --bg-main: #F4F6F9;          /* Clean light slate canvas */
+  --bg-subtle: #F8FAFC;        /* Subtle secondary fill */
+  --bg-card: #FFFFFF;          /* Pure crisp white card surface */
+  --bg-card-hover: #F1F5F9;    /* Clean row/card hover */
+  --bg-card-glass: rgba(255, 255, 255, 0.95);
 
-  --border-color: #1E293B;     /* Subtle precision grid lines */
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-highlight: rgba(14, 165, 233, 0.35);
+  --text-main: #0F172A;        /* Deep navy slate for high contrast */
+  --text-muted: #475569;       /* Secondary slate gray */
+  --text-light: #94A3B8;       /* Subtle captions */
 
-  /* Microsoft Azure Dark Enterprise Theme (#070B14 / #0B1120 / #0078D4) */
-  --primary: #0078D4;          /* Microsoft Azure Signature Blue */
+  --border-color: #E2E8F0;     /* Crisp 1px border */
+  --border-subtle: #F1F5F9;
+  --border-highlight: rgba(0, 120, 212, 0.3);
+
+  /* Microsoft Azure Blue Accent */
+  --primary: #0078D4;          /* Azure Signature Blue */
   --primary-hover: #106EBE;
-  --primary-light: rgba(0, 120, 212, 0.16);
-  --primary-glow: rgba(0, 120, 212, 0.35);
+  --primary-light: #EFF6FF;
+  --primary-glow: rgba(0, 120, 212, 0.15);
 
-  --accent: #0284C7;           /* Sky Cyan Accent */
-  --accent-light: rgba(2, 132, 199, 0.14);
+  --accent: #0284C7;
+  --accent-light: #E0F2FE;
 
-  /* Status Colors (Azure Cloud Severity Standard) */
+  /* Azure Cloud Status Tokens */
   --success: #107C41;          /* Azure Success Green */
-  --success-bg: rgba(16, 124, 65, 0.15);
-  --success-border: rgba(16, 124, 65, 0.35);
-  --success-text: #34D399;
+  --success-bg: #ECFDF5;
+  --success-border: #A7F3D0;
+  --success-text: #065F46;
 
-  --warning: #D83B01;          /* Azure Warning Amber/Orange */
-  --warning-bg: rgba(216, 59, 1, 0.15);
-  --warning-border: rgba(216, 59, 1, 0.35);
-  --warning-text: #FBBF24;
+  --warning: #D83B01;          /* Azure Amber/Orange */
+  --warning-bg: #FFFBEB;
+  --warning-border: #FDE68A;
+  --warning-text: #92400E;
 
-  --danger: #A80000;           /* Azure Critical Red */
-  --danger-bg: rgba(239, 68, 68, 0.15);
-  --danger-border: rgba(239, 68, 68, 0.35);
-  --danger-text: #F87171;
+  --danger: #A80000;           /* Azure Red */
+  --danger-bg: #FEF2F2;
+  --danger-border: #FECACA;
+  --danger-text: #991B1B;
 
-  --purple: #8B5CF6;           /* Schema Violet */
-  --purple-bg: rgba(139, 92, 246, 0.14);
-  --purple-text: #A78BFA;
+  --purple: #7C3AED;
+  --purple-bg: #F5F3FF;
+  --purple-text: #6D28D9;
 
-  /* Shadows with subtle dark elevation */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
-  --shadow-md: 0 4px 10px -2px rgba(0, 0, 0, 0.6);
-  --shadow-lg: 0 10px 25px -4px rgba(0, 0, 0, 0.75);
-  --shadow-glow: 0 0 20px rgba(0, 120, 212, 0.25);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
+  --shadow-glow: 0 0 15px rgba(0, 120, 212, 0.15);
 
   --radius-sm: 4px;            /* Fluent/Azure Sharp Radius */
   --radius-md: 6px;
   --radius-lg: 8px;
   --radius-full: 9999px;
-  
+
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+}
+
+[data-theme="dark"] {
+  --bg-main: #070B14;
+  --bg-subtle: #0B1120;
+  --bg-card: #0F172A;
+  --bg-card-hover: #1E293B;
+  --bg-card-glass: rgba(15, 23, 42, 0.85);
+
+  --text-main: #F8FAFC;
+  --text-muted: #94A3B8;
+  --text-light: #64748B;
+
+  --border-color: #1E293B;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-highlight: rgba(0, 120, 212, 0.35);
+
+  --primary: #0078D4;
+  --primary-hover: #106EBE;
+  --primary-light: rgba(0, 120, 212, 0.16);
+  --primary-glow: rgba(0, 120, 212, 0.35);
+
+  --accent: #0284C7;
+  --accent-light: rgba(2, 132, 199, 0.14);
+
+  --success: #107C41;
+  --success-bg: rgba(16, 124, 65, 0.15);
+  --success-border: rgba(16, 124, 65, 0.35);
+  --success-text: #34D399;
+
+  --warning: #D83B01;
+  --warning-bg: rgba(216, 59, 1, 0.15);
+  --warning-border: rgba(216, 59, 1, 0.35);
+  --warning-text: #FBBF24;
+
+  --danger: #A80000;
+  --danger-bg: rgba(239, 68, 68, 0.15);
+  --danger-border: rgba(239, 68, 68, 0.35);
+  --danger-text: #F87171;
+
+  --purple: #8B5CF6;
+  --purple-bg: rgba(139, 92, 246, 0.14);
+  --purple-text: #A78BFA;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 10px -2px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 25px -4px rgba(0, 0, 0, 0.75);
+  --shadow-glow: 0 0 20px rgba(0, 120, 212, 0.25);
 }
 
 * {
@@ -67,11 +114,6 @@
 body {
   font-family: var(--font-sans);
   background-color: var(--bg-main);
-  background-image: 
-    radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.08) 0%, transparent 60%),
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 100% 100%, 48px 48px, 48px 48px;
   color: var(--text-main);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -90,106 +132,69 @@ code, pre, .font-mono {
 
 .main-content {
   flex: 1;
-  max-width: 1400px;
+  max-width: 1440px;
   width: 100%;
   margin: 0 auto;
-  padding: 1.75rem 1.5rem 4rem 1.5rem;
+  padding: 1.25rem 1.5rem 3rem 1.5rem;
 }
 
-/* Navbar */
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(11, 17, 32, 0.85);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-color);
-  padding: 0.85rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-weight: 800;
-  font-size: 1.25rem;
-  color: #FFFFFF;
-  text-decoration: none;
-}
-
-.brand-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: var(--radius-md);
-  background: linear-gradient(135deg, #0284C7, #2563EB);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
-}
-
+/* Azure Portal Nav Links */
 .nav-links {
   display: flex;
-  gap: 0.35rem;
-  background: rgba(15, 23, 42, 0.7);
-  padding: 0.3rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
+  gap: 0.2rem;
+  background: transparent;
+  padding: 0.1rem;
 }
 
 .nav-btn {
   border: none;
   background: transparent;
-  padding: 0.45rem 0.95rem;
-  font-size: 0.82rem;
-  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 500;
   color: var(--text-muted);
   border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.4rem;
+  white-space: nowrap;
 }
 
 .nav-btn:hover {
-  color: #FFFFFF;
-  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  background: rgba(0, 120, 212, 0.08);
 }
 
 .nav-btn.active {
-  background: #0284C7;
-  color: #FFFFFF;
-  box-shadow: 0 0 12px rgba(14, 165, 233, 0.4);
+  background: var(--primary-light);
+  color: var(--primary);
   font-weight: 700;
+  border-bottom: 2px solid var(--primary);
 }
 
 .header-status {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.75rem;
 }
 
 .pulse-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.3rem 0.75rem;
+  gap: 0.45rem;
+  padding: 0.25rem 0.65rem;
   border-radius: var(--radius-full);
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 
 .pulse-dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   animation: pulse 1.8s infinite;
 }
@@ -205,27 +210,27 @@ code, pre, .font-mono {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
-  padding: 1.4rem;
+  padding: 1.25rem;
   box-shadow: var(--shadow-sm);
   transition: all 0.2s ease;
 }
 
 .card:hover {
   box-shadow: var(--shadow-md);
-  border-color: rgba(14, 165, 233, 0.35);
+  border-color: #CBD5E1;
 }
 
 .card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.15rem;
+  margin-bottom: 1rem;
 }
 
 .card-title {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
-  color: #FFFFFF;
+  color: var(--text-main);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -235,15 +240,15 @@ code, pre, .font-mono {
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 1.15rem;
-  margin-bottom: 1.75rem;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .stat-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
-  padding: 1.25rem 1.4rem;
+  padding: 1.15rem 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -255,19 +260,19 @@ code, pre, .font-mono {
   font-weight: 700;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 0.35rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
 }
 
 .stat-value {
-  font-size: 1.75rem;
+  font-size: 1.65rem;
   font-weight: 800;
-  color: #FFFFFF;
+  color: var(--text-main);
 }
 
 .stat-icon {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -279,7 +284,7 @@ code, pre, .font-mono {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.25rem 0.65rem;
+  padding: 0.2rem 0.6rem;
   border-radius: var(--radius-full);
   font-size: 0.72rem;
   font-weight: 700;
@@ -290,43 +295,41 @@ code, pre, .font-mono {
 .badge-warning { background: var(--warning-bg); color: var(--warning-text); border: 1px solid var(--warning-border); }
 .badge-danger { background: var(--danger-bg); color: var(--danger-text); border: 1px solid var(--danger-border); }
 .badge-purple { background: var(--purple-bg); color: var(--purple-text); border: 1px solid rgba(139, 92, 246, 0.3); }
-.badge-subtle { background: rgba(255, 255, 255, 0.05); color: var(--text-muted); border: 1px solid var(--border-color); }
+.badge-subtle { background: var(--bg-subtle); color: var(--text-muted); border: 1px solid var(--border-color); }
 
 /* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.55rem 1.1rem;
+  padding: 0.5rem 1rem;
   font-size: 0.82rem;
   font-weight: 600;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   border: 1px solid transparent;
 }
 
 .btn-primary {
-  background: #0284C7;
+  background: var(--primary);
   color: #FFFFFF;
-  box-shadow: 0 0 16px rgba(14, 165, 233, 0.35);
+  box-shadow: 0 1px 2px rgba(0, 120, 212, 0.2);
 }
 
 .btn-primary:hover {
-  background: #0369A1;
-  box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
+  background: var(--primary-hover);
 }
 
 .btn-outline {
-  background: rgba(15, 23, 42, 0.6);
-  border-color: var(--border-color);
+  background: var(--bg-card);
+  border-color: #CBD5E1;
   color: var(--text-main);
 }
 
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: var(--primary);
-  color: #FFFFFF;
+  background: var(--bg-subtle);
+  border-color: #94A3B8;
 }
 
 .btn-sm {
@@ -338,10 +341,6 @@ code, pre, .font-mono {
   background: var(--danger-bg);
   color: var(--danger-text);
   border-color: var(--danger-border);
-}
-
-.btn-danger:hover {
-  background: rgba(239, 68, 68, 0.25);
 }
 
 /* Tables */
@@ -361,7 +360,7 @@ table {
 }
 
 th {
-  background: rgba(11, 17, 32, 0.9);
+  background: var(--bg-subtle);
   color: var(--text-muted);
   font-size: 0.72rem;
   font-weight: 700;
@@ -373,7 +372,7 @@ th {
 
 td {
   padding: 0.85rem 1.15rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--border-subtle);
   color: var(--text-main);
 }
 
@@ -382,12 +381,12 @@ tr:last-child td {
 }
 
 tr:hover td {
-  background-color: rgba(255, 255, 255, 0.03);
+  background-color: var(--bg-subtle);
 }
 
 /* Code Diff Box */
 .code-box {
-  background: #070B14;
+  background: #0F172A;
   color: #38BDF8;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
@@ -407,9 +406,9 @@ tr:hover td {
   margin-bottom: 0.5rem;
 }
 
-.diff-tag-missing { background: rgba(239, 68, 68, 0.2); color: #F87171; border: 1px solid rgba(239, 68, 68, 0.3); }
-.diff-tag-added { background: rgba(245, 158, 11, 0.2); color: #FBBF24; border: 1px solid rgba(245, 158, 11, 0.3); }
-.diff-tag-mismatch { background: rgba(139, 92, 246, 0.2); color: #A78BFA; border: 1px solid rgba(139, 92, 246, 0.3); }
+.diff-tag-missing { background: var(--danger-bg); color: var(--danger-text); border: 1px solid var(--danger-border); }
+.diff-tag-added { background: var(--warning-bg); color: var(--warning-text); border: 1px solid var(--warning-border); }
+.diff-tag-mismatch { background: var(--purple-bg); color: var(--purple-text); border: 1px solid rgba(139, 92, 246, 0.3); }
 
 /* Modals */
 .modal-overlay {
@@ -418,8 +417,8 @@ tr:hover td {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -445,7 +444,7 @@ tr:hover td {
   display: block;
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--text-muted);
+  color: var(--text-main);
   margin-bottom: 0.35rem;
 }
 
@@ -453,18 +452,18 @@ tr:hover td {
   width: 100%;
   padding: 0.55rem 0.8rem;
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   font-size: 0.82rem;
   font-family: inherit;
-  background: #0B1120;
-  color: #FFFFFF;
+  background: var(--bg-card);
+  color: var(--text-main);
   transition: all 0.15s ease;
 }
 
 .form-input:focus, .form-select:focus, .form-textarea:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+  box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.15);
 }
 
 /* Real-Time Latency Bar Visualizer */
@@ -488,7 +487,7 @@ tr:hover td {
 
 .chart-bar {
   width: 100%;
-  border-radius: 3px 3px 0 0;
+  border-radius: 2px 2px 0 0;
   transition: height 0.3s ease;
   min-height: 4px;
 }

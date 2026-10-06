@@ -89,7 +89,7 @@ export default function ContractDriftInspector({ endpoints, contracts, onSaveCon
                 </h4>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                   {driftDetails.diffs.map((diff, idx) => (
-                    <div key={idx} style={{ background: 'white', padding: '0.65rem 0.85rem', borderRadius: 'var(--radius-md)', border: '1px solid #E9D5FF', fontSize: '0.85rem' }}>
+                    <div key={idx} style={{ background: 'var(--bg-card)', padding: '0.65rem 0.85rem', borderRadius: 'var(--radius-md)', border: '1px solid #E9D5FF', fontSize: '0.85rem' }}>
                       <span className={`diff-tag ${diff.type === 'UNEXPECTED_FIELDS' ? 'diff-tag-added' : diff.type === 'MISSING_FIELDS' ? 'diff-tag-missing' : 'diff-tag-mismatch'}`}>
                         {diff.type}
                       </span>
