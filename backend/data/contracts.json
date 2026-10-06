@@ -1,0 +1,82 @@
+[
+  {
+    "id": "contract-users",
+    "endpointId": "ep-healthy-user-api",
+    "name": "User Schema v1.0",
+    "schema": {
+      "type": "object",
+      "required": [
+        "status",
+        "users",
+        "count"
+      ],
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "count": {
+          "type": "number"
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "email",
+              "role"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "createdAt": "2026-10-06T08:10:42.737Z"
+  },
+  {
+    "id": "contract-payment",
+    "endpointId": "ep-schema-drift-api",
+    "name": "Payment Endpoint Contract (Strict)",
+    "schema": {
+      "type": "object",
+      "required": [
+        "status",
+        "currency",
+        "gatewayVersion",
+        "supportedMethods"
+      ],
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "gatewayVersion": {
+          "type": "string"
+        },
+        "supportedMethods": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "createdAt": "2026-10-06T08:10:42.737Z"
+  }
+]

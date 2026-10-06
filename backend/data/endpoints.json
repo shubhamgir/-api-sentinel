@@ -1,0 +1,92 @@
+[
+  {
+    "id": "ep-healthy-user-api",
+    "name": "User Management Microservice",
+    "url": "http://localhost:5000/api/mock/users",
+    "method": "GET",
+    "headers": {
+      "Accept": "application/json"
+    },
+    "payload": null,
+    "expectedStatus": 200,
+    "timeoutMs": 3000,
+    "intervalSeconds": 15,
+    "retryCount": 2,
+    "active": true,
+    "createdAt": "2026-10-06T08:10:42.736Z"
+  },
+  {
+    "id": "ep-flaky-degraded-api",
+    "name": "Order Processing Service (Flaky)",
+    "url": "http://localhost:5000/api/mock/orders",
+    "method": "GET",
+    "headers": {},
+    "payload": null,
+    "expectedStatus": 200,
+    "timeoutMs": 2000,
+    "intervalSeconds": 20,
+    "retryCount": 2,
+    "active": true,
+    "createdAt": "2026-10-06T08:10:42.737Z"
+  },
+  {
+    "id": "ep-schema-drift-api",
+    "name": "Payment Gateway Info (Schema Drift)",
+    "url": "http://localhost:5000/api/mock/payment-info",
+    "method": "GET",
+    "headers": {},
+    "payload": null,
+    "expectedStatus": 200,
+    "timeoutMs": 3000,
+    "intervalSeconds": 15,
+    "retryCount": 1,
+    "active": true,
+    "createdAt": "2026-10-06T08:10:42.737Z"
+  },
+  {
+    "id": "ep-slow-latency-api",
+    "name": "Inventory Sync Service (Slow)",
+    "url": "http://localhost:5000/api/mock/slow-inventory",
+    "method": "GET",
+    "headers": {},
+    "payload": null,
+    "expectedStatus": 200,
+    "timeoutMs": 1500,
+    "intervalSeconds": 30,
+    "retryCount": 1,
+    "active": true,
+    "createdAt": "2026-10-06T08:10:42.737Z"
+  },
+  {
+    "id": "614d6863-fa40-4c4d-997c-49dd9dcbebc9",
+    "active": true,
+    "createdAt": "2026-10-06T08:20:18.466Z",
+    "name": "LeetCode Daily Challenge API",
+    "url": "https://leetcode.com/graphql",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "payload": {
+      "query": "query { activeDailyCodingChallengeQuestion { date link } }"
+    },
+    "expectedStatus": 200,
+    "timeoutMs": 5000,
+    "intervalSeconds": 15,
+    "retryCount": 2
+  },
+  {
+    "id": "d6d271b7-c4e1-4798-b280-375c3365785f",
+    "active": true,
+    "createdAt": "2026-10-06T08:38:33.531Z",
+    "name": "google",
+    "url": "https://www.google.com/",
+    "method": "GET",
+    "headers": {},
+    "payload": null,
+    "expectedStatus": 200,
+    "timeoutMs": 3000,
+    "intervalSeconds": 15,
+    "retryCount": 2
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "alert-1",
+    "name": "Global Slack Webhook Alert",
+    "triggerOn": [
+      "STATUS_MISMATCH",
+      "CONTRACT_DRIFT",
+      "TIMEOUT"
+    ],
+    "latencyThresholdMs": 1000,
+    "webhookUrl": "https://hooks.slack.com/services/demo/api-sentinel/alerts",
+    "emailRecipient": "devops@sentinel-monitoring.io",
+    "enabled": true,
+    "createdAt": "2026-10-06T08:10:42.738Z"
+  }
+]
