@@ -252,7 +252,7 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
         borderRadius: 'var(--radius-md)'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.82rem' }}>
-          <span style={{ color: 'var(--text-muted)' }}>Microsoft Azure</span>
+          <span style={{ color: 'var(--text-muted)' }}>Reliability Suite</span>
           <span style={{ color: 'var(--text-light)' }}>/</span>
           <span style={{ color: 'var(--text-muted)' }}>API Sentinel</span>
           <span style={{ color: 'var(--text-light)' }}>/</span>

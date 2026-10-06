@@ -18,7 +18,6 @@ import {
   Bell,
   Layers,
   ChevronDown,
-  Cloud,
   Play,
   Download,
   Plus,
@@ -51,28 +50,27 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.5rem',
+              gap: '0.6rem',
               cursor: 'pointer',
               fontWeight: 800,
-              fontSize: '0.95rem'
+              fontSize: '0.98rem'
             }}
           >
-            {/* Azure Cloud Mark */}
+            {/* API Sentinel Logo Mark */}
             <div style={{
-              width: 24,
-              height: 24,
-              borderRadius: '3px',
+              width: 26,
+              height: 26,
+              borderRadius: '6px',
               background: '#FFFFFF',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#0078D4'
+              color: '#0078D4',
+              boxShadow: '0 1px 3px rgba(0, 0, 0, 0.15)'
             }}>
-              <Cloud size={15} />
+              <ShieldAlert size={17} />
             </div>
-            <span style={{ fontWeight: 800, letterSpacing: '-0.01em' }}>Microsoft Azure</span>
-            <span style={{ color: 'rgba(255, 255, 255, 0.5)', fontWeight: 300 }}>|</span>
-            <span style={{ color: '#FFFFFF', fontWeight: 700 }}>API Sentinel</span>
+            <span style={{ color: '#FFFFFF', fontWeight: 800, fontSize: '0.98rem', letterSpacing: '-0.01em' }}>API Sentinel</span>
           </div>
 
           <div style={{
@@ -83,9 +81,9 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
             fontSize: '0.75rem',
             marginLeft: '0.5rem'
           }}>
-            <span>Portal</span>
+            <span>Reliability Cloud</span>
             <span>&gt;</span>
-            <span>Observability Cluster (East US)</span>
+            <span>Observability Cluster (Production)</span>
           </div>
         </div>
 
@@ -216,7 +214,7 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
             }}>
               SG
             </div>
-            <span>Contoso Enterprise</span>
+            <span>Sentinel Workspace</span>
           </div>
 
         </div>
