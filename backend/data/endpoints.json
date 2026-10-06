@@ -13,7 +13,8 @@
     "intervalSeconds": 15,
     "retryCount": 2,
     "active": true,
-    "createdAt": "2026-10-06T08:10:42.736Z"
+    "createdAt": "2026-10-06T08:10:42.736Z",
+    "websiteId": "web-6789"
   },
   {
     "id": "ep-flaky-degraded-api",
@@ -27,7 +28,8 @@
     "intervalSeconds": 20,
     "retryCount": 2,
     "active": true,
-    "createdAt": "2026-10-06T08:10:42.737Z"
+    "createdAt": "2026-10-06T08:10:42.737Z",
+    "websiteId": "web-6789"
   },
   {
     "id": "ep-schema-drift-api",
@@ -41,7 +43,8 @@
     "intervalSeconds": 15,
     "retryCount": 1,
     "active": true,
-    "createdAt": "2026-10-06T08:10:42.737Z"
+    "createdAt": "2026-10-06T08:10:42.737Z",
+    "websiteId": "web-6789"
   },
   {
     "id": "ep-slow-latency-api",
@@ -55,7 +58,8 @@
     "intervalSeconds": 30,
     "retryCount": 1,
     "active": true,
-    "createdAt": "2026-10-06T08:10:42.737Z"
+    "createdAt": "2026-10-06T08:10:42.737Z",
+    "websiteId": "web-6789"
   },
   {
     "id": "614d6863-fa40-4c4d-997c-49dd9dcbebc9",
@@ -73,7 +77,8 @@
     "expectedStatus": 200,
     "timeoutMs": 5000,
     "intervalSeconds": 15,
-    "retryCount": 2
+    "retryCount": 2,
+    "websiteId": "web-1001"
   },
   {
     "id": "d6d271b7-c4e1-4798-b280-375c3365785f",
@@ -87,7 +92,8 @@
     "expectedStatus": 200,
     "timeoutMs": 3000,
     "intervalSeconds": 15,
-    "retryCount": 2
+    "retryCount": 2,
+    "websiteId": "web-6789"
   },
   {
     "id": "0e5e5598-8c6f-436b-a0fb-b0203f5d39ca",
@@ -101,7 +107,8 @@
     "expectedStatus": 200,
     "timeoutMs": 3000,
     "intervalSeconds": 15,
-    "retryCount": 2
+    "retryCount": 2,
+    "websiteId": "web-6789"
   },
   {
     "id": "78628c6a-7f56-4a3d-af2a-fc9d3ce07029",
@@ -115,6 +122,7 @@
     "expectedStatus": 200,
     "timeoutMs": 3000,
     "intervalSeconds": 15,
-    "retryCount": 2
+    "retryCount": 2,
+    "websiteId": "web-2002"
   }
 ]
