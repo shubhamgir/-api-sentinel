@@ -19,7 +19,11 @@ import {
   ChevronRight,
   ExternalLink,
   Sliders,
-  Filter
+  Filter,
+  Radio,
+  BarChart3,
+  BellOff,
+  FileCode
 } from 'lucide-react';
 
 export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, onNavigateDashboard }) {
@@ -105,257 +109,182 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
           </div>
         </div>
 
-        {/* Right Column: Realistic Live Observability Console */}
+        {/* Right Column: Vercel-Style Live Telemetry Terminal */}
         <div style={{
-          background: 'var(--bg-card)',
+          background: '#000000',
           border: '1px solid var(--border-color)',
-          borderRadius: 'var(--radius-lg)',
-          boxShadow: 'var(--shadow-md)',
-          overflow: 'hidden'
+          borderRadius: 'var(--radius-md)',
+          overflow: 'hidden',
+          fontFamily: 'var(--font-mono)'
         }}>
-          {/* Mock Console Top Bar */}
+          {/* Terminal Tab Bar */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '0.75rem 1rem',
-            background: 'var(--bg-subtle)',
-            borderBottom: '1px solid var(--border-color)'
+            padding: '0.65rem 1rem',
+            borderBottom: '1px solid var(--border-color)',
+            fontSize: '0.75rem',
+            color: 'var(--text-muted)'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#333333' }} />
-              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#333333' }} />
-              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#333333' }} />
-              <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', marginLeft: '0.5rem', fontFamily: 'var(--font-mono)' }}>
-                api-sentinel-cluster-01
-              </span>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#22C55E' }} />
+              <span style={{ color: 'var(--text-main)', fontWeight: 600 }}>sentinel/telemetry</span>
+              <span style={{ color: 'var(--text-dim)' }}>— live stream</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.4rem',
-                padding: '0.2rem 0.55rem',
-                borderRadius: 'var(--radius-sm)',
-                background: 'var(--bg-card)',
-                border: '1px solid var(--border-color)',
-                fontSize: '0.68rem',
-                fontWeight: 700,
-                color: 'var(--text-muted)'
-              }}>
-                <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#FFFFFF' }} /> ACTIVE ENGINE
-              </span>
+            <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)' }}>
+              BullMQ Worker Slot #01
             </div>
           </div>
 
-          {/* Console Body */}
-          <div style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            
-            {/* Quick Metrics */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem' }}>
-              <div style={{ padding: '0.75rem', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)' }}>
-                <div style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>UPTIME (24H)</div>
-                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.2rem' }}>
-                  {uptimeData?.overallUptimePct || '99.9'}%
-                </div>
-              </div>
-              <div style={{ padding: '0.75rem', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)' }}>
-                <div style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>AVG LATENCY</div>
-                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.2rem' }}>
-                  {latencyData?.avgLatencyMs || '42'} ms
-                </div>
-              </div>
-              <div style={{ padding: '0.75rem', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)' }}>
-                <div style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>SCHEMA HEALTH</div>
-                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF', marginTop: '0.2rem' }}>
-                  1 Drift
-                </div>
-              </div>
+          {/* Quick Metrics Bar (Single Row, No Inner Boxes) */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            borderBottom: '1px solid var(--border-color)',
+            fontSize: '0.72rem'
+          }}>
+            <div style={{ padding: '0.65rem 1rem', borderRight: '1px solid var(--border-color)' }}>
+              <span style={{ color: 'var(--text-dim)' }}>UPTIME </span>
+              <span style={{ color: '#FFFFFF', fontWeight: 700 }}>{uptimeData?.overallUptimePct || '99.9'}%</span>
             </div>
-
-            {/* Live Streaming Endpoint Rows */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-                LIVE ENDPOINT MONITORING STATUS
-              </div>
-
-              {/* Endpoint 1 */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '0.65rem 0.85rem',
-                background: 'var(--bg-subtle)',
-                border: '1px solid var(--border-color)',
-                borderRadius: 'var(--radius-md)'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <span style={{
-                    padding: '0.2rem 0.5rem',
-                    borderRadius: 'var(--radius-sm)',
-                    background: 'var(--bg-card)',
-                    border: '1px solid var(--border-color)',
-                    color: '#FFFFFF',
-                    fontSize: '0.68rem',
-                    fontWeight: 700,
-                    fontFamily: 'var(--font-mono)'
-                  }}>
-                    200 OK
-                  </span>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>GET</span>
-                  <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#FFFFFF' }}>/api/mock/users</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.75rem', fontFamily: 'var(--font-mono)' }}>
-                  <span style={{ color: 'var(--text-muted)' }}>Contract: Valid ✓</span>
-                  <span style={{ color: 'var(--text-dim)' }}>8ms</span>
-                </div>
-              </div>
-
-              {/* Endpoint 2 (Drifted) */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '0.65rem 0.85rem',
-                background: 'var(--bg-subtle)',
-                border: '1px solid var(--border-color)',
-                borderRadius: 'var(--radius-md)'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <span style={{
-                    padding: '0.2rem 0.5rem',
-                    borderRadius: 'var(--radius-sm)',
-                    background: 'var(--bg-card)',
-                    border: '1px solid var(--border-color)',
-                    color: '#FFFFFF',
-                    fontSize: '0.68rem',
-                    fontWeight: 700,
-                    fontFamily: 'var(--font-mono)'
-                  }}>
-                    200 OK
-                  </span>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>POST</span>
-                  <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#FFFFFF' }}>/api/mock/payment-info</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.75rem', fontFamily: 'var(--font-mono)' }}>
-                  <span style={{
-                    padding: '0.15rem 0.45rem',
-                    borderRadius: 'var(--radius-sm)',
-                    background: 'var(--bg-card)',
-                    border: '1px solid var(--border-color)',
-                    fontSize: '0.68rem',
-                    fontWeight: 700,
-                    color: '#FFFFFF'
-                  }}>
-                    DRIFT DETECTED
-                  </span>
-                  <span style={{ color: 'var(--text-dim)' }}>14ms</span>
-                </div>
-              </div>
-
-              {/* Endpoint 3 */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '0.65rem 0.85rem',
-                background: 'var(--bg-subtle)',
-                border: '1px solid var(--border-color)',
-                borderRadius: 'var(--radius-md)'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <span style={{
-                    padding: '0.2rem 0.5rem',
-                    borderRadius: 'var(--radius-sm)',
-                    background: 'var(--bg-card)',
-                    border: '1px solid var(--border-color)',
-                    color: '#FFFFFF',
-                    fontSize: '0.68rem',
-                    fontWeight: 700,
-                    fontFamily: 'var(--font-mono)'
-                  }}>
-                    200 OK
-                  </span>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>POST</span>
-                  <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#FFFFFF' }}>https://leetcode.com/graphql</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.75rem', fontFamily: 'var(--font-mono)' }}>
-                  <span style={{ color: 'var(--text-muted)' }}>Operational ✓</span>
-                  <span style={{ color: 'var(--text-dim)' }}>371ms</span>
-                </div>
-              </div>
+            <div style={{ padding: '0.65rem 1rem', borderRight: '1px solid var(--border-color)' }}>
+              <span style={{ color: 'var(--text-dim)' }}>P99 LATENCY </span>
+              <span style={{ color: '#FFFFFF', fontWeight: 700 }}>{latencyData?.avgLatencyMs || '42'}ms</span>
             </div>
+            <div style={{ padding: '0.65rem 1rem' }}>
+              <span style={{ color: 'var(--text-dim)' }}>DRIFT </span>
+              <span style={{ color: '#FFFFFF', fontWeight: 700 }}>1 Detected</span>
+            </div>
+          </div>
 
-            {/* Simulated Live Alert Dispatch Item */}
+          {/* Clean Telemetry Stream Rows (Hairline Separators, No Inner Card Boxes) */}
+          <div style={{ fontSize: '0.75rem' }}>
             <div style={{
-              padding: '0.75rem 1rem',
-              borderRadius: 'var(--radius-md)',
-              background: 'var(--bg-subtle)',
-              border: '1px solid var(--border-color)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between'
+              display: 'grid',
+              gridTemplateColumns: '50px 1fr 65px 55px 110px',
+              gap: '0.5rem',
+              padding: '0.55rem 1rem',
+              color: 'var(--text-dim)',
+              fontSize: '0.68rem',
+              borderBottom: '1px solid var(--border-color)',
+              fontWeight: 600
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                <span style={{ fontSize: '0.95rem' }}>⚡</span>
-                <div>
-                  <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#FFFFFF' }}>
-                    Incident: Contract Violation in Payment Info
-                  </div>
-                  <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>
-                    Triggered Slack Webhook & Email • 3 unexpected properties detected
-                  </div>
-                </div>
-              </div>
-              <span style={{
-                padding: '0.2rem 0.55rem',
-                borderRadius: 'var(--radius-sm)',
-                background: 'var(--bg-card)',
-                border: '1px solid var(--border-color)',
-                color: 'var(--text-muted)',
-                fontSize: '0.68rem',
-                fontWeight: 600
-              }}>
-                Cooldown Active
-              </span>
+              <span>METHOD</span>
+              <span>ENDPOINT ROUTE</span>
+              <span>STATUS</span>
+              <span>LATENCY</span>
+              <span>CONTRACT</span>
             </div>
 
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '50px 1fr 65px 55px 110px',
+              gap: '0.5rem',
+              padding: '0.6rem 1rem',
+              borderBottom: '1px solid var(--border-color)',
+              alignItems: 'center'
+            }}>
+              <span style={{ color: 'var(--text-muted)' }}>GET</span>
+              <span style={{ color: 'var(--text-main)' }}>/api/v1/users</span>
+              <span style={{ color: 'var(--text-muted)' }}>200 OK</span>
+              <span style={{ color: 'var(--text-dim)' }}>8ms</span>
+              <span style={{ color: 'var(--text-muted)' }}>Valid ✓</span>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '50px 1fr 65px 55px 110px',
+              gap: '0.5rem',
+              padding: '0.6rem 1rem',
+              borderBottom: '1px solid var(--border-color)',
+              alignItems: 'center',
+              background: 'rgba(255, 255, 255, 0.02)'
+            }}>
+              <span style={{ color: 'var(--text-muted)' }}>POST</span>
+              <span style={{ color: 'var(--text-main)' }}>/api/v1/payment-info</span>
+              <span style={{ color: 'var(--text-muted)' }}>200 OK</span>
+              <span style={{ color: 'var(--text-dim)' }}>14ms</span>
+              <span style={{ color: '#FFFFFF', fontWeight: 600 }}>Drift (Type)</span>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '50px 1fr 65px 55px 110px',
+              gap: '0.5rem',
+              padding: '0.6rem 1rem',
+              borderBottom: '1px solid var(--border-color)',
+              alignItems: 'center'
+            }}>
+              <span style={{ color: 'var(--text-muted)' }}>POST</span>
+              <span style={{ color: 'var(--text-main)' }}>/graphql</span>
+              <span style={{ color: 'var(--text-muted)' }}>200 OK</span>
+              <span style={{ color: 'var(--text-dim)' }}>371ms</span>
+              <span style={{ color: 'var(--text-muted)' }}>Valid ✓</span>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '50px 1fr 65px 55px 110px',
+              gap: '0.5rem',
+              padding: '0.6rem 1rem',
+              alignItems: 'center'
+            }}>
+              <span style={{ color: 'var(--text-muted)' }}>GET</span>
+              <span style={{ color: 'var(--text-main)' }}>/api/v1/health</span>
+              <span style={{ color: 'var(--text-muted)' }}>200 OK</span>
+              <span style={{ color: 'var(--text-dim)' }}>4ms</span>
+              <span style={{ color: 'var(--text-muted)' }}>Valid ✓</span>
+            </div>
+          </div>
+
+          {/* Terminal Footer Status */}
+          <div style={{
+            padding: '0.65rem 1rem',
+            borderTop: '1px solid var(--border-color)',
+            background: 'var(--bg-subtle)',
+            fontSize: '0.72rem',
+            color: 'var(--text-muted)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}>
+            <span>● Incident webhook dispatched to Slack / PagerDuty</span>
+            <span style={{ color: 'var(--text-dim)' }}>Cooldown active</span>
           </div>
         </div>
       </section>
 
-      {/* ================= 2. TRUST / METRICS SECTION ================= */}
+      {/* ================= 2. TRUST / METRICS (NO ENCLOSING BOX - VERCEL STRIP) ================= */}
       <section style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(4, 1fr)',
-        gap: '1.5rem',
-        padding: '1.5rem 2rem',
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border-color)',
-        borderRadius: 'var(--radius-lg)',
-        boxShadow: 'var(--shadow-sm)'
+        gap: '2rem',
+        padding: '2.5rem 0',
+        borderTop: '1px solid var(--border-color)',
+        borderBottom: '1px solid var(--border-color)'
       }}>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '2rem', fontWeight: 900, color: '#FFFFFF' }}>99.9%</div>
-          <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-muted)', marginTop: '0.2rem' }}>
+        <div>
+          <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#EDEDED', letterSpacing: '-0.04em' }}>99.9%</div>
+          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
             API Availability SLA
           </div>
         </div>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '2rem', fontWeight: 900, color: '#FFFFFF' }}>24/7</div>
-          <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-muted)', marginTop: '0.2rem' }}>
+        <div>
+          <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#EDEDED', letterSpacing: '-0.04em' }}>24/7</div>
+          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
             Continuous Monitoring
           </div>
         </div>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '2rem', fontWeight: 900, color: '#FFFFFF' }}>&lt;200ms</div>
-          <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-muted)', marginTop: '0.2rem' }}>
-            Average Response Tracking
+        <div>
+          <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#EDEDED', letterSpacing: '-0.04em' }}>&lt;200ms</div>
+          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
+            Average Latency Tracking
           </div>
         </div>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '2rem', fontWeight: 900, color: '#FFFFFF' }}>Real-Time</div>
-          <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-muted)', marginTop: '0.2rem' }}>
+        <div>
+          <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#EDEDED', letterSpacing: '-0.04em' }}>Real-Time</div>
+          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
             Failure & Drift Detection
           </div>
         </div>
@@ -375,11 +304,9 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
           {/* Problem 1 */}
-          <div className="card">
-            <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFFFFF', marginBottom: '1rem' }}>
-              <ShieldAlert size={20} />
-            </div>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
+          <div className="card" style={{ padding: '1.5rem' }}>
+            <ShieldAlert size={20} strokeWidth={1.8} style={{ color: '#EDEDED', marginBottom: '0.85rem' }} />
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem', letterSpacing: '-0.02em' }}>
               Silent Downtime
             </h3>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>
@@ -388,11 +315,9 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
           </div>
 
           {/* Problem 2 */}
-          <div className="card">
-            <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFFFFF', marginBottom: '1rem' }}>
-              <Clock size={20} />
-            </div>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
+          <div className="card" style={{ padding: '1.5rem' }}>
+            <Clock size={20} strokeWidth={1.8} style={{ color: '#EDEDED', marginBottom: '0.85rem' }} />
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem', letterSpacing: '-0.02em' }}>
               Latency Degradation
             </h3>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>
@@ -401,11 +326,9 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
           </div>
 
           {/* Problem 3 */}
-          <div className="card">
-            <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFFFFF', marginBottom: '1rem' }}>
-              <GitBranch size={20} />
-            </div>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
+          <div className="card" style={{ padding: '1.5rem' }}>
+            <GitBranch size={20} strokeWidth={1.8} style={{ color: '#EDEDED', marginBottom: '0.85rem' }} />
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem', letterSpacing: '-0.02em' }}>
               Contract Changes
             </h3>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>
@@ -414,11 +337,9 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
           </div>
 
           {/* Problem 4 */}
-          <div className="card">
-            <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFFFFF', marginBottom: '1rem' }}>
-              <Layers size={20} />
-            </div>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
+          <div className="card" style={{ padding: '1.5rem' }}>
+            <Layers size={20} strokeWidth={1.8} style={{ color: '#EDEDED', marginBottom: '0.85rem' }} />
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem', letterSpacing: '-0.02em' }}>
               Schema Drift
             </h3>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>
@@ -429,93 +350,111 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
       </section>
 
       {/* ================= 4. CONTRACT VALIDATION SHOWCASE (DIFFERENTIATION) ================= */}
-      <section style={{
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border-color)',
-        borderRadius: 'var(--radius-lg)',
-        padding: '2.5rem',
-        boxShadow: 'var(--shadow-sm)'
-      }}>
-        <div style={{ maxWidth: '800px', marginBottom: '2rem' }}>
+      <section style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <div style={{ maxWidth: '800px' }}>
           <div className="eyebrow" style={{ marginBottom: '0.65rem' }}>
-            CORE VALUE DIFFERENTIATION
+            SCHEMA CONTRACT ASSURANCE
           </div>
           <h2 style={{ fontSize: '2.5rem', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.2 }}>
             <span style={{ color: '#FFFFFF' }}>An API Can Return 200 OK</span><br />
             <span style={{ color: 'var(--text-dim)' }}>and Still Be Completely Broken.</span>
           </h2>
           <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: 1.6, marginTop: '0.75rem' }}>
-            Traditional monitoring only confirms that an endpoint is responding. API Sentinel validates whether the response still strictly honors the registered OpenAPI and JSON Schema specification.
+            Traditional monitoring only confirms that a port responded. API Sentinel evaluates the response body against registered OpenAPI 3.0 and JSON Schema specifications to catch silent schema drift before downstream clients fail.
           </p>
         </div>
 
-        {/* Side by side comparison */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
-          
-          {/* Left: Expected */}
+        {/* Single Unified Vercel Split-Diff Frame (Zero nested card boxes) */}
+        <div style={{
+          background: '#000000',
+          border: '1px solid var(--border-color)',
+          borderRadius: 'var(--radius-md)',
+          overflow: 'hidden'
+        }}>
+          {/* Frame Top Header */}
           <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '0.75rem 1.25rem',
             background: 'var(--bg-subtle)',
-            border: '1px solid var(--border-color)',
-            borderRadius: 'var(--radius-md)',
-            padding: '1.25rem'
+            borderBottom: '1px solid var(--border-color)'
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
-              <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '0.06em' }}>
-                EXPECTED SCHEMA CONTRACT
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', gap: '6px' }}>
+                <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#262626' }} />
+                <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#262626' }} />
+                <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#262626' }} />
+              </div>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                contract-diff /api/v1/users --strict
               </span>
-              <span className="badge badge-subtle font-mono" style={{ fontSize: '0.68rem' }}>OPENAPI SPEC</span>
             </div>
-            <pre style={{ color: '#FFFFFF', fontSize: '0.82rem', fontFamily: 'var(--font-mono)', lineHeight: 1.7, margin: 0 }}>
-              {`id:      number    ✓
+            <span className="badge badge-subtle font-mono" style={{ fontSize: '0.7rem', color: '#EF4444', borderColor: 'rgba(239, 68, 68, 0.3)' }}>
+              1 TYPE MUTATION · 1 MISSING KEY · 1 UNEXPECTED
+            </span>
+          </div>
+
+          {/* Split Diff Content Panes */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+            {/* Left Pane: Expected Spec */}
+            <div style={{ padding: '1.25rem 1.5rem', borderRight: '1px solid var(--border-color)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
+                <span style={{ fontSize: '0.72rem', fontWeight: 800, color: 'var(--text-muted)', letterSpacing: '0.06em' }}>
+                  EXPECTED SCHEMA SPEC (OPENAPI 3.0)
+                </span>
+                <span style={{ fontSize: '0.7rem', color: '#10B981', fontFamily: 'var(--font-mono)' }}>spec_v2.json</span>
+              </div>
+              <pre style={{ color: 'var(--text-main)', fontSize: '0.82rem', fontFamily: 'var(--font-mono)', lineHeight: 1.8, margin: 0 }}>
+{`id:      number    ✓
 name:    string    ✓
 email:   string    ✓
 role:    string    ✓`}
-            </pre>
-          </div>
-
-          {/* Right: Actual Observed (with drift highlights) */}
-          <div style={{
-            background: 'var(--bg-subtle)',
-            border: '1px solid var(--border-color)',
-            borderRadius: 'var(--radius-md)',
-            padding: '1.25rem'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
-              <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#FFFFFF', letterSpacing: '0.06em' }}>
-                ACTUAL OBSERVED RESPONSE (HTTP 200)
-              </span>
-              <span className="badge badge-subtle font-mono" style={{ fontSize: '0.68rem' }}>BREAKING CHANGE</span>
+              </pre>
             </div>
-            <pre style={{ fontSize: '0.82rem', fontFamily: 'var(--font-mono)', lineHeight: 1.7, margin: 0 }}>
-              <span style={{ color: '#FFFFFF' }}>id:      "usr-99"  [TYPE_MISMATCH (Expected number)]</span>{'\n'}
-              <span style={{ color: 'var(--text-muted)' }}>name:    "Alice"   ✓</span>{'\n'}
-              <span style={{ color: '#FFFFFF' }}>email:   undefined [MISSING_REQUIRED_FIELD]</span>{'\n'}
-              <span style={{ color: 'var(--text-muted)' }}>extraKey: true     [UNEXPECTED_FIELD (Drift)]</span>
-            </pre>
-          </div>
-        </div>
 
-        <div style={{
-          padding: '0.85rem 1.25rem',
-          background: 'var(--bg-subtle)',
-          border: '1px solid var(--border-color)',
-          borderRadius: 'var(--radius-md)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between'
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <span style={{ fontSize: '1.1rem' }}>⚡</span>
-            <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#FFFFFF' }}>
-              Contract Violation & Drift Confirmed: Alert Dispatched to DevOps Slack & PagerDuty
-            </span>
+            {/* Right Pane: Observed Payload */}
+            <div style={{ padding: '1.25rem 1.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
+                <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#FFFFFF', letterSpacing: '0.06em' }}>
+                  ACTUAL OBSERVED RESPONSE (HTTP 200 OK)
+                </span>
+                <span style={{ fontSize: '0.7rem', color: '#EF4444', fontFamily: 'var(--font-mono)' }}>drift_violation</span>
+              </div>
+              <pre style={{ fontSize: '0.82rem', fontFamily: 'var(--font-mono)', lineHeight: 1.8, margin: 0 }}>
+                <span style={{ color: '#EF4444' }}>id:      "usr-99"  [TYPE_MISMATCH: expected number]</span>{'\n'}
+                <span style={{ color: 'var(--text-muted)' }}>name:    "Alice"   ✓</span>{'\n'}
+                <span style={{ color: '#EF4444' }}>email:   undefined [MISSING_REQUIRED_FIELD]</span>{'\n'}
+                <span style={{ color: 'var(--text-dim)' }}>extraKey: true     [UNEXPECTED_PROPERTY]</span>
+              </pre>
+            </div>
           </div>
-          <button
-            className="btn btn-outline btn-sm"
-            onClick={() => onNavigateDashboard('contracts')}
-          >
-            Inspect Contract Validator
-          </button>
+
+          {/* Integrated Action Footer */}
+          <div style={{
+            padding: '0.85rem 1.25rem',
+            background: 'var(--bg-subtle)',
+            borderTop: '1px solid var(--border-color)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '0.75rem'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#EF4444', display: 'inline-block' }} />
+              <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
+                Contract violation detected · Dispatched via BullMQ to Slack webhook & PagerDuty
+              </span>
+            </div>
+            <button
+              className="btn btn-outline btn-sm"
+              onClick={() => onNavigateDashboard('contracts')}
+              style={{ fontSize: '0.78rem' }}
+            >
+              Inspect Contract Validator →
+            </button>
+          </div>
         </div>
       </section>
 
@@ -531,112 +470,90 @@ role:    string    ✓`}
           </p>
         </div>
 
-        {/* 8-step visual workflow pills */}
+        {/* Unified Interactive Pipeline Bar (Vercel Style: Zero nested box clutter) */}
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
-          gap: '0.75rem'
-        }}>
-          {workflowSteps.map((step, idx) => (
-            <div
-              key={idx}
-              onClick={() => setActiveWorkflowStep(idx)}
-              style={{
-                padding: '1rem 0.75rem',
-                borderRadius: 'var(--radius-md)',
-                background: activeWorkflowStep === idx ? 'var(--bg-subtle)' : 'var(--bg-card)',
-                border: activeWorkflowStep === idx ? '1px solid #FFFFFF' : '1px solid var(--border-color)',
-                cursor: 'pointer',
-                transition: 'all 0.15s ease',
-                textAlign: 'center'
-              }}
-            >
-              <div style={{
-                fontSize: '0.7rem',
-                fontWeight: 800,
-                color: activeWorkflowStep === idx ? '#FFFFFF' : 'var(--text-dim)',
-                fontFamily: 'var(--font-mono)'
-              }}>
-                STEP {step.icon}
-              </div>
-              <div style={{
-                fontSize: '0.95rem',
-                fontWeight: 800,
-                color: activeWorkflowStep === idx ? '#FFFFFF' : 'var(--text-main)',
-                marginTop: '0.25rem'
-              }}>
-                {step.title}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Selected step detail banner */}
-        <div style={{
-          padding: '1.25rem 1.5rem',
-          background: 'var(--bg-card)',
           border: '1px solid var(--border-color)',
           borderRadius: 'var(--radius-md)',
-          boxShadow: 'var(--shadow-sm)',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '1.25rem'
+          background: '#000000',
+          overflow: 'hidden'
         }}>
+          {/* Segmented Pipeline Navigation */}
           <div style={{
-            width: 44,
-            height: 44,
-            borderRadius: '50%',
-            background: '#FFFFFF',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))',
+            borderBottom: '1px solid var(--border-color)',
+            background: 'var(--bg-subtle)'
+          }}>
+            {workflowSteps.map((step, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveWorkflowStep(idx)}
+                style={{
+                  padding: '0.85rem 0.5rem',
+                  background: activeWorkflowStep === idx ? '#000000' : 'transparent',
+                  border: 'none',
+                  borderRight: idx < 7 ? '1px solid var(--border-color)' : 'none',
+                  borderBottom: activeWorkflowStep === idx ? '2px solid #FFFFFF' : '2px solid transparent',
+                  cursor: 'pointer',
+                  textAlign: 'center',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                <div style={{
+                  fontSize: '0.65rem',
+                  fontFamily: 'var(--font-mono)',
+                  color: activeWorkflowStep === idx ? '#FFFFFF' : 'var(--text-dim)',
+                  fontWeight: 700
+                }}>
+                  {step.icon}
+                </div>
+                <div style={{
+                  fontSize: '0.8rem',
+                  fontWeight: activeWorkflowStep === idx ? 700 : 500,
+                  color: activeWorkflowStep === idx ? '#FFFFFF' : 'var(--text-muted)',
+                  marginTop: '0.2rem',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis'
+                }}>
+                  {step.title}
+                </div>
+              </button>
+            ))}
+          </div>
+
+          {/* Active Phase Details + Direct Lucid Flow Studio link */}
+          <div style={{
+            padding: '1.5rem 2rem',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
-            fontWeight: 900,
-            color: '#0A0A0A',
-            fontSize: '1rem',
-            flexShrink: 0
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '1.5rem',
+            background: '#000000'
           }}>
-            {workflowSteps[activeWorkflowStep].icon}
-          </div>
-          <div>
-            <div style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--text-main)' }}>
-              Phase {workflowSteps[activeWorkflowStep].icon} — {workflowSteps[activeWorkflowStep].title}
+            <div style={{ maxWidth: '650px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.35rem' }}>
+                <span className="badge badge-subtle font-mono" style={{ fontSize: '0.7rem' }}>
+                  PHASE {workflowSteps[activeWorkflowStep].icon}
+                </span>
+                <span style={{ fontSize: '1.05rem', fontWeight: 800, color: '#FFFFFF', letterSpacing: '-0.02em' }}>
+                  {workflowSteps[activeWorkflowStep].title}
+                </span>
+              </div>
+              <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', margin: 0, lineHeight: 1.6 }}>
+                {workflowSteps[activeWorkflowStep].desc}
+              </p>
             </div>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
-              {workflowSteps[activeWorkflowStep].desc}
-            </div>
-          </div>
-        </div>
 
-        {/* Lucid Flow Studio Jump Banner */}
-        <div style={{
-          padding: '1rem 1.5rem',
-          borderRadius: 'var(--radius-md)',
-          background: 'var(--bg-subtle)',
-          border: '1px solid var(--border-color)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: '1rem'
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <Layers size={22} color="var(--primary)" />
-            <div>
-              <div style={{ fontSize: '0.92rem', fontWeight: 800, color: 'var(--text-main)' }}>
-                Interactive Lucid Flow Studio
-              </div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-                Simulate real-time packet tracing, inspect node connection pins, and visualize the 8-phase pipeline on an interactive Lucidchart canvas.
-              </div>
-            </div>
+            <button
+              className="btn btn-outline btn-sm"
+              onClick={() => onNavigateDashboard('lucidflow')}
+              style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.8rem' }}
+            >
+              Interactive Lucid Flow Canvas <ArrowRight size={14} />
+            </button>
           </div>
-          <button
-            className="btn btn-primary btn-sm"
-            onClick={() => onNavigateDashboard('lucidflow')}
-            style={{ fontWeight: 700, padding: '0.5rem 1rem' }}
-          >
-            Open Lucid Flow Studio <ArrowRight size={14} />
-          </button>
         </div>
       </section>
 
@@ -872,59 +789,65 @@ role:    string    ✓`}
           </div>
         </div>
 
-        {/* Supporting 6-card feature matrix */}
+        {/* Supporting 6-card feature matrix (Vercel Style: No emojis, clean technical typography) */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem', marginTop: '1rem' }}>
           
-          <div className="card">
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
-              📡 Availability Probing
+          <div className="card" style={{ padding: '1.5rem' }}>
+            <Radio size={18} strokeWidth={1.8} style={{ color: '#EDEDED', marginBottom: '0.75rem' }} />
+            <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem', letterSpacing: '-0.02em' }}>
+              Availability Probing
             </h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>
               Validates HTTP status codes, network reachability, TLS handshakes, and response health.
             </p>
           </div>
 
-          <div className="card">
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
-              ⏱️ Real-Time Latency Percentiles
+          <div className="card" style={{ padding: '1.5rem' }}>
+            <Clock size={18} strokeWidth={1.8} style={{ color: '#EDEDED', marginBottom: '0.75rem' }} />
+            <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem', letterSpacing: '-0.02em' }}>
+              Latency Percentiles (p50 / p90 / p99)
             </h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>
               Measures precise round-trip times in milliseconds, capturing p50, p90, and p99 percentiles.
             </p>
           </div>
 
-          <div className="card">
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
-              🔄 Exponential Backoff Retries
+          <div className="card" style={{ padding: '1.5rem' }}>
+            <RefreshCw size={18} strokeWidth={1.8} style={{ color: '#EDEDED', marginBottom: '0.75rem' }} />
+            <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem', letterSpacing: '-0.02em' }}>
+              Exponential Backoff Retries
             </h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>
               Eliminates alert fatigue by executing 3x retries with exponential backoff on transient network drops.
             </p>
           </div>
 
-          <div className="card">
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
-              🔕 Alert Cooldown Windows
+          <div className="card" style={{ padding: '1.5rem' }}>
+            <BellOff size={18} strokeWidth={1.8} style={{ color: '#EDEDED', marginBottom: '0.75rem' }} />
+            <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem', letterSpacing: '-0.02em' }}>
+              Alert Cooldown Suppression
             </h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>
               Configurable deduplication suppresses repeat alert spam to Slack, Webhooks, and Email.
             </p>
           </div>
 
-          <div className="card">
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
-              📈 Time-Series Logs & SLAs
+          <div className="card" style={{ padding: '1.5rem' }}>
+            <BarChart3 size={18} strokeWidth={1.8} style={{ color: '#EDEDED', marginBottom: '0.75rem' }} />
+            <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem', letterSpacing: '-0.02em' }}>
+              Time-Series Logs & SLA Auditing
             </h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>
               Maintains full historical inspection logs with request/response payloads and uptime SLAs.
             </p>
           </div>
 
-          <div className="card">
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
-              📑 37+ REST Route Catalog
+          <div className="card" style={{ padding: '1.5rem' }}>
+            <FileCode size={18} strokeWidth={1.8} style={{ color: '#EDEDED', marginBottom: '0.75rem' }} />
+            <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem', letterSpacing: '-0.02em' }}>
+              37+ REST Endpoint Catalog
             </h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>
               Full OpenAPI-documented REST catalog for websites, endpoints, metrics, and workers.
             </p>
           </div>
@@ -933,14 +856,8 @@ role:    string    ✓`}
       </section>
 
       {/* ================= 7. TECHNICAL ARCHITECTURE SECTION ================= */}
-      <section style={{
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border-color)',
-        borderRadius: 'var(--radius-lg)',
-        padding: '2.5rem',
-        boxShadow: 'var(--shadow-sm)'
-      }}>
-        <div style={{ maxWidth: '750px', marginBottom: '2rem' }}>
+      <section style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <div style={{ maxWidth: '750px' }}>
           <div className="eyebrow" style={{ marginBottom: '0.6rem' }}>INFRASTRUCTURE</div>
           <h2 style={{ fontSize: '2.5rem', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.2 }}>
             <span style={{ color: '#FFFFFF' }}>Enterprise Architecture</span><br />
@@ -951,92 +868,97 @@ role:    string    ✓`}
           </p>
         </div>
 
-        {/* Architecture flow diagram */}
+        {/* Architecture flow diagram (Clean Vercel Pipeline: No nested card boxes) */}
         <div style={{
           display: 'flex',
           flexWrap: 'wrap',
           alignItems: 'center',
           justifyContent: 'center',
           gap: '0.75rem',
-          padding: '2rem',
-          background: 'var(--bg-subtle)',
+          padding: '1.75rem 1.25rem',
+          background: '#000000',
           borderRadius: 'var(--radius-md)',
           border: '1px solid var(--border-color)',
           fontFamily: 'var(--font-mono)',
-          fontSize: '0.82rem'
+          fontSize: '0.8rem'
         }}>
-          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
+          <div style={{ padding: '0.55rem 0.9rem', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700 }}>
             Client / Dashboard
           </div>
-          <span style={{ color: 'var(--text-muted)' }}>→</span>
-          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
+          <span style={{ color: 'var(--text-dim)' }}>→</span>
+          <div style={{ padding: '0.55rem 0.9rem', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700 }}>
             REST API Gateway
           </div>
-          <span style={{ color: 'var(--text-muted)' }}>→</span>
-          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
+          <span style={{ color: 'var(--text-dim)' }}>→</span>
+          <div style={{ padding: '0.55rem 0.9rem', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700 }}>
             Job Queue (BullMQ)
           </div>
-          <span style={{ color: 'var(--text-muted)' }}>→</span>
-          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
+          <span style={{ color: 'var(--text-dim)' }}>→</span>
+          <div style={{ padding: '0.55rem 0.9rem', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700 }}>
             API Workers
           </div>
-          <span style={{ color: 'var(--text-muted)' }}>→</span>
-          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
+          <span style={{ color: 'var(--text-dim)' }}>→</span>
+          <div style={{ padding: '0.55rem 0.9rem', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700 }}>
             Validation Engine
           </div>
-          <span style={{ color: 'var(--text-muted)' }}>→</span>
-          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
+          <span style={{ color: 'var(--text-dim)' }}>→</span>
+          <div style={{ padding: '0.55rem 0.9rem', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700 }}>
             Time-Series Store
           </div>
-          <span style={{ color: 'var(--text-muted)' }}>→</span>
-          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
+          <span style={{ color: 'var(--text-dim)' }}>→</span>
+          <div style={{ padding: '0.55rem 0.9rem', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700 }}>
             Alert Adapters
           </div>
         </div>
 
-        {/* Technology Stack Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', marginTop: '2rem' }}>
-          <div style={{ padding: '1rem', background: 'var(--bg-subtle)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#FFFFFF' }}>NODE.JS & EXPRESS</div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>37+ REST endpoints managing CRUD, contracts & metrics</div>
+        {/* Technology Stack Grid (Unified Hairline Strip: Zero box clutter) */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          gap: '2rem',
+          borderTop: '1px solid var(--border-color)',
+          borderBottom: '1px solid var(--border-color)',
+          padding: '1.75rem 0'
+        }}>
+          <div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#FFFFFF', letterSpacing: '0.05em' }}>NODE.JS & EXPRESS</div>
+            <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '0.35rem', lineHeight: 1.5 }}>37+ REST endpoints managing CRUD, contracts & metrics</div>
           </div>
-          <div style={{ padding: '1rem', background: 'var(--bg-subtle)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#FFFFFF' }}>BULLMQ ENGINE</div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>Concurrency control, duplicate suppression & retries</div>
+          <div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#FFFFFF', letterSpacing: '0.05em' }}>BULLMQ ENGINE</div>
+            <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '0.35rem', lineHeight: 1.5 }}>Concurrency control, duplicate suppression & retries</div>
           </div>
-          <div style={{ padding: '1rem', background: 'var(--bg-subtle)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#FFFFFF' }}>OPENAPI / AJV</div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>Contract compilation & structural diff identification</div>
+          <div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#FFFFFF', letterSpacing: '0.05em' }}>OPENAPI / AJV</div>
+            <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '0.35rem', lineHeight: 1.5 }}>Contract compilation & structural diff identification</div>
           </div>
-          <div style={{ padding: '1rem', background: 'var(--bg-subtle)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#FFFFFF' }}>DOCKER & CI/CD</div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>Multi-stage container builds & GitHub Actions pipeline</div>
+          <div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#FFFFFF', letterSpacing: '0.05em' }}>DOCKER & CI/CD</div>
+            <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '0.35rem', lineHeight: 1.5 }}>Multi-stage container builds & GitHub Actions pipeline</div>
           </div>
         </div>
       </section>
 
-      {/* ================= 8. FINAL CALL TO ACTION ================= */}
+      {/* ================= 8. FINAL CALL TO ACTION (Open Breathable Vercel Canvas) ================= */}
       <section style={{
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border-color)',
-        borderRadius: 'var(--radius-lg)',
-        padding: '3.5rem 2rem',
+        borderTop: '1px solid var(--border-color)',
+        paddingTop: '5rem',
+        paddingBottom: '2rem',
         textAlign: 'center',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: '1.25rem',
-        boxShadow: 'var(--shadow-sm)'
+        gap: '1.25rem'
       }}>
         <div className="eyebrow" style={{ marginBottom: '0.2rem' }}>GET STARTED</div>
-        <h2 style={{ fontSize: '2.85rem', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.15 }}>
-          <span style={{ color: '#FFFFFF' }}>Build More Reliable APIs —</span><br />
+        <h2 style={{ fontSize: '3rem', fontWeight: 800, letterSpacing: '-0.04em', lineHeight: 1.15 }}>
+          <span style={{ color: '#FFFFFF' }}>Build More Reliable APIs.</span><br />
           <span style={{ color: 'var(--text-dim)' }}>Zero Silent Outages.</span>
         </h2>
-        <p style={{ fontSize: '1.02rem', color: 'var(--text-muted)', maxWidth: '600px' }}>
+        <p style={{ fontSize: '1.02rem', color: 'var(--text-muted)', maxWidth: '600px', lineHeight: 1.6 }}>
           Monitor availability. Detect contract drift. Catch production issues before your users do.
         </p>
-        <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
+        <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           <button
             className="btn btn-white"
             style={{ padding: '0.85rem 2.2rem', fontSize: '0.92rem', fontWeight: 800 }}
@@ -1065,13 +987,13 @@ role:    string    ✓`}
         color: 'var(--text-muted)'
       }}>
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-main)', fontWeight: 800, fontSize: '1.1rem' }}>
-            <span style={{ color: 'var(--primary)' }}>🛡️</span> API Sentinel
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-main)', fontWeight: 800, fontSize: '1.05rem', letterSpacing: '-0.02em' }}>
+            <span style={{ width: 14, height: 14, background: '#FFFFFF', borderRadius: 2, display: 'inline-block' }} /> API Sentinel
           </div>
-          <p style={{ marginTop: '0.5rem', maxWidth: '300px', lineHeight: 1.5, color: 'var(--text-muted)' }}>
+          <p style={{ marginTop: '0.6rem', maxWidth: '300px', lineHeight: 1.5, color: 'var(--text-muted)' }}>
             Automated API Monitoring, Contract Validation & Observability Platform.
           </p>
-          <div style={{ marginTop: '1rem', fontSize: '0.75rem', color: 'var(--text-light)' }}>
+          <div style={{ marginTop: '1rem', fontSize: '0.75rem', color: 'var(--text-dim)' }}>
             © 2026 API Sentinel. All rights reserved.
           </div>
         </div>

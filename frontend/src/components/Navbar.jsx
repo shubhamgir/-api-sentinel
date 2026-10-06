@@ -56,21 +56,21 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
               fontSize: '1rem'
             }}
           >
-            {/* API Sentinel Logo Mark */}
+            {/* API Sentinel Logo Mark (Vercel Style) */}
             <div style={{
-              width: 28,
-              height: 28,
-              borderRadius: '7px',
-              background: 'linear-gradient(135deg, #2563EB, #3B82F6)',
+              width: 24,
+              height: 24,
+              borderRadius: '4px',
+              background: '#FFFFFF',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#FFFFFF',
-              boxShadow: '0 2px 8px rgba(59, 130, 246, 0.35)'
+              color: '#000000',
+              fontWeight: 900
             }}>
-              <ShieldAlert size={16} />
+              <ShieldAlert size={14} />
             </div>
-            <span style={{ color: 'var(--text-main)', fontWeight: 800, fontSize: '1rem', letterSpacing: '-0.02em' }}>
+            <span style={{ color: 'var(--text-main)', fontWeight: 700, fontSize: '0.92rem', letterSpacing: '-0.02em' }}>
               API Sentinel
             </span>
           </div>

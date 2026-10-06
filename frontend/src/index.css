@@ -1,62 +1,62 @@
 :root {
-  /* Simplified Corporate Clean Theme */
-  --bg-main: #0A0A0A;          /* Clean solid matte black */
-  --bg-subtle: #121212;        /* Simple subtle dark inset */
-  --bg-card: #141414;          /* Uniform flat card */
-  --bg-card-hover: #181818;    /* Uniform hover */
-  --bg-card-glass: rgba(18, 18, 18, 0.95);
+  /* Vercel Geist Obsidian Theme */
+  --bg-main: #000000;          /* Pure pitch black */
+  --bg-subtle: #080808;        /* Subtle dark elevation */
+  --bg-card: #0A0A0A;          /* Flat minimal card */
+  --bg-card-hover: #111111;    /* Minimal hover */
+  --bg-card-glass: rgba(10, 10, 10, 0.9);
 
-  /* Simplified 3-tier Typography Palette */
-  --text-main: #FFFFFF;        /* Pure white for headings, titles, active elements */
-  --text-muted: #888888;       /* Clean neutral gray for all descriptions and body text */
-  --text-dim: #555555;         /* Muted gray for eyebrows, tags, captions */
-  --text-light: #555555;       /* Unified with text-dim */
+  /* Vercel Typography Colors */
+  --text-main: #EDEDED;        /* Signature Vercel high-contrast headline white */
+  --text-muted: #888888;       /* Clean neutral gray */
+  --text-dim: #555555;         /* Muted caption gray */
+  --text-light: #444444;
 
-  --border-color: #222222;     /* Simple clean 1px border */
-  --border-subtle: #181818;    /* Inset subtle border */
-  --border-highlight: #333333; /* Clean neutral highlight */
+  --border-color: #1A1A1A;     /* Vercel crisp 1px hairline border */
+  --border-subtle: #141414;
+  --border-highlight: #333333;
 
-  /* Minimal Accent */
-  --primary: #3B82F6;          /* Clean Electric Blue */
-  --primary-hover: #2563EB;
-  --primary-light: rgba(255, 255, 255, 0.06);
+  /* Accent */
+  --primary: #0070F3;          /* Vercel Electric Blue */
+  --primary-hover: #0060DF;
+  --primary-light: rgba(0, 112, 243, 0.08);
   --primary-glow: transparent;
 
-  --accent: #FFFFFF;
+  --accent: #EDEDED;
   --accent-light: rgba(255, 255, 255, 0.05);
 
-  /* Functional Status Indicators (Soft & Simplified) */
+  /* Functional Status Indicators (Soft & Unobtrusive) */
   --success: #22C55E;
-  --success-bg: rgba(34, 197, 94, 0.08);
+  --success-bg: rgba(34, 197, 94, 0.06);
   --success-border: rgba(34, 197, 94, 0.2);
-  --success-text: #4ADE80;
+  --success-text: #86EFAC;
 
   --warning: #F59E0B;
-  --warning-bg: rgba(245, 158, 11, 0.08);
+  --warning-bg: rgba(245, 158, 11, 0.06);
   --warning-border: rgba(245, 158, 11, 0.2);
-  --warning-text: #FBBF24;
+  --warning-text: #FDE047;
 
   --danger: #EF4444;
-  --danger-bg: rgba(239, 68, 68, 0.08);
+  --danger-bg: rgba(239, 68, 68, 0.06);
   --danger-border: rgba(239, 68, 68, 0.2);
-  --danger-text: #F87171;
+  --danger-text: #FCA5A5;
 
   --purple: #A855F7;
-  --purple-bg: rgba(168, 85, 247, 0.08);
-  --purple-text: #C084FC;
+  --purple-bg: rgba(168, 85, 247, 0.06);
+  --purple-text: #D8B4FE;
 
   --shadow-sm: none;
-  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.6);
+  --shadow-md: none;
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.8);
 
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 10px;
-  --radius-xl: 12px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
   --radius-full: 9999px;
 
-  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
 }
 
 [data-theme="light"] {
@@ -234,15 +234,13 @@ code, pre, .font-mono {
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 1.25rem;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.2s ease;
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  transition: border-color 0.15s ease;
 }
 
 .card:hover {
-  box-shadow: var(--shadow-md);
-  border-color: rgba(255, 255, 255, 0.14);
+  border-color: #333333;
 }
 
 .card-header {
@@ -253,8 +251,9 @@ code, pre, .font-mono {
 }
 
 .card-title {
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
   color: var(--text-main);
   display: flex;
   align-items: center;
@@ -272,33 +271,38 @@ code, pre, .font-mono {
 .stat-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 1.15rem 1.25rem;
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: var(--shadow-sm);
+  transition: border-color 0.15s ease;
+}
+
+.stat-card:hover {
+  border-color: #333333;
 }
 
 .stat-info h4 {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-dim);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.25rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
 }
 
 .stat-value {
-  font-size: 1.65rem;
-  font-weight: 800;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   color: var(--text-main);
 }
 
 .stat-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: var(--radius-md);
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -309,11 +313,12 @@ code, pre, .font-mono {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.2rem 0.6rem;
-  border-radius: var(--radius-full);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-family: var(--font-mono);
 }
 
 .badge-success { background: rgba(34, 197, 94, 0.08); color: #86EFAC; border: 1px solid rgba(34, 197, 94, 0.2); }
@@ -326,48 +331,50 @@ code, pre, .font-mono {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.45rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.1rem;
   font-size: 0.82rem;
-  font-weight: 600;
-  border-radius: var(--radius-sm);
+  font-weight: 500;
+  border-radius: var(--radius-md);
   cursor: pointer;
   transition: all 0.15s ease;
   border: 1px solid transparent;
+  font-family: var(--font-sans);
 }
 
 .btn-primary {
-  background: var(--primary);
-  color: #FFFFFF;
-  box-shadow: 0 1px 2px rgba(59, 130, 246, 0.25);
+  background: #EDEDED;
+  color: #000000;
+  font-weight: 600;
 }
 
 .btn-primary:hover {
-  background: var(--primary-hover);
+  background: #FFFFFF;
 }
 
 .btn-white {
-  background: #FFFFFF;
-  color: #0C0D0E;
-  font-weight: 700;
-  border: 1px solid #FFFFFF;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  background: #EDEDED;
+  color: #000000;
+  font-weight: 600;
+  border: 1px solid #EDEDED;
 }
 
 .btn-white:hover {
-  background: #E5E7EB;
-  border-color: #E5E7EB;
+  background: #FFFFFF;
+  border-color: #FFFFFF;
 }
 
 .btn-outline {
-  background: var(--bg-card);
-  border-color: var(--border-color);
-  color: var(--text-main);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
 }
 
 .btn-outline:hover {
-  background: var(--bg-subtle);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: #111111;
+  color: var(--text-main);
+  border-color: #333333;
 }
 
 .btn-sm {
