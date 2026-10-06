@@ -9,9 +9,10 @@ import MonitoringHistoryLogs from './components/MonitoringHistoryLogs';
 import AlertCenter from './components/AlertCenter';
 import MockSuiteLoader from './components/MockSuiteLoader';
 import QueueDashboard from './components/QueueDashboard';
+import EnterpriseLanding from './components/EnterpriseLanding';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const [activeTab, setActiveTab] = useState('landing');
   const [globalStatus, setGlobalStatus] = useState('OPERATIONAL');
 
   const [websites, setWebsites] = useState([]);
@@ -70,7 +71,6 @@ export default function App() {
 
   useEffect(() => {
     fetchAllData();
-    // Poll every 6 seconds for live monitoring updates
     const interval = setInterval(fetchAllData, 6000);
     return () => clearInterval(interval);
   }, []);
@@ -151,6 +151,15 @@ export default function App() {
       />
 
       <main className="main-content">
+        {activeTab === 'landing' && (
+          <EnterpriseLanding
+            endpoints={endpoints}
+            uptimeData={uptimeData}
+            latencyData={latencyData}
+            onNavigateDashboard={setActiveTab}
+          />
+        )}
+
         {activeTab === 'dashboard' && (
           <DashboardOverview
             uptimeData={uptimeData}
