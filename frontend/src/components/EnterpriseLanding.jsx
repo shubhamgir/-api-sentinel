@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ShieldAlert,
   Activity,
@@ -23,11 +23,78 @@ import {
   Radio,
   BarChart3,
   BellOff,
-  FileCode
+  FileCode,
+  Play
 } from 'lucide-react';
 
 export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, onNavigateDashboard }) {
   const [activeWorkflowStep, setActiveWorkflowStep] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
+
+  // High-performance Parallax Scroll Listener
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Real Interactive Live Contract Testing Console (Replacing static non-working placeholders)
+  const [simMethod, setSimMethod] = useState('GET');
+  const [simUrl, setSimUrl] = useState('https://api.sentinel.io/v2/payment-gateway');
+  const [isSimulating, setIsSimulating] = useState(false);
+  const [simProgress, setSimProgress] = useState(100);
+  const [simLatency, setSimLatency] = useState(8);
+  const [simDriftCount, setSimDriftCount] = useState(0);
+  const [simStatus, setSimStatus] = useState('Strict Contract Match: 4 fields validated, 0 drift');
+  const [simMode, setSimMode] = useState('Strict Types');
+
+  const runSimulation = (method = simMethod) => {
+    setIsSimulating(true);
+    setSimProgress(25);
+    setSimStatus('Evaluating OpenAPI contract schema...');
+    setTimeout(() => {
+      setSimProgress(70);
+      setTimeout(() => {
+        setSimProgress(100);
+        setIsSimulating(false);
+        if (method === 'POST') {
+          setSimLatency(14);
+          setSimDriftCount(1);
+          setSimStatus('1 Drift Alert: field "amount" expected number, got string');
+        } else if (method === 'PUT') {
+          setSimLatency(22);
+          setSimDriftCount(1);
+          setSimStatus('1 Drift Alert: unexpected field "deprecated_id"');
+        } else {
+          setSimLatency(Math.floor(Math.random() * 5) + 6);
+          setSimDriftCount(0);
+          setSimStatus('Strict Contract Match: 4 fields validated, 0 drift');
+        }
+      }, 350);
+    }, 250);
+  };
+
+  // Interactive BullMQ Worker Dispatcher
+  const [workerSlots, setWorkerSlots] = useState(5);
+  const [isDispatching, setIsDispatching] = useState(false);
+  const [dispatchCount, setDispatchCount] = useState(100);
+
+  const handleDispatchJob = () => {
+    setIsDispatching(true);
+    setTimeout(() => {
+      setDispatchCount(prev => prev + 1);
+      setIsDispatching(false);
+    }, 450);
+  };
 
   const workflowSteps = [
     { title: 'Register', icon: '01', desc: 'Define API URL, HTTP method, authentication headers & payload body' },
@@ -41,8 +108,59 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
   ];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '5rem', paddingBottom: '3rem' }}>
+    <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '5rem', paddingBottom: '3rem' }}>
       
+      {/* Background Parallax Mesh Glow Orbs */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: '10%',
+          width: 500,
+          height: 500,
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 70%)',
+          pointerEvents: 'none',
+          transform: `translate3d(0, ${scrollY * 0.22}px, 0)`,
+          zIndex: 0,
+          willChange: 'transform'
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          top: 700,
+          left: '5%',
+          width: 450,
+          height: 450,
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(0, 112, 243, 0.03) 0%, transparent 70%)',
+          pointerEvents: 'none',
+          transform: `translate3d(0, ${scrollY * -0.12}px, 0)`,
+          zIndex: 0,
+          willChange: 'transform'
+        }}
+      />
+
+      {/* Parallax Marginal Telemetry Coordinates */}
+      <div style={{
+        position: 'absolute',
+        right: '1.5%',
+        top: '28%',
+        fontFamily: 'var(--font-mono)',
+        fontSize: '0.68rem',
+        color: 'var(--text-dim)',
+        padding: '0.2rem 0.5rem',
+        border: '1px solid var(--border-color)',
+        borderRadius: 'var(--radius-sm)',
+        background: 'rgba(0, 0, 0, 0.6)',
+        pointerEvents: 'none',
+        transform: `translate3d(0, ${scrollY * -0.18}px, 0)`,
+        willChange: 'transform'
+      }}>
+        TELEMETRY // P99: 14ms
+      </div>
+
       {/* ================= 1. HERO SECTION ================= */}
       <section style={{
         position: 'relative',
@@ -53,7 +171,7 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
         paddingTop: '1rem'
       }}>
         {/* Left Column: Headline & Value Prop */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', transform: `translate3d(0, ${scrollY * 0.03}px, 0)`, willChange: 'transform' }}>
           
           <div className="eyebrow" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#FFFFFF' }} />
@@ -109,13 +227,17 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
           </div>
         </div>
 
-        {/* Right Column: Vercel-Style Live Telemetry Terminal */}
+        {/* Right Column: Vercel-Style Live Telemetry Terminal (Parallax Float) */}
         <div style={{
           background: '#000000',
           border: '1px solid var(--border-color)',
           borderRadius: 'var(--radius-md)',
           overflow: 'hidden',
-          fontFamily: 'var(--font-mono)'
+          fontFamily: 'var(--font-mono)',
+          transform: `translate3d(0, ${Math.min(scrollY * 0.1, 75)}px, 0)`,
+          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.7)',
+          transition: 'transform 0.05s ease-out',
+          willChange: 'transform'
         }}>
           {/* Terminal Tab Bar */}
           <div style={{
@@ -262,7 +384,9 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
         gap: '2rem',
         padding: '2.5rem 0',
         borderTop: '1px solid var(--border-color)',
-        borderBottom: '1px solid var(--border-color)'
+        borderBottom: '1px solid var(--border-color)',
+        transform: `translate3d(0, ${Math.max(-15, Math.min(15, (scrollY - 200) * 0.03))}px, 0)`,
+        willChange: 'transform'
       }}>
         <div>
           <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#EDEDED', letterSpacing: '-0.04em' }}>99.9%</div>
@@ -364,12 +488,14 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
           </p>
         </div>
 
-        {/* Single Unified Vercel Split-Diff Frame (Zero nested card boxes) */}
+        {/* Single Unified Vercel Split-Diff Frame (Parallax Depth) */}
         <div style={{
           background: '#000000',
           border: '1px solid var(--border-color)',
           borderRadius: 'var(--radius-md)',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          transform: `translate3d(0, ${Math.max(-20, Math.min(20, (scrollY - 650) * 0.03))}px, 0)`,
+          willChange: 'transform'
         }}>
           {/* Frame Top Header */}
           <div style={{
@@ -589,7 +715,7 @@ role:    string    ✓`}
           </div>
         </div>
 
-        {/* Feature Showcase Card 01 (Exact Layout & Typography from Reference Image) */}
+        {/* Feature Showcase Card 01 (Interactive Live Contract Tester with Parallax Depth) */}
         <div style={{
           background: 'var(--bg-card)',
           border: '1px solid var(--border-color)',
@@ -599,7 +725,9 @@ role:    string    ✓`}
           gridTemplateColumns: 'minmax(0, 1.1fr) minmax(0, 1fr)',
           gap: '3rem',
           alignItems: 'center',
-          boxShadow: 'var(--shadow-sm)'
+          boxShadow: 'var(--shadow-sm)',
+          transform: `translate3d(0, ${Math.max(-20, Math.min(20, (scrollY - 1100) * 0.03))}px, 0)`,
+          willChange: 'transform'
         }}>
           {/* Card Top Category Row */}
           <div style={{
@@ -641,7 +769,7 @@ role:    string    ✓`}
             </div>
           </div>
 
-          {/* Right Column: Inset Widget Box (Replica of Reference Image Widget) */}
+          {/* Right Column: Real Interactive Live Contract Testing Console */}
           <div style={{
             background: 'var(--bg-subtle)',
             border: '1px solid var(--border-color)',
@@ -652,32 +780,69 @@ role:    string    ✓`}
             gap: '1.15rem'
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#FFFFFF' }}>Validate Contract Schema</span>
-              <span className="eyebrow" style={{ fontSize: '0.68rem' }}>TARGET ROUTE</span>
+              <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#FFFFFF' }}>Interactive Contract Evaluator</span>
+              <span className="badge badge-subtle font-mono" style={{ fontSize: '0.65rem' }}>LIVE ENGINE</span>
             </div>
 
-            {/* Inset input box */}
-            <div style={{
-              padding: '0.65rem 0.9rem',
-              background: 'var(--bg-main)',
-              border: '1px solid var(--border-color)',
-              borderRadius: 'var(--radius-sm)',
-              fontSize: '0.8rem',
-              fontFamily: 'var(--font-mono)',
-              color: 'var(--text-muted)'
-            }}>
-              https://api.sentinel.io/v2/payment-gateway
+            {/* Real Interactive Route Input */}
+            <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <input
+                type="text"
+                value={simUrl}
+                onChange={(e) => setSimUrl(e.target.value)}
+                style={{
+                  flex: 1,
+                  padding: '0.55rem 0.85rem',
+                  background: 'var(--bg-main)',
+                  border: '1px solid var(--border-color)',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: '0.8rem',
+                  fontFamily: 'var(--font-mono)',
+                  color: 'var(--text-main)',
+                  outline: 'none'
+                }}
+              />
+              <button
+                onClick={() => runSimulation()}
+                disabled={isSimulating}
+                className="btn btn-outline btn-sm"
+                style={{ fontSize: '0.75rem', padding: '0.45rem 0.85rem', whiteSpace: 'nowrap' }}
+              >
+                {isSimulating ? 'Verifying...' : 'Test Schema'}
+              </button>
             </div>
 
-            {/* Selector pills (matching 5 10 15 20 in image) */}
-            <div className="pill-group">
-              <span className="pill-item">GET</span>
-              <span className="pill-item active">200 OK</span>
-              <span className="pill-item">POST</span>
-              <span className="pill-item">PUT</span>
+            {/* Interactive Method Pills */}
+            <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+              {['GET', 'POST', 'PUT'].map(method => (
+                <button
+                  key={method}
+                  onClick={() => {
+                    setSimMethod(method);
+                    runSimulation(method);
+                  }}
+                  style={{
+                    padding: '0.25rem 0.65rem',
+                    borderRadius: 'var(--radius-sm)',
+                    fontSize: '0.75rem',
+                    fontFamily: 'var(--font-mono)',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    background: simMethod === method ? '#FFFFFF' : 'var(--bg-card)',
+                    color: simMethod === method ? '#000000' : 'var(--text-muted)',
+                    border: '1px solid var(--border-color)',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  {method}
+                </button>
+              ))}
+              <span style={{ marginLeft: 'auto', fontSize: '0.72rem', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
+                {isSimulating ? 'Evaluating...' : 'HTTP 200 OK'}
+              </span>
             </div>
 
-            {/* Blue progress bar (exact match to image) */}
+            {/* Dynamic Animated Progress Bar */}
             <div>
               <div style={{
                 height: 4,
@@ -688,27 +853,45 @@ role:    string    ✓`}
               }}>
                 <div style={{
                   height: '100%',
-                  width: '68%',
-                  background: '#FFFFFF',
-                  borderRadius: 2
+                  width: `${simProgress}%`,
+                  background: simDriftCount > 0 ? '#EF4444' : '#FFFFFF',
+                  borderRadius: 2,
+                  transition: 'width 0.3s ease, background 0.3s ease'
                 }} />
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
-                <span>Evaluating response payload...</span>
-                <span style={{ color: '#FFFFFF', fontWeight: 600 }}>0 Drift Detected</span>
+                <span>{simStatus}</span>
+                <span style={{ color: simDriftCount > 0 ? '#EF4444' : '#22C55E', fontWeight: 700 }}>
+                  {simLatency}ms · {simDriftCount} Drift
+                </span>
               </div>
             </div>
 
-            {/* Bottom tag buttons */}
-            <div style={{ display: 'flex', gap: '0.5rem', borderTop: '1px solid var(--border-subtle)', paddingTop: '0.85rem' }}>
-              <span style={{ padding: '0.25rem 0.6rem', borderRadius: 'var(--radius-sm)', background: 'rgba(255, 255, 255, 0.05)', fontSize: '0.72rem', color: 'var(--text-muted)' }}>Status Code</span>
-              <span style={{ padding: '0.25rem 0.6rem', borderRadius: 'var(--radius-sm)', background: 'rgba(255, 255, 255, 0.05)', fontSize: '0.72rem', color: 'var(--text-muted)' }}>Strict Types</span>
-              <span style={{ padding: '0.25rem 0.6rem', borderRadius: 'var(--radius-sm)', background: 'rgba(255, 255, 255, 0.05)', fontSize: '0.72rem', color: 'var(--text-muted)' }}>Required Keys</span>
+            {/* Mode selection toggle chips */}
+            <div style={{ display: 'flex', gap: '0.4rem', borderTop: '1px solid var(--border-subtle)', paddingTop: '0.85rem' }}>
+              {['Status Code', 'Strict Types', 'Required Keys'].map(mode => (
+                <button
+                  key={mode}
+                  onClick={() => setSimMode(mode)}
+                  style={{
+                    padding: '0.25rem 0.6rem',
+                    borderRadius: 'var(--radius-sm)',
+                    background: simMode === mode ? 'rgba(255, 255, 255, 0.12)' : 'rgba(255, 255, 255, 0.03)',
+                    border: simMode === mode ? '1px solid #FFFFFF' : '1px solid var(--border-color)',
+                    fontSize: '0.72rem',
+                    color: simMode === mode ? '#FFFFFF' : 'var(--text-muted)',
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease'
+                  }}
+                >
+                  {mode}
+                </button>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Feature Showcase Card 02 (Distributed Scheduler) */}
+        {/* Feature Showcase Card 02 (Distributed Scheduler with Interactive Dispatcher) */}
         <div style={{
           background: 'var(--bg-card)',
           border: '1px solid var(--border-color)',
@@ -718,7 +901,9 @@ role:    string    ✓`}
           gridTemplateColumns: 'minmax(0, 1.1fr) minmax(0, 1fr)',
           gap: '3rem',
           alignItems: 'center',
-          boxShadow: 'var(--shadow-sm)'
+          boxShadow: 'var(--shadow-sm)',
+          transform: `translate3d(0, ${Math.max(-20, Math.min(20, (scrollY - 1300) * 0.03))}px, 0)`,
+          willChange: 'transform'
         }}>
           {/* Card Top Category Row */}
           <div style={{
@@ -759,6 +944,7 @@ role:    string    ✓`}
             </div>
           </div>
 
+          {/* Right Column: Interactive BullMQ Queue Pipeline */}
           <div style={{
             background: 'var(--bg-subtle)',
             border: '1px solid var(--border-color)',
@@ -769,22 +955,54 @@ role:    string    ✓`}
             gap: '1rem'
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#FFFFFF' }}>BullMQ Queue Pipeline</span>
-              <span style={{ padding: '0.2rem 0.55rem', borderRadius: 'var(--radius-sm)', background: 'var(--bg-card)', border: '1px solid var(--border-color)', color: '#FFFFFF', fontSize: '0.65rem', fontWeight: 700 }}>ONLINE (5 SLOTS)</span>
+              <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#FFFFFF' }}>BullMQ Queue Controller</span>
+              <span style={{ padding: '0.2rem 0.55rem', borderRadius: 'var(--radius-sm)', background: 'var(--bg-card)', border: '1px solid var(--border-color)', color: '#22C55E', fontSize: '0.65rem', fontWeight: 700 }}>
+                ONLINE ({workerSlots} WORKERS)
+              </span>
             </div>
+
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
               <div style={{ padding: '0.75rem', background: 'var(--bg-main)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Worker Slots</div>
-                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF' }}>5 Active</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Active Slots</div>
+                <div style={{ display: 'flex', gap: '0.3rem', marginTop: '0.35rem' }}>
+                  {[3, 5, 8].map(slots => (
+                    <button
+                      key={slots}
+                      onClick={() => setWorkerSlots(slots)}
+                      style={{
+                        padding: '0.2rem 0.5rem',
+                        fontSize: '0.75rem',
+                        fontFamily: 'var(--font-mono)',
+                        fontWeight: 700,
+                        borderRadius: 'var(--radius-sm)',
+                        background: workerSlots === slots ? '#FFFFFF' : 'transparent',
+                        color: workerSlots === slots ? '#000000' : 'var(--text-muted)',
+                        border: '1px solid var(--border-color)',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      {slots}
+                    </button>
+                  ))}
+                </div>
               </div>
+
               <div style={{ padding: '0.75rem', background: 'var(--bg-main)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Deduplication Window</div>
-                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF' }}>5,000 ms</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Probes Dispatched</div>
+                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF' }}>{dispatchCount} Checks</div>
               </div>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-              <span>Background Dispatch Rate</span>
-              <strong style={{ color: '#FFFFFF' }}>100% Scheduled</strong>
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+              <span>Deduplication Cooldown: 5,000ms</span>
+              <button
+                onClick={handleDispatchJob}
+                disabled={isDispatching}
+                className="btn btn-outline btn-sm"
+                style={{ fontSize: '0.72rem', padding: '0.35rem 0.75rem' }}
+              >
+                {isDispatching ? 'Dispatching...' : 'Trigger Probe Job'}
+              </button>
             </div>
           </div>
         </div>
@@ -880,7 +1098,9 @@ role:    string    ✓`}
           borderRadius: 'var(--radius-md)',
           border: '1px solid var(--border-color)',
           fontFamily: 'var(--font-mono)',
-          fontSize: '0.8rem'
+          fontSize: '0.8rem',
+          transform: `translate3d(0, ${Math.max(-20, Math.min(20, (scrollY - 1800) * 0.03))}px, 0)`,
+          willChange: 'transform'
         }}>
           <div style={{ padding: '0.55rem 0.9rem', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700 }}>
             Client / Dashboard
