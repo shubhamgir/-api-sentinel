@@ -115,6 +115,33 @@ body {
   color: var(--text-main);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  background-image:
+    /* Layer 1: Regular dot matrix grid (developer SaaS feel) */
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+    /* Layer 2: Scattered bright pinpoint stars */
+    radial-gradient(circle at 18px 24px, rgba(255, 255, 255, 0.35) 1.2px, transparent 1.2px),
+    /* Layer 3: Secondary stars */
+    radial-gradient(circle at 68px 84px, rgba(255, 255, 255, 0.25) 1.4px, transparent 1.4px),
+    /* Layer 4: Distant twinkling stars */
+    radial-gradient(circle at 124px 48px, rgba(255, 255, 255, 0.42) 1.1px, transparent 1.1px),
+    /* Layer 5: Ambient Zenith depth glow */
+    radial-gradient(ellipse 85% 45% at 50% -10%, rgba(255, 255, 255, 0.04), transparent 70%);
+  background-size:
+    26px 26px,
+    104px 104px,
+    156px 156px,
+    208px 208px,
+    100% 100%;
+  background-attachment: fixed;
+}
+
+[data-theme="light"] body {
+  background-image:
+    radial-gradient(circle at center, rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+    radial-gradient(ellipse 90% 45% at 50% 0%, rgba(0, 120, 212, 0.04), transparent 70%);
+  background-size:
+    24px 24px,
+    100% 100%;
 }
 
 code, pre, .font-mono {

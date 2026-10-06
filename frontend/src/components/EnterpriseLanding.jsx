@@ -52,7 +52,7 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           
           <div className="eyebrow" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#3B82F6', boxShadow: '0 0 10px #3B82F6' }} />
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#FFFFFF' }} />
             API OBSERVABILITY & CONTRACT INTELLIGENCE
           </div>
 
@@ -94,13 +94,13 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginTop: '0.5rem', fontSize: '0.78rem', color: 'var(--text-light)' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <CheckCircle2 size={14} color="#10B981" /> No SDK installation required
+              <CheckCircle2 size={14} color="var(--text-muted)" /> No SDK installation required
             </span>
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <CheckCircle2 size={14} color="#10B981" /> OpenAPI 3.0 & JSON Schema
+              <CheckCircle2 size={14} color="var(--text-muted)" /> OpenAPI 3.0 & JSON Schema
             </span>
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <CheckCircle2 size={14} color="#10B981" /> Docker & BullMQ workers
+              <CheckCircle2 size={14} color="var(--text-muted)" /> Docker & BullMQ workers
             </span>
           </div>
         </div>
