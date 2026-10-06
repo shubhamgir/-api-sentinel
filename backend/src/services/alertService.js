@@ -1,8 +1,12 @@
 const axios = require('axios');
 const store = require('../db/store');
 
+// Cooldown tracker to prevent noisy alerts: key = `${alertConfigId}:${endpointId}:${triggerType}`, value = timestamp
+const alertCooldownMap = new Map();
+
 /**
  * Evaluate check results against alert rules and dispatch notifications if triggered.
+ * Features noisy alert suppression with configurable cooldown window.
  * @param {Object} checkResult
  * @param {Object} contractValidationResult
  */
@@ -27,10 +31,13 @@ async function processAlerts(checkResult, contractValidationResult) {
     const triggers = alertConfig.triggerOn || [];
     let isTriggered = false;
     let triggerReason = '';
+    let triggerCategory = 'GENERAL';
+    const cooldownMs = (alertConfig.cooldownMinutes || 5) * 60 * 1000;
 
     // Check status mismatch
     if (triggers.includes('STATUS_MISMATCH') && status !== expectedStatus) {
       isTriggered = true;
+      triggerCategory = 'STATUS_MISMATCH';
       triggerReason += `Status Mismatch: Expected ${expectedStatus}, got ${status || 'N/A'}. `;
     }
 
@@ -39,6 +46,7 @@ async function processAlerts(checkResult, contractValidationResult) {
       const threshold = alertConfig.latencyThresholdMs || 1000;
       if (latencyMs > threshold) {
         isTriggered = true;
+        triggerCategory = 'HIGH_LATENCY';
         triggerReason += `High Latency: ${latencyMs}ms (Exceeds threshold of ${threshold}ms). `;
       }
     }
@@ -46,16 +54,31 @@ async function processAlerts(checkResult, contractValidationResult) {
     // Check contract drift
     if (triggers.includes('CONTRACT_DRIFT') && hasDrift) {
       isTriggered = true;
+      triggerCategory = 'CONTRACT_DRIFT';
       triggerReason += `Contract Drift: ${contractValidationResult.driftSummary}. `;
     }
 
     // Check timeout / unreachability
     if (triggers.includes('TIMEOUT') && !success && (errorMessage || '').includes('Timeout')) {
       isTriggered = true;
+      triggerCategory = 'TIMEOUT';
       triggerReason += `Endpoint Timeout: ${errorMessage}. `;
     }
 
     if (isTriggered) {
+      // Noisy alert suppression check
+      const cooldownKey = `${alertConfig.id}:${endpointId}:${triggerCategory}`;
+      const lastAlertTime = alertCooldownMap.get(cooldownKey);
+      const now = Date.now();
+
+      if (lastAlertTime && (now - lastAlertTime < cooldownMs)) {
+        // Suppress noisy alert duplicate
+        console.log(`[ALERT SUPPRESSED] Cooldown active for ${endpointName} (${triggerCategory}). Next alert in ${Math.round((cooldownMs - (now - lastAlertTime)) / 1000)}s`);
+        continue;
+      }
+
+      alertCooldownMap.set(cooldownKey, now);
+
       const alertPayload = {
         alertId: alertConfig.id,
         alertName: alertConfig.name,
@@ -88,7 +111,6 @@ async function processAlerts(checkResult, contractValidationResult) {
 
 async function dispatchWebhook(webhookUrl, alertPayload) {
   try {
-    // If it's a dummy webhook URL, log simulation
     if (webhookUrl.includes('slack.com/services/demo') || webhookUrl.includes('example.com')) {
       console.log(`[ALERT SIMULATED WEBHOOK] Sent payload to ${webhookUrl}:`, alertPayload.triggerReason);
       return;

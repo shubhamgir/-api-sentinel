@@ -37,13 +37,14 @@ const getEndpointById = (req, res) => {
 };
 
 const createEndpoint = (req, res) => {
-  const { name, url, method, headers, payload, expectedStatus, timeoutMs, intervalSeconds, retryCount } = req.body;
+  const { websiteId, name, url, method, headers, payload, expectedStatus, timeoutMs, intervalSeconds, retryCount } = req.body;
   
   if (!name || !url) {
     return res.status(400).json({ error: 'Name and Target URL are required' });
   }
 
   const created = store.addEndpoint({
+    websiteId: websiteId || null,
     name,
     url,
     method: method || 'GET',

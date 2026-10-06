@@ -8,7 +8,8 @@ import {
   BellRing,
   FlaskConical,
   RefreshCw,
-  Server
+  Server,
+  Globe
 } from 'lucide-react';
 
 export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefreshAll }) {
@@ -33,6 +34,13 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
         >
           <LayoutDashboard size={16} />
           Overview
+        </button>
+        <button
+          className={`nav-btn ${activeTab === 'websites' ? 'active' : ''}`}
+          onClick={() => setActiveTab('websites')}
+        >
+          <Globe size={16} />
+          Websites & Routes
         </button>
         <button
           className={`nav-btn ${activeTab === 'endpoints' ? 'active' : ''}`}

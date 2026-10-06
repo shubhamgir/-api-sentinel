@@ -39,36 +39,90 @@ export default function QueueDashboard() {
   };
 
   const apiEndpoints = [
-    { method: 'POST', path: '/api/auth/register', tag: 'Auth', desc: 'Register a new user' },
-    { method: 'POST', path: '/api/auth/login', tag: 'Auth', desc: 'Login & get JWT token' },
-    { method: 'GET', path: '/api/endpoints', tag: 'Endpoints', desc: 'List all monitored endpoints' },
-    { method: 'POST', path: '/api/endpoints', tag: 'Endpoints', desc: 'Register a new API endpoint' },
-    { method: 'PUT', path: '/api/endpoints/:id', tag: 'Endpoints', desc: 'Update endpoint config' },
-    { method: 'DELETE', path: '/api/endpoints/:id', tag: 'Endpoints', desc: 'Delete endpoint and its history' },
-    { method: 'PATCH', path: '/api/endpoints/:id/toggle', tag: 'Endpoints', desc: 'Toggle monitoring active/paused' },
-    { method: 'POST', path: '/api/monitoring/check-now/:id', tag: 'Monitoring', desc: 'Trigger immediate health check' },
-    { method: 'GET', path: '/api/monitoring/status/:id', tag: 'Monitoring', desc: 'Get latest check status' },
-    { method: 'GET', path: '/api/monitoring/history/:id', tag: 'Monitoring', desc: 'Fetch time-series check history (default 50 entries)' },
-    { method: 'POST', path: '/api/contracts', tag: 'Contracts', desc: 'Save JSON Schema contract for endpoint' },
-    { method: 'GET', path: '/api/contracts/:id', tag: 'Contracts', desc: 'Get contract by endpoint ID' },
-    { method: 'POST', path: '/api/contracts/validate-test', tag: 'Contracts', desc: 'Validate a test payload against a schema' },
-    { method: 'POST', path: '/api/alerts/configure', tag: 'Alerts', desc: 'Configure webhook/email alert rule' },
-    { method: 'GET', path: '/api/alerts', tag: 'Alerts', desc: 'List alert configs & recent logs' },
-    { method: 'POST', path: '/api/alerts/test', tag: 'Alerts', desc: 'Send a test alert notification' },
-    { method: 'GET', path: '/api/analytics/uptime', tag: 'Analytics', desc: 'Get system & per-endpoint uptime %' },
-    { method: 'GET', path: '/api/analytics/latency', tag: 'Analytics', desc: 'Latency average, p50, p90, p99 & trend' },
-    { method: 'GET', path: '/api/analytics/failures', tag: 'Analytics', desc: 'Failure categorization breakdown' },
-    { method: 'GET', path: '/api/queue/metrics', tag: 'Queue', desc: 'BullMQ-style job queue metrics & worker stats' },
+    // 1. Auth (3 routes)
+    { method: 'POST', path: '/api/auth/register', tag: 'Auth', desc: 'Register a new developer account' },
+    { method: 'POST', path: '/api/auth/login', tag: 'Auth', desc: 'Authenticate and receive JWT token' },
+    { method: 'GET', path: '/api/auth/me', tag: 'Auth', desc: 'Get current user profile and session data' },
+
+    // 2. Websites / Projects (6 routes)
+    { method: 'GET', path: '/api/websites', tag: 'Websites', desc: 'List all registered website projects with stats' },
+    { method: 'GET', path: '/api/websites/:id', tag: 'Websites', desc: 'Fetch single website details & route health' },
+    { method: 'POST', path: '/api/websites', tag: 'Websites', desc: 'Create new website project (e.g. web-6789)' },
+    { method: 'PUT', path: '/api/websites/:id', tag: 'Websites', desc: 'Update website metadata, environment, SLA' },
+    { method: 'DELETE', path: '/api/websites/:id', tag: 'Websites', desc: 'Delete website project and unlink routes' },
+    { method: 'POST', path: '/api/websites/:id/endpoints', tag: 'Websites', desc: 'Register endpoint directly under website' },
+
+    // 3. Endpoints (6 routes)
+    { method: 'GET', path: '/api/endpoints', tag: 'Endpoints', desc: 'List all monitored endpoints across systems' },
+    { method: 'GET', path: '/api/endpoints/:id', tag: 'Endpoints', desc: 'Get single endpoint with recent check logs' },
+    { method: 'POST', path: '/api/endpoints', tag: 'Endpoints', desc: 'Register new API endpoint target' },
+    { method: 'PUT', path: '/api/endpoints/:id', tag: 'Endpoints', desc: 'Update endpoint parameters, headers, timeout' },
+    { method: 'DELETE', path: '/api/endpoints/:id', tag: 'Endpoints', desc: 'Delete endpoint and its time-series history' },
+    { method: 'PATCH', path: '/api/endpoints/:id/toggle', tag: 'Endpoints', desc: 'Toggle monitoring active or paused state' },
+
+    // 4. Monitoring (5 routes)
+    { method: 'POST', path: '/api/monitoring/start', tag: 'Monitoring', desc: 'Trigger global background monitoring cycle' },
+    { method: 'GET', path: '/api/monitoring/status/:id', tag: 'Monitoring', desc: 'Get current health and schema drift status' },
+    { method: 'GET', path: '/api/monitoring/history/:id', tag: 'Monitoring', desc: 'Fetch time-series latency & status logs' },
+    { method: 'GET', path: '/api/monitoring/history', tag: 'Monitoring', desc: 'Query all global check logs with limit' },
+    { method: 'POST', path: '/api/monitoring/check-now/:id', tag: 'Monitoring', desc: 'Execute instant manual check with retry' },
+
+    // 5. Contracts & Schema (4 routes)
+    { method: 'GET', path: '/api/contracts', tag: 'Contracts', desc: 'List all registered JSON Schema contracts' },
+    { method: 'POST', path: '/api/contracts', tag: 'Contracts', desc: 'Save OpenAPI / JSON Schema definition' },
+    { method: 'GET', path: '/api/contracts/:id', tag: 'Contracts', desc: 'Retrieve contract by endpoint ID' },
+    { method: 'POST', path: '/api/contracts/validate-test', tag: 'Contracts', desc: 'Test schema validator against raw payload' },
+
+    // 6. Alerts (4 routes)
+    { method: 'POST', path: '/api/alerts/configure', tag: 'Alerts', desc: 'Configure webhook/email alert rule & cooldown' },
+    { method: 'GET', path: '/api/alerts', tag: 'Alerts', desc: 'List all alert rules and active listeners' },
+    { method: 'GET', path: '/api/alerts/logs', tag: 'Alerts', desc: 'Fetch historical alert dispatch logs' },
+    { method: 'POST', path: '/api/alerts/test', tag: 'Alerts', desc: 'Send test notification to webhook/email' },
+
+    // 7. Analytics (4 routes)
+    { method: 'GET', path: '/api/analytics/uptime', tag: 'Analytics', desc: '24h and 7d uptime percentage calculations' },
+    { method: 'GET', path: '/api/analytics/latency', tag: 'Analytics', desc: 'Average latency, p50, p90, p99 percentiles' },
+    { method: 'GET', path: '/api/analytics/failures', tag: 'Analytics', desc: 'Categorized failure distribution metrics' },
+    { method: 'GET', path: '/api/analytics/summary', tag: 'Analytics', desc: 'Executive reliability dashboard summary' },
+
+    // 8. BullMQ Job Queue (2 routes)
+    { method: 'GET', path: '/api/queue/metrics', tag: 'Queue', desc: 'Real-time BullMQ queue depth & worker stats' },
+    { method: 'POST', path: '/api/queue/clear-completed', tag: 'Queue', desc: 'Flush completed job cache from memory' },
+
+    // 9. Built-in Target APIs (12 routes)
+    { method: 'GET', path: '/api/mock/users', tag: 'Mock Targets', desc: 'Query users list (User Microservice)' },
+    { method: 'POST', path: '/api/mock/users', tag: 'Mock Targets', desc: 'Create new user record (POST test)' },
+    { method: 'PUT', path: '/api/mock/users/:id', tag: 'Mock Targets', desc: 'Update user attributes (PUT test)' },
+    { method: 'DELETE', path: '/api/mock/users/:id', tag: 'Mock Targets', desc: 'Remove user record (DELETE test)' },
+    { method: 'GET', path: '/api/mock/orders', tag: 'Mock Targets', desc: 'Order service (flaky 20% retry simulation)' },
+    { method: 'POST', path: '/api/mock/orders', tag: 'Mock Targets', desc: 'Create new order transaction' },
+    { method: 'DELETE', path: '/api/mock/orders/:id', tag: 'Mock Targets', desc: 'Cancel order and reverse state' },
+    { method: 'GET', path: '/api/mock/payment-info', tag: 'Mock Targets', desc: 'Payment Gateway (Schema drift demo)' },
+    { method: 'POST', path: '/api/mock/payments', tag: 'Mock Targets', desc: 'Process payment authorization' },
+    { method: 'POST', path: '/api/mock/payments/:id/refund', tag: 'Mock Targets', desc: 'Issue payment refund' },
+    { method: 'GET', path: '/api/mock/products', tag: 'Mock Targets', desc: 'Products catalog inventory' },
+    { method: 'POST', path: '/api/mock/products', tag: 'Mock Targets', desc: 'Add new product item' },
+    { method: 'PUT', path: '/api/mock/products/:id', tag: 'Mock Targets', desc: 'Update product pricing and stock' },
+    { method: 'DELETE', path: '/api/mock/products/:id', tag: 'Mock Targets', desc: 'Delete product catalog item' },
+    { method: 'GET', path: '/api/mock/slow-inventory', tag: 'Mock Targets', desc: 'High latency target (1800ms delay)' },
+    { method: 'GET', path: '/api/mock/telemetry', tag: 'Mock Targets', desc: 'Node server memory & uptime telemetry' },
+    { method: 'POST', path: '/api/mock/toggle-drift', tag: 'Mock Targets', desc: 'Toggle schema drift response on/off' },
+
+    // 10. API Docs (1 route)
+    { method: 'GET', path: '/api/docs', tag: 'Docs', desc: 'Live OpenAPI 3.0 specification summary' }
   ];
 
   const tagColors = {
     Auth: { bg: 'var(--bg-subtle)', color: 'var(--text-muted)' },
+    Websites: { bg: '#E0F2FE', color: '#0369A1' },
     Endpoints: { bg: 'var(--primary-light)', color: 'var(--primary)' },
     Monitoring: { bg: 'var(--success-bg)', color: 'var(--success-text)' },
     Contracts: { bg: 'var(--purple-bg)', color: 'var(--purple-text)' },
     Alerts: { bg: 'var(--danger-bg)', color: 'var(--danger-text)' },
     Analytics: { bg: 'var(--warning-bg)', color: 'var(--warning-text)' },
-    Queue: { bg: '#EFF6FF', color: '#1D4ED8' }
+    Queue: { bg: '#EFF6FF', color: '#1D4ED8' },
+    'Mock Targets': { bg: '#FEF3C7', color: '#B45309' },
+    Docs: { bg: '#F1F5F9', color: '#475569' }
   };
 
   const methodColors = {

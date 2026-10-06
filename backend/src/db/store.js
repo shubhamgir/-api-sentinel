@@ -33,13 +33,45 @@ const writeData = (collection, data) => {
   }
 };
 
-// Seed initial default mock endpoints & contracts if empty
+// Seed initial default mock endpoints & contracts & websites if empty
 const seedDefaults = () => {
+  let websites = readData('websites');
+  if (websites.length === 0) {
+    const defaultWebsites = [
+      {
+        id: 'web-6789',
+        name: 'Sentinel Core Microservices',
+        description: 'Main production API suite covering user authentication, payment processing, inventory, and order fulfillment.',
+        baseUrl: 'http://localhost:5000',
+        environment: 'Production',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: 'web-1001',
+        name: 'LeetCode Platform APIs',
+        description: 'External competitive programming platform GraphQL & REST APIs.',
+        baseUrl: 'https://leetcode.com',
+        environment: 'External',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: 'web-2002',
+        name: 'JSONPlaceholder Testing Suite',
+        description: 'Public mock API testing service for REST verbs GET, POST, PUT, DELETE.',
+        baseUrl: 'https://jsonplaceholder.typicode.com',
+        environment: 'Staging / Mock',
+        createdAt: new Date().toISOString()
+      }
+    ];
+    writeData('websites', defaultWebsites);
+  }
+
   let endpoints = readData('endpoints');
   if (endpoints.length === 0) {
     const defaultEndpoints = [
       {
         id: 'ep-healthy-user-api',
+        websiteId: 'web-6789',
         name: 'User Management Microservice',
         url: 'http://localhost:5000/api/mock/users',
         method: 'GET',
@@ -54,6 +86,7 @@ const seedDefaults = () => {
       },
       {
         id: 'ep-flaky-degraded-api',
+        websiteId: 'web-6789',
         name: 'Order Processing Service (Flaky)',
         url: 'http://localhost:5000/api/mock/orders',
         method: 'GET',
@@ -68,6 +101,7 @@ const seedDefaults = () => {
       },
       {
         id: 'ep-schema-drift-api',
+        websiteId: 'web-6789',
         name: 'Payment Gateway Info (Schema Drift)',
         url: 'http://localhost:5000/api/mock/payment-info',
         method: 'GET',
@@ -82,6 +116,7 @@ const seedDefaults = () => {
       },
       {
         id: 'ep-slow-latency-api',
+        websiteId: 'web-6789',
         name: 'Inventory Sync Service (Slow)',
         url: 'http://localhost:5000/api/mock/slow-inventory',
         method: 'GET',
@@ -153,6 +188,7 @@ const seedDefaults = () => {
         name: 'Global Slack Webhook Alert',
         triggerOn: ['STATUS_MISMATCH', 'CONTRACT_DRIFT', 'TIMEOUT'],
         latencyThresholdMs: 1000,
+        cooldownMinutes: 5,
         webhookUrl: 'https://hooks.slack.com/services/demo/api-sentinel/alerts',
         emailRecipient: 'devops@sentinel-monitoring.io',
         enabled: true,
@@ -168,6 +204,38 @@ seedDefaults();
 module.exports = {
   getCollection: readData,
   saveCollection: writeData,
+
+  // Websites (Website / Project grouping)
+  getWebsites: () => readData('websites'),
+  getWebsiteById: (id) => readData('websites').find(w => w.id === id),
+  addWebsite: (website) => {
+    const list = readData('websites');
+    const newWeb = {
+      id: website.id || `web-${Date.now().toString(36)}`,
+      createdAt: new Date().toISOString(),
+      ...website
+    };
+    list.push(newWeb);
+    writeData('websites', list);
+    return newWeb;
+  },
+  updateWebsite: (id, updates) => {
+    const list = readData('websites');
+    const index = list.findIndex(w => w.id === id);
+    if (index === -1) return null;
+    list[index] = { ...list[index], ...updates, updatedAt: new Date().toISOString() };
+    writeData('websites', list);
+    return list[index];
+  },
+  deleteWebsite: (id) => {
+    const list = readData('websites');
+    const filtered = list.filter(w => w.id !== id);
+    writeData('websites', filtered);
+    // Unlink endpoints
+    const endpoints = readData('endpoints').map(ep => ep.websiteId === id ? { ...ep, websiteId: null } : ep);
+    writeData('endpoints', endpoints);
+    return true;
+  },
 
   // Endpoints
   getEndpoints: () => readData('endpoints'),
@@ -220,7 +288,6 @@ module.exports = {
     const list = readData('checks');
     const newCheck = { id: uuidv4(), timestamp: new Date().toISOString(), ...checkResult };
     list.push(newCheck);
-    // Keep max 500 latest check entries in storage for performance
     if (list.length > 500) {
       list.shift();
     }

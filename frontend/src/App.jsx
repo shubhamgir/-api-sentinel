@@ -3,6 +3,7 @@ import axios from 'axios';
 import Navbar from './components/Navbar';
 import DashboardOverview from './components/DashboardOverview';
 import EndpointsManager from './components/EndpointsManager';
+import WebsitesManager from './components/WebsitesManager';
 import ContractDriftInspector from './components/ContractDriftInspector';
 import MonitoringHistoryLogs from './components/MonitoringHistoryLogs';
 import AlertCenter from './components/AlertCenter';
@@ -13,6 +14,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [globalStatus, setGlobalStatus] = useState('OPERATIONAL');
 
+  const [websites, setWebsites] = useState([]);
   const [endpoints, setEndpoints] = useState([]);
   const [contracts, setContracts] = useState([]);
   const [alertConfigs, setAlertConfigs] = useState([]);
@@ -25,7 +27,8 @@ export default function App() {
 
   const fetchAllData = async () => {
     try {
-      const [epRes, uptimeRes, latencyRes, failRes, historyRes, alertRes] = await Promise.all([
+      const [webRes, epRes, uptimeRes, latencyRes, failRes, historyRes, alertRes] = await Promise.all([
+        axios.get('/api/websites'),
         axios.get('/api/endpoints'),
         axios.get('/api/analytics/uptime'),
         axios.get('/api/analytics/latency'),
@@ -34,6 +37,7 @@ export default function App() {
         axios.get('/api/alerts')
       ]);
 
+      setWebsites(webRes.data || []);
       setEndpoints(epRes.data || []);
       setUptimeData(uptimeRes.data);
       setLatencyData(latencyRes.data);
@@ -154,6 +158,15 @@ export default function App() {
             failureData={failureData}
             endpoints={endpoints}
             onSelectTab={setActiveTab}
+          />
+        )}
+
+        {activeTab === 'websites' && (
+          <WebsitesManager
+            websites={websites}
+            endpoints={endpoints}
+            onRefreshAll={fetchAllData}
+            onCheckNow={handleCheckNow}
           />
         )}
 

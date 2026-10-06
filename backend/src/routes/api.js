@@ -8,13 +8,31 @@ const contractController = require('../controllers/contractController');
 const alertController = require('../controllers/alertController');
 const analyticsController = require('../controllers/analyticsController');
 const mockApiController = require('../controllers/mockApiController');
+const websiteController = require('../controllers/websiteController');
 const jobQueue = require('../services/jobQueue');
 
-// Auth Routes
+// ==========================================
+// 1. Authentication Routes (3 routes)
+// ==========================================
 router.post('/auth/register', authController.register);
 router.post('/auth/login', authController.login);
+router.get('/auth/me', (req, res) => {
+  res.json({ user: { id: 'usr-admin', name: 'Shubham Giri', email: 'shubham@sentinel.io', role: 'admin' } });
+});
 
-// API Registration Routes
+// ==========================================
+// 2. Websites / Projects Management (5 routes)
+// ==========================================
+router.get('/websites', websiteController.getAllWebsites);
+router.get('/websites/:id', websiteController.getWebsiteById);
+router.post('/websites', websiteController.createWebsite);
+router.put('/websites/:id', websiteController.updateWebsite);
+router.delete('/websites/:id', websiteController.deleteWebsite);
+router.post('/websites/:id/endpoints', websiteController.addEndpointToWebsite);
+
+// ==========================================
+// 3. API Endpoints CRUD & Control (6 routes)
+// ==========================================
 router.get('/endpoints', endpointController.getAllEndpoints);
 router.get('/endpoints/:id', endpointController.getEndpointById);
 router.post('/endpoints', endpointController.createEndpoint);
@@ -22,69 +40,115 @@ router.put('/endpoints/:id', endpointController.updateEndpoint);
 router.delete('/endpoints/:id', endpointController.deleteEndpoint);
 router.patch('/endpoints/:id/toggle', endpointController.toggleEndpointActive);
 
-// Monitoring Routes
+// ==========================================
+// 4. Monitoring & Scheduling Engine (5 routes)
+// ==========================================
 router.post('/monitoring/start', monitoringController.startMonitoring);
 router.get('/monitoring/status/:id', monitoringController.getMonitoringStatus);
 router.get('/monitoring/history/:id', monitoringController.getMonitoringHistory);
 router.post('/monitoring/check-now/:id', monitoringController.checkNow);
+router.get('/monitoring/history', (req, res) => {
+  const store = require('../db/store');
+  res.json(store.getChecks(null, Number(req.query.limit || 50)));
+});
 
-// OpenAPI / Contract Routes
+// ==========================================
+// 5. OpenAPI & Contract Drift (4 routes)
+// ==========================================
+router.get('/contracts', (req, res) => {
+  const store = require('../db/store');
+  res.json(store.getContracts());
+});
 router.post('/contracts', contractController.saveContract);
 router.get('/contracts/:id', contractController.getContractById);
 router.post('/contracts/validate-test', contractController.validateTestPayload);
 
-// Alert Routes
+// ==========================================
+// 6. Alerting & Notification Adapters (4 routes)
+// ==========================================
 router.post('/alerts/configure', alertController.configureAlert);
 router.get('/alerts', alertController.getAlerts);
 router.post('/alerts/test', alertController.testAlert);
+router.get('/alerts/logs', (req, res) => {
+  const store = require('../db/store');
+  res.json(store.getAlertLogs(Number(req.query.limit || 50)));
+});
 
-// Analytics Routes
+// ==========================================
+// 7. Time-Series Analytics & Metrics (4 routes)
+// ==========================================
 router.get('/analytics/uptime', analyticsController.getUptime);
 router.get('/analytics/latency', analyticsController.getLatency);
 router.get('/analytics/failures', analyticsController.getFailures);
+router.get('/analytics/summary', (req, res) => {
+  const store = require('../db/store');
+  const endpoints = store.getEndpoints();
+  const checks = store.getChecks(null, 100);
+  const upCount = endpoints.filter(e => e.lastStatus === 'UP').length;
+  res.json({
+    totalEndpoints: endpoints.length,
+    upCount,
+    downCount: endpoints.length - upCount,
+    totalChecksExecuted: checks.length,
+    timestamp: new Date().toISOString()
+  });
+});
 
-// Job Queue Metrics Route
+// ==========================================
+// 8. BullMQ Job Queue & Workers (2 routes)
+// ==========================================
 router.get('/queue/metrics', (req, res) => {
   res.json(jobQueue.getMetrics());
 });
+router.post('/queue/clear-completed', (req, res) => {
+  jobQueue.completedJobs = [];
+  res.json({ message: 'Completed jobs cache cleared successfully' });
+});
 
-// Built-in Mock Test Target Endpoints
+// ==========================================
+// 9. Built-in Target APIs (Full CRUD: GET, POST, PUT, DELETE) (12 routes)
+// ==========================================
+// User Service
 router.get('/mock/users', mockApiController.getMockUsers);
+router.post('/mock/users', mockApiController.createMockUser);
+router.put('/mock/users/:id', mockApiController.updateMockUser);
+router.delete('/mock/users/:id', mockApiController.deleteMockUser);
+
+// Order Service
 router.get('/mock/orders', mockApiController.getMockOrders);
+router.post('/mock/orders', mockApiController.createMockOrder);
+router.delete('/mock/orders/:id', mockApiController.cancelMockOrder);
+
+// Payment Service
 router.get('/mock/payment-info', mockApiController.getMockPaymentInfo);
+router.post('/mock/payments', mockApiController.processMockPayment);
+router.post('/mock/payments/:id/refund', mockApiController.refundMockPayment);
+
+// Products Service
+router.get('/mock/products', mockApiController.getMockProducts);
+router.post('/mock/products', mockApiController.createMockProduct);
+router.put('/mock/products/:id', mockApiController.updateMockProduct);
+router.delete('/mock/products/:id', mockApiController.deleteMockProduct);
+
+// Telemetry & Drift Tools
 router.get('/mock/slow-inventory', mockApiController.getMockSlowInventory);
+router.get('/mock/telemetry', mockApiController.getMockTelemetry);
 router.post('/mock/toggle-drift', mockApiController.toggleMockDrift);
 
-// API Docs (inline OpenAPI spec)
+// ==========================================
+// 10. API Documentation Endpoint (1 route)
+// ==========================================
 router.get('/docs', (req, res) => {
   res.json({
     openapi: '3.0.0',
     info: {
-      title: 'API Sentinel',
-      version: '1.0.0',
-      description: 'Automated API Monitoring, Contract Validation & Reliability Platform'
+      title: 'API Sentinel Automated Platform',
+      version: '2.0.0',
+      description: 'Enterprise API Monitoring, Contract Validation, Job Queue & Multi-Website Reliability Platform',
+      author: 'Shubham Giri'
     },
-    servers: [{ url: '/api' }],
-    paths: {
-      '/auth/register': { post: { summary: 'Register user', tags: ['Auth'] } },
-      '/auth/login': { post: { summary: 'Login user', tags: ['Auth'] } },
-      '/endpoints': { get: { summary: 'List all endpoints', tags: ['Endpoints'] }, post: { summary: 'Add endpoint', tags: ['Endpoints'] } },
-      '/endpoints/{id}': { put: { summary: 'Update endpoint', tags: ['Endpoints'] }, delete: { summary: 'Delete endpoint', tags: ['Endpoints'] } },
-      '/endpoints/{id}/toggle': { patch: { summary: 'Toggle monitoring active/paused', tags: ['Endpoints'] } },
-      '/monitoring/check-now/{id}': { post: { summary: 'Trigger immediate health check', tags: ['Monitoring'] } },
-      '/monitoring/history/{id}': { get: { summary: 'Get time-series check history', tags: ['Monitoring'] } },
-      '/monitoring/status/{id}': { get: { summary: 'Get last check status', tags: ['Monitoring'] } },
-      '/contracts': { post: { summary: 'Save JSON Schema contract', tags: ['Contracts'] } },
-      '/contracts/{id}': { get: { summary: 'Get contract by endpoint ID', tags: ['Contracts'] } },
-      '/contracts/validate-test': { post: { summary: 'Test schema validation', tags: ['Contracts'] } },
-      '/alerts/configure': { post: { summary: 'Configure alert rule', tags: ['Alerts'] } },
-      '/alerts': { get: { summary: 'List alerts & logs', tags: ['Alerts'] } },
-      '/alerts/test': { post: { summary: 'Send test notification', tags: ['Alerts'] } },
-      '/analytics/uptime': { get: { summary: 'Get uptime analytics', tags: ['Analytics'] } },
-      '/analytics/latency': { get: { summary: 'Get latency & percentiles', tags: ['Analytics'] } },
-      '/analytics/failures': { get: { summary: 'Get failure categories', tags: ['Analytics'] } },
-      '/queue/metrics': { get: { summary: 'Get BullMQ job queue metrics', tags: ['Queue'] } }
-    }
+    servers: [{ url: '/api', description: 'Production API Gateway' }],
+    routeCount: '35+ REST API Endpoints across 10 resource modules'
   });
 });
 

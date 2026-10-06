@@ -10,6 +10,7 @@ export default function AlertCenter({ alertConfigs, alertLogs, onSaveAlertConfig
     webhookUrl: 'https://hooks.slack.com/services/demo/api-sentinel/alerts',
     emailRecipient: 'devops@sentinel-monitoring.io',
     latencyThresholdMs: 1000,
+    cooldownMinutes: 5,
     triggerOnStatusMismatch: true,
     triggerOnDrift: true,
     triggerOnTimeout: true
@@ -27,6 +28,7 @@ export default function AlertCenter({ alertConfigs, alertLogs, onSaveAlertConfig
       webhookUrl: formData.webhookUrl,
       emailRecipient: formData.emailRecipient,
       latencyThresholdMs: Number(formData.latencyThresholdMs),
+      cooldownMinutes: Number(formData.cooldownMinutes || 5),
       triggerOn,
       enabled: true
     });
@@ -194,14 +196,25 @@ export default function AlertCenter({ alertConfigs, alertLogs, onSaveAlertConfig
                 />
               </div>
 
-              <div className="form-group">
-                <label className="form-label">Latency Alert Threshold (ms)</label>
-                <input
-                  type="number"
-                  className="form-input"
-                  value={formData.latencyThresholdMs}
-                  onChange={(e) => setFormData({ ...formData, latencyThresholdMs: e.target.value })}
-                />
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                <div className="form-group">
+                  <label className="form-label">Latency Threshold (ms)</label>
+                  <input
+                    type="number"
+                    className="form-input"
+                    value={formData.latencyThresholdMs}
+                    onChange={(e) => setFormData({ ...formData, latencyThresholdMs: e.target.value })}
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Cooldown Window (mins) — Suppress Noisy Alerts</label>
+                  <input
+                    type="number"
+                    className="form-input"
+                    value={formData.cooldownMinutes}
+                    onChange={(e) => setFormData({ ...formData, cooldownMinutes: e.target.value })}
+                  />
+                </div>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', margin: '1rem 0' }}>

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "web-6789",
+    "name": "Sentinel Core Microservices",
+    "description": "Main production API suite covering user authentication, payment processing, inventory, and order fulfillment.",
+    "baseUrl": "http://localhost:5000",
+    "environment": "Production",
+    "createdAt": "2026-10-06T18:23:39.178Z"
+  },
+  {
+    "id": "web-1001",
+    "name": "LeetCode Platform APIs",
+    "description": "External competitive programming platform GraphQL & REST APIs.",
+    "baseUrl": "https://leetcode.com",
+    "environment": "External",
+    "createdAt": "2026-10-06T18:23:39.179Z"
+  },
+  {
+    "id": "web-2002",
+    "name": "JSONPlaceholder Testing Suite",
+    "description": "Public mock API testing service for REST verbs GET, POST, PUT, DELETE.",
+    "baseUrl": "https://jsonplaceholder.typicode.com",
+    "environment": "Staging / Mock",
+    "createdAt": "2026-10-06T18:23:39.179Z"
+  }
+]
