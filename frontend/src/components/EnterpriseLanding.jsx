@@ -51,40 +51,24 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
         {/* Left Column: Headline & Value Prop */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.6rem',
-            padding: '0.35rem 0.85rem',
-            borderRadius: 'var(--radius-full)',
-            background: 'rgba(14, 165, 233, 0.1)',
-            border: '1px solid rgba(14, 165, 233, 0.3)',
-            fontSize: '0.78rem',
-            fontWeight: 700,
-            color: '#38BDF8',
-            width: 'fit-content'
-          }}>
-            <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#0EA5E9', boxShadow: '0 0 10px #0EA5E9' }} />
-            API Observability & Contract Intelligence Platform
+          <div className="eyebrow" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#3B82F6', boxShadow: '0 0 10px #3B82F6' }} />
+            API OBSERVABILITY & CONTRACT INTELLIGENCE
           </div>
 
           <h1 style={{
-            fontSize: '2.85rem',
-            fontWeight: 900,
+            fontSize: '3.1rem',
+            fontWeight: 800,
             lineHeight: 1.15,
-            letterSpacing: '-0.03em',
-            color: 'var(--text-main)'
+            letterSpacing: '-0.035em'
           }}>
-            Know When Your APIs Break — <span style={{
-              background: 'linear-gradient(135deg, var(--primary), #0284C7)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent'
-            }}>Before Your Users Do.</span>
+            <span style={{ color: '#FFFFFF' }}>Know When Your APIs Break —</span><br />
+            <span style={{ color: 'var(--text-dim)' }}>Before Your Users Do.</span>
           </h1>
 
           <p style={{
-            fontSize: '1.05rem',
-            lineHeight: 1.6,
+            fontSize: '1.02rem',
+            lineHeight: 1.65,
             color: 'var(--text-muted)',
             maxWidth: '560px'
           }}>
@@ -93,15 +77,15 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginTop: '0.5rem' }}>
             <button
-              className="btn btn-primary"
-              style={{ padding: '0.75rem 1.6rem', fontSize: '0.9rem', fontWeight: 700 }}
+              className="btn btn-white"
+              style={{ padding: '0.75rem 1.6rem', fontSize: '0.88rem', fontWeight: 800 }}
               onClick={() => onNavigateDashboard('websites')}
             >
-              Get Started <ArrowRight size={16} />
+              Get Started <ArrowRight size={15} />
             </button>
             <button
               className="btn btn-outline"
-              style={{ padding: '0.75rem 1.4rem', fontSize: '0.9rem', fontWeight: 600 }}
+              style={{ padding: '0.75rem 1.4rem', fontSize: '0.88rem', fontWeight: 600 }}
               onClick={() => onNavigateDashboard('dashboard')}
             >
               View Live Dashboard
@@ -315,12 +299,13 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
 
       {/* ================= 3. PROBLEM SECTION ================= */}
       <section style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-        <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto' }}>
-          <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>
-            APIs Can Fail Without Looking Broken
+        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto' }}>
+          <div className="eyebrow" style={{ marginBottom: '0.6rem' }}>FAILURE MODES</div>
+          <h2 style={{ fontSize: '2.5rem', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.2 }}>
+            <span style={{ color: '#FFFFFF' }}>APIs Can Fail</span> <span style={{ color: 'var(--text-dim)' }}>Without Looking Broken</span>
           </h2>
-          <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>
-            Standard ping tools only check if a port responds. Production microservices fail silently in complex, non-obvious ways.
+          <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginTop: '0.6rem', lineHeight: 1.6 }}>
+            Standard ping tools only check if a port responds. Modern microservices fail silently through data drift, type mutations, and cascading latency.
           </p>
         </div>
 
@@ -330,10 +315,10 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
             <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'rgba(239, 68, 68, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#EF4444', marginBottom: '1rem' }}>
               <ShieldAlert size={20} />
             </div>
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.4rem' }}>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
               Silent Downtime
             </h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>
               API endpoints become unavailable or crash intermittently, and downstream customers discover the issue before your engineering team is notified.
             </p>
           </div>
@@ -343,10 +328,10 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
             <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'rgba(245, 158, 11, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#F59E0B', marginBottom: '1rem' }}>
               <Clock size={20} />
             </div>
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.4rem' }}>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
               Latency Degradation
             </h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>
               An API can remain technically available while response times silently balloon from 50ms to 3,000ms, timing out mobile apps and frontends.
             </p>
           </div>
@@ -356,11 +341,11 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
             <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'rgba(139, 92, 246, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#8B5CF6', marginBottom: '1rem' }}>
               <GitBranch size={20} />
             </div>
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.4rem' }}>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
               Contract Changes
             </h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
-              An uncoordinated backend deployment changes response data shapes without updating the OpenAPI spec, breaking mobile and web clients without 5xx errors.
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>
+              An uncoordinated backend deployment changes response data shapes without updating the OpenAPI spec, breaking consumers without 5xx errors.
             </p>
           </div>
 
@@ -369,10 +354,10 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
             <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'rgba(14, 165, 233, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0EA5E9', marginBottom: '1rem' }}>
               <Layers size={20} />
             </div>
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.4rem' }}>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
               Schema Drift
             </h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>
               Crucial properties suddenly disappear or change types (string instead of integer, null violations) while the HTTP status remains 200 OK.
             </p>
           </div>
@@ -388,13 +373,14 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
         boxShadow: 'var(--shadow-sm)'
       }}>
         <div style={{ maxWidth: '800px', marginBottom: '2rem' }}>
-          <span className="badge badge-purple" style={{ marginBottom: '0.75rem' }}>
+          <div className="eyebrow" style={{ color: '#A78BFA', marginBottom: '0.65rem' }}>
             CORE VALUE DIFFERENTIATION
-          </span>
-          <h2 style={{ fontSize: '2rem', fontWeight: 900, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>
-            An API Can Return 200 OK and Still Be Broken.
+          </div>
+          <h2 style={{ fontSize: '2.5rem', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.2 }}>
+            <span style={{ color: '#FFFFFF' }}>An API Can Return 200 OK</span><br />
+            <span style={{ color: 'var(--text-dim)' }}>and Still Be Completely Broken.</span>
           </h2>
-          <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: 1.6, marginTop: '0.5rem' }}>
+          <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: 1.6, marginTop: '0.75rem' }}>
             Traditional monitoring only confirms that an endpoint is responding. API Sentinel validates whether the response still strictly honors the registered OpenAPI and JSON Schema specification.
           </p>
         </div>
@@ -471,11 +457,12 @@ role:    string    ✓`}
 
       {/* ================= 5. SOLUTION & WORKFLOW SECTION ================= */}
       <section style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-        <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto' }}>
-          <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>
-            One Platform for API Reliability
+        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto' }}>
+          <div className="eyebrow" style={{ marginBottom: '0.6rem' }}>PIPELINE LIFECYCLE</div>
+          <h2 style={{ fontSize: '2.5rem', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.2 }}>
+            <span style={{ color: '#FFFFFF' }}>One Unified Engine</span> <span style={{ color: 'var(--text-dim)' }}>for Total API Reliability</span>
           </h2>
-          <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>
+          <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginTop: '0.6rem', lineHeight: 1.6 }}>
             The complete 8-step lifecycle: from automated queue scheduling to deep response validation and instant alerting.
           </p>
         </div>
@@ -589,88 +576,292 @@ role:    string    ✓`}
         </div>
       </section>
 
-      {/* ================= 6. CORE FEATURES GRID ================= */}
-      <section style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-        <div>
-          <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>
-            Built for Modern Microservices & Distributed APIs
-          </h2>
-          <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', marginTop: '0.4rem' }}>
-            Enterprise-grade monitoring primitives engineered to eliminate production blind spots.
-          </p>
+      {/* ================= 6. CORE FEATURES SHOWCASE (FROM REFERENCE IMAGE) ================= */}
+      <section style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
+        {/* Section Header: Eyebrow + Two-Tone Display Headline + Subtitle */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'minmax(0, 1.25fr) minmax(0, 1fr)',
+          gap: '2.5rem',
+          alignItems: 'end'
+        }}>
+          <div>
+            <div className="eyebrow" style={{ marginBottom: '0.75rem' }}>FEATURES</div>
+            <h2 style={{
+              fontSize: '2.85rem',
+              fontWeight: 800,
+              letterSpacing: '-0.035em',
+              lineHeight: 1.15
+            }}>
+              <span style={{ color: '#FFFFFF' }}>Everything you need to</span><br />
+              <span style={{ color: 'var(--text-dim)' }}>maintain absolute API reliability.</span>
+            </h2>
+          </div>
+          <div>
+            <p style={{
+              fontSize: '0.98rem',
+              color: 'var(--text-muted)',
+              lineHeight: 1.65
+            }}>
+              From automated BullMQ background queue scheduling to deep OpenAPI contract drift validation, every part of the system is engineered around one goal — catching failures before users do.
+            </p>
+          </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.25rem' }}>
+        {/* Feature Showcase Card 01 (Exact Layout & Typography from Reference Image) */}
+        <div style={{
+          background: 'var(--bg-card)',
+          border: '1px solid var(--border-color)',
+          borderRadius: 'var(--radius-lg)',
+          padding: '2.5rem',
+          display: 'grid',
+          gridTemplateColumns: 'minmax(0, 1.1fr) minmax(0, 1fr)',
+          gap: '3rem',
+          alignItems: 'center',
+          boxShadow: 'var(--shadow-sm)'
+        }}>
+          {/* Card Top Category Row */}
+          <div style={{
+            gridColumn: '1 / -1',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            borderBottom: '1px solid var(--border-subtle)',
+            paddingBottom: '1.25rem'
+          }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--text-dim)', fontWeight: 700 }}>01</span>
+            <span className="eyebrow" style={{ color: 'var(--text-dim)' }}>AI & CONTRACT INTELLIGENCE</span>
+          </div>
+
+          {/* Left Column: Heading and Value Prop */}
+          <div>
+            <h3 style={{
+              fontSize: '2rem',
+              fontWeight: 800,
+              color: '#FFFFFF',
+              letterSpacing: '-0.025em',
+              lineHeight: 1.2,
+              marginBottom: '1rem'
+            }}>
+              AI & OpenAPI Schema<br />Drift Detection
+            </h3>
+            <p style={{
+              fontSize: '0.92rem',
+              color: 'var(--text-muted)',
+              lineHeight: 1.65,
+              marginBottom: '1.5rem'
+            }}>
+              Validate responses against strict OpenAPI 3.0 / JSON Schema contracts. Five verification modes — property addition, required key dropped, type mutation, latency ballooning, and HTTP mismatch.
+            </p>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+              <span className="badge badge-subtle font-mono">AJV v8.12</span>
+              <span className="badge badge-subtle font-mono">OpenAPI 3.0</span>
+              <span className="badge badge-subtle font-mono">JSON Schema Draft-07</span>
+            </div>
+          </div>
+
+          {/* Right Column: Inset Widget Box (Replica of Reference Image Widget) */}
+          <div style={{
+            background: 'var(--bg-subtle)',
+            border: '1px solid var(--border-color)',
+            borderRadius: 'var(--radius-md)',
+            padding: '1.5rem',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1.15rem'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#FFFFFF' }}>Validate Contract Schema</span>
+              <span className="eyebrow" style={{ fontSize: '0.68rem' }}>TARGET ROUTE</span>
+            </div>
+
+            {/* Inset input box */}
+            <div style={{
+              padding: '0.65rem 0.9rem',
+              background: 'var(--bg-main)',
+              border: '1px solid var(--border-color)',
+              borderRadius: 'var(--radius-sm)',
+              fontSize: '0.8rem',
+              fontFamily: 'var(--font-mono)',
+              color: 'var(--text-muted)'
+            }}>
+              https://api.sentinel.io/v2/payment-gateway
+            </div>
+
+            {/* Selector pills (matching 5 10 15 20 in image) */}
+            <div className="pill-group">
+              <span className="pill-item">GET</span>
+              <span className="pill-item active">200 OK</span>
+              <span className="pill-item">POST</span>
+              <span className="pill-item">PUT</span>
+            </div>
+
+            {/* Blue progress bar (exact match to image) */}
+            <div>
+              <div style={{
+                height: 4,
+                borderRadius: 2,
+                background: 'var(--border-color)',
+                overflow: 'hidden',
+                marginBottom: '0.45rem'
+              }}>
+                <div style={{
+                  height: '100%',
+                  width: '68%',
+                  background: 'var(--primary)',
+                  borderRadius: 2
+                }} />
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
+                <span>Evaluating response payload...</span>
+                <span style={{ color: '#38BDF8', fontWeight: 600 }}>0 Drift Detected</span>
+              </div>
+            </div>
+
+            {/* Bottom tag buttons */}
+            <div style={{ display: 'flex', gap: '0.5rem', borderTop: '1px solid var(--border-subtle)', paddingTop: '0.85rem' }}>
+              <span style={{ padding: '0.25rem 0.6rem', borderRadius: 'var(--radius-sm)', background: 'rgba(255, 255, 255, 0.05)', fontSize: '0.72rem', color: 'var(--text-muted)' }}>Status Code</span>
+              <span style={{ padding: '0.25rem 0.6rem', borderRadius: 'var(--radius-sm)', background: 'rgba(255, 255, 255, 0.05)', fontSize: '0.72rem', color: 'var(--text-muted)' }}>Strict Types</span>
+              <span style={{ padding: '0.25rem 0.6rem', borderRadius: 'var(--radius-sm)', background: 'rgba(255, 255, 255, 0.05)', fontSize: '0.72rem', color: 'var(--text-muted)' }}>Required Keys</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Feature Showcase Card 02 (Distributed Scheduler) */}
+        <div style={{
+          background: 'var(--bg-card)',
+          border: '1px solid var(--border-color)',
+          borderRadius: 'var(--radius-lg)',
+          padding: '2.5rem',
+          display: 'grid',
+          gridTemplateColumns: 'minmax(0, 1.1fr) minmax(0, 1fr)',
+          gap: '3rem',
+          alignItems: 'center',
+          boxShadow: 'var(--shadow-sm)'
+        }}>
+          {/* Card Top Category Row */}
+          <div style={{
+            gridColumn: '1 / -1',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            borderBottom: '1px solid var(--border-subtle)',
+            paddingBottom: '1.25rem'
+          }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--text-dim)', fontWeight: 700 }}>02</span>
+            <span className="eyebrow" style={{ color: 'var(--text-dim)' }}>DISTRIBUTED TASK SCHEDULER & RETRIES</span>
+          </div>
+
+          <div>
+            <h3 style={{
+              fontSize: '2rem',
+              fontWeight: 800,
+              color: '#FFFFFF',
+              letterSpacing: '-0.025em',
+              lineHeight: 1.2,
+              marginBottom: '1rem'
+            }}>
+              BullMQ Distributed Queue<br />& Retry Architecture
+            </h3>
+            <p style={{
+              fontSize: '0.92rem',
+              color: 'var(--text-muted)',
+              lineHeight: 1.65,
+              marginBottom: '1.5rem'
+            }}>
+              Decoupled background worker queues ensure continuous monitoring checks never block control-plane HTTP threads. Intelligent exponential backoff suppresses transient blips to prevent noisy false alarms.
+            </p>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+              <span className="badge badge-subtle font-mono">Concurrency Limit (5)</span>
+              <span className="badge badge-subtle font-mono">Deduplication Suppression</span>
+              <span className="badge badge-subtle font-mono">Exponential Backoff</span>
+            </div>
+          </div>
+
+          <div style={{
+            background: 'var(--bg-subtle)',
+            border: '1px solid var(--border-color)',
+            borderRadius: 'var(--radius-md)',
+            padding: '1.5rem',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1rem'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#FFFFFF' }}>BullMQ Queue Pipeline</span>
+              <span className="badge badge-success" style={{ fontSize: '0.65rem' }}>ONLINE (5 SLOTS)</span>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+              <div style={{ padding: '0.75rem', background: 'var(--bg-main)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Worker Slots</div>
+                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary)' }}>5 Active</div>
+              </div>
+              <div style={{ padding: '0.75rem', background: 'var(--bg-main)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Deduplication Window</div>
+                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#10B981' }}>5,000 ms</div>
+              </div>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+              <span>Background Dispatch Rate</span>
+              <strong style={{ color: '#10B981' }}>100% Scheduled</strong>
+            </div>
+          </div>
+        </div>
+
+        {/* Supporting 6-card feature matrix */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem', marginTop: '1rem' }}>
           
           <div className="card">
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.4rem' }}>
-              📡 API Availability Monitoring
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
+              📡 Availability Probing
             </h3>
             <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
-              Continuously validates HTTP status codes, network reachability, TLS handshakes, and response health.
+              Validates HTTP status codes, network reachability, TLS handshakes, and response health.
             </p>
           </div>
 
           <div className="card">
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.4rem' }}>
-              ⏱️ Real-Time Latency Tracking
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
+              ⏱️ Real-Time Latency Percentiles
             </h3>
             <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
-              Measures precise round-trip time in milliseconds and identifies slow or degrading services before timeouts occur.
+              Measures precise round-trip times in milliseconds, capturing p50, p90, and p99 percentiles.
             </p>
           </div>
 
           <div className="card">
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.4rem' }}>
-              📑 OpenAPI & JSON Schema Validation
-            </h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
-              Compares observed JSON responses against predefined contracts ensuring strict field types, required keys, and formatting.
-            </p>
-          </div>
-
-          <div className="card">
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.4rem' }}>
-              🔍 Schema Drift Detection
-            </h3>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
-              Pinpoints unannounced property additions, dropped keys, and type mutations across continuous deployment cycles.
-            </p>
-          </div>
-
-          <div className="card">
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.4rem' }}>
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
               🔄 Exponential Backoff Retries
             </h3>
             <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
-              Handles transient network blips and 503s with exponential backoff retries to virtually eliminate false alarms.
+              Eliminates alert fatigue by executing 3x retries with exponential backoff on transient network drops.
             </p>
           </div>
 
           <div className="card">
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.4rem' }}>
-              🔕 Noisy Alert Suppression
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
+              🔕 Alert Cooldown Windows
             </h3>
             <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
-              Configurable cooldown windows prevent duplicate alert spam while preserving actionable incident logs.
+              Configurable deduplication suppresses repeat alert spam to Slack, Webhooks, and Email.
             </p>
           </div>
 
           <div className="card">
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.4rem' }}>
-              📈 Time-Series Analytics
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
+              📈 Time-Series Logs & SLAs
             </h3>
             <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
-              Maintains uptime history, failure distribution categories, and p50, p90, p99 latency percentiles.
+              Maintains full historical inspection logs with request/response payloads and uptime SLAs.
             </p>
           </div>
 
           <div className="card">
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.4rem' }}>
-              🚦 BullMQ Job Queue Processing
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
+              📑 37+ REST Route Catalog
             </h3>
             <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
-              Decoupled background worker queues ensure heavy check volume never blocks control-plane REST operations.
+              Full OpenAPI-documented REST catalog for websites, endpoints, metrics, and workers.
             </p>
           </div>
 
@@ -686,10 +877,12 @@ role:    string    ✓`}
         boxShadow: 'var(--shadow-sm)'
       }}>
         <div style={{ maxWidth: '750px', marginBottom: '2rem' }}>
-          <h2 style={{ fontSize: '1.9rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>
-            Enterprise System Architecture
+          <div className="eyebrow" style={{ marginBottom: '0.6rem' }}>INFRASTRUCTURE</div>
+          <h2 style={{ fontSize: '2.5rem', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.2 }}>
+            <span style={{ color: '#FFFFFF' }}>Enterprise Architecture</span><br />
+            <span style={{ color: 'var(--text-dim)' }}>Engineered for Real-Time Scale</span>
           </h2>
-          <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginTop: '0.4rem' }}>
+          <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', marginTop: '0.6rem', lineHeight: 1.6 }}>
             Asynchronous event-driven pipeline designed for high throughput, duplicate suppression, and reliability.
           </p>
         </div>
@@ -771,23 +964,25 @@ role:    string    ✓`}
         gap: '1.25rem',
         boxShadow: 'var(--shadow-sm)'
       }}>
-        <h2 style={{ fontSize: '2.4rem', fontWeight: 900, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>
-          Build More Reliable APIs
+        <div className="eyebrow" style={{ marginBottom: '0.2rem' }}>GET STARTED</div>
+        <h2 style={{ fontSize: '2.85rem', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.15 }}>
+          <span style={{ color: '#FFFFFF' }}>Build More Reliable APIs —</span><br />
+          <span style={{ color: 'var(--text-dim)' }}>Zero Silent Outages.</span>
         </h2>
-        <p style={{ fontSize: '1.05rem', color: 'var(--text-muted)', maxWidth: '600px' }}>
+        <p style={{ fontSize: '1.02rem', color: 'var(--text-muted)', maxWidth: '600px' }}>
           Monitor availability. Detect contract drift. Catch production issues before your users do.
         </p>
         <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
           <button
-            className="btn btn-primary"
-            style={{ padding: '0.85rem 2rem', fontSize: '0.95rem', fontWeight: 700 }}
+            className="btn btn-white"
+            style={{ padding: '0.85rem 2.2rem', fontSize: '0.92rem', fontWeight: 800 }}
             onClick={() => onNavigateDashboard('websites')}
           >
             Start Monitoring Now
           </button>
           <button
             className="btn btn-outline"
-            style={{ padding: '0.85rem 1.6rem', fontSize: '0.95rem' }}
+            style={{ padding: '0.85rem 1.6rem', fontSize: '0.92rem', fontWeight: 600 }}
             onClick={() => onNavigateDashboard('queue')}
           >
             View OpenAPI Specs (37+ Routes)

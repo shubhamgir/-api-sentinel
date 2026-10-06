@@ -267,10 +267,10 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
         {/* Command Bar Actions */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <button
-            className={`btn btn-sm ${isSimulating ? 'btn-danger' : 'btn-primary'}`}
+            className={`btn btn-sm ${isSimulating ? 'btn-danger' : 'btn-white'}`}
             onClick={runSimulation}
             disabled={isSimulating}
-            style={{ fontWeight: 700 }}
+            style={{ fontWeight: 800 }}
           >
             <Play size={13} /> {isSimulating ? `Tracing Step 0${activeSimulationStep + 1}...` : 'Run Packet Simulation'}
           </button>
@@ -303,14 +303,14 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
         <div style={{
           position: 'relative',
           background: showGrid
-            ? 'radial-gradient(circle, rgba(100, 116, 139, 0.2) 1px, var(--bg-subtle) 1px)'
-            : 'var(--bg-subtle)',
+            ? 'radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, var(--bg-main) 1px)'
+            : 'var(--bg-main)',
           backgroundSize: '24px 24px',
           border: '1px solid var(--border-color)',
           borderRadius: 'var(--radius-lg)',
           height: '620px',
           overflow: 'hidden',
-          boxShadow: 'inset 0 0 20px rgba(0, 0, 0, 0.05)'
+          boxShadow: 'inset 0 0 20px rgba(0, 0, 0, 0.4)'
         }}>
           
           {/* Lucidchart Canvas Controls Top Floating Toolbar */}

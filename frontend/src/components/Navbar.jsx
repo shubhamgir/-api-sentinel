@@ -31,100 +31,103 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
   return (
     <div style={{ position: 'sticky', top: 0, zIndex: 100, display: 'flex', flexDirection: 'column' }}>
       
-      {/* ================= 1. AZURE PORTAL GLOBAL SHELL HEADER ================= */}
+      {/* ================= 1. CORPORATE OBSIDIAN HEADER ================= */}
       <div style={{
-        background: '#0078D4', // Signature Azure Blue Header
-        color: '#FFFFFF',
+        background: 'var(--bg-main)',
+        color: 'var(--text-main)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0 1.25rem',
-        height: '42px',
-        borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+        height: '46px',
+        borderBottom: '1px solid var(--border-color)',
         fontSize: '0.82rem'
       }}>
-        {/* Left: Azure Portal Identity & Breadcrumb */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+        {/* Left: Platform Identity & Breadcrumb */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <div
             onClick={() => setActiveTab('landing')}
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.6rem',
+              gap: '0.65rem',
               cursor: 'pointer',
               fontWeight: 800,
-              fontSize: '0.98rem'
+              fontSize: '1rem'
             }}
           >
             {/* API Sentinel Logo Mark */}
             <div style={{
-              width: 26,
-              height: 26,
-              borderRadius: '6px',
-              background: '#FFFFFF',
+              width: 28,
+              height: 28,
+              borderRadius: '7px',
+              background: 'linear-gradient(135deg, #2563EB, #3B82F6)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#0078D4',
-              boxShadow: '0 1px 3px rgba(0, 0, 0, 0.15)'
+              color: '#FFFFFF',
+              boxShadow: '0 2px 8px rgba(59, 130, 246, 0.35)'
             }}>
-              <ShieldAlert size={17} />
+              <ShieldAlert size={16} />
             </div>
-            <span style={{ color: '#FFFFFF', fontWeight: 800, fontSize: '0.98rem', letterSpacing: '-0.01em' }}>API Sentinel</span>
+            <span style={{ color: 'var(--text-main)', fontWeight: 800, fontSize: '1rem', letterSpacing: '-0.02em' }}>
+              API Sentinel
+            </span>
           </div>
 
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '0.4rem',
-            color: 'rgba(255, 255, 255, 0.85)',
+            gap: '0.45rem',
+            color: 'var(--text-dim)',
             fontSize: '0.75rem',
-            marginLeft: '0.5rem'
+            marginLeft: '0.25rem'
           }}>
             <span>Reliability Cloud</span>
-            <span>&gt;</span>
-            <span>Observability Cluster (Production)</span>
+            <span style={{ opacity: 0.6 }}>/</span>
+            <span style={{ color: 'var(--text-muted)' }}>Cluster (Production)</span>
           </div>
         </div>
 
-        {/* Center: Azure Search Input */}
+        {/* Center: Search Input */}
         <div style={{
           position: 'relative',
           width: '380px',
           maxWidth: '40%'
         }}>
-          <Search size={14} style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: 'rgba(255, 255, 255, 0.7)' }} />
+          <Search size={14} style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-dim)' }} />
           <input
             type="text"
-            placeholder="Search resources, services, and docs (G+/)"
+            placeholder="Search endpoints, contracts, docs (⌘K)"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{
               width: '100%',
-              padding: '0.3rem 0.75rem 0.3rem 2rem',
-              background: 'rgba(255, 255, 255, 0.2)',
-              border: '1px solid rgba(255, 255, 255, 0.3)',
-              borderRadius: '4px',
-              color: '#FFFFFF',
+              padding: '0.35rem 0.75rem 0.35rem 2rem',
+              background: 'var(--bg-subtle)',
+              border: '1px solid var(--border-color)',
+              borderRadius: 'var(--radius-sm)',
+              color: 'var(--text-main)',
               fontSize: '0.78rem',
-              outline: 'none'
+              outline: 'none',
+              fontFamily: 'var(--font-sans)'
             }}
           />
         </div>
 
-        {/* Right: Theme Toggle, Cloud Shell, Notifications, Settings, User Tenant */}
+        {/* Right: Theme Toggle, Notifications, Tenant */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
           
-          {/* Light / Dark White Theme Toggle Button */}
+          {/* Theme Toggle Button */}
           <button
             onClick={onToggleTheme}
-            title={theme === 'dark' ? 'Switch to Clean White Theme' : 'Switch to Dark Theme'}
+            title={theme === 'dark' ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
             style={{
-              background: 'rgba(255, 255, 255, 0.15)',
-              border: '1px solid rgba(255, 255, 255, 0.25)',
-              color: '#FFFFFF',
-              borderRadius: '4px',
-              padding: '0.25rem 0.55rem',
+              background: 'var(--bg-subtle)',
+              border: '1px solid var(--border-color)',
+              color: 'var(--text-muted)',
+              borderRadius: 'var(--radius-sm)',
+              padding: '0.28rem 0.6rem',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
@@ -134,7 +137,7 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
             }}
           >
             {theme === 'dark' ? <Sun size={13} /> : <Moon size={13} />}
-            <span>{theme === 'dark' ? 'White Theme' : 'Dark Mode'}</span>
+            <span>{theme === 'dark' ? 'Light Theme' : 'Dark Mode'}</span>
           </button>
 
           <button

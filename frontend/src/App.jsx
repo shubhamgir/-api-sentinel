@@ -15,7 +15,7 @@ import LucidFlowStudio from './components/LucidFlowStudio';
 export default function App() {
   const [activeTab, setActiveTab] = useState('landing');
   const [globalStatus, setGlobalStatus] = useState('OPERATIONAL');
-  const [theme, setTheme] = useState('light'); // Azure Clean White Theme by default!
+  const [theme, setTheme] = useState('dark'); // Corporate Obsidian Dark Theme from user image
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
