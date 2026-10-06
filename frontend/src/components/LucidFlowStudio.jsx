@@ -256,7 +256,7 @@ export default function LucidFlowStudio({ endpoints, onSelectTab }) {
           <span style={{ color: 'var(--text-light)' }}>/</span>
           <span style={{ color: 'var(--text-muted)' }}>API Sentinel</span>
           <span style={{ color: 'var(--text-light)' }}>/</span>
-          <span style={{ fontWeight: 700, color: 'var(--primary)', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+          <span style={{ fontWeight: 700, color: '#FFFFFF', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
             <Layers size={14} /> Lucid Flow Studio
           </span>
           <span className="badge badge-subtle font-mono" style={{ fontSize: '0.68rem', padding: '0.15rem 0.5rem' }}>

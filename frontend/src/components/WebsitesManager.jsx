@@ -154,16 +154,16 @@ export default function WebsitesManager({ websites, endpoints, onRefreshAll, onC
                 className="card"
                 style={{
                   cursor: 'pointer',
-                  borderColor: isSelected ? 'var(--primary)' : 'var(--border-color)',
-                  backgroundColor: isSelected ? 'var(--primary-light)' : 'var(--bg-card)',
-                  boxShadow: isSelected ? '0 0 0 2px var(--primary)' : 'var(--shadow-sm)',
-                  transition: 'all 0.2s ease',
+                  borderColor: isSelected ? 'rgba(255, 255, 255, 0.4)' : 'var(--border-color)',
+                  backgroundColor: isSelected ? 'var(--bg-subtle)' : 'var(--bg-card)',
+                  boxShadow: isSelected ? '0 0 0 1px rgba(255, 255, 255, 0.2)' : 'none',
+                  transition: 'all 0.15s ease',
                   padding: '1.15rem'
                 }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.4rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Globe size={18} color={isSelected ? 'var(--primary)' : 'var(--text-muted)'} />
+                    <Globe size={18} color={isSelected ? '#FFFFFF' : 'var(--text-muted)'} />
                     <span style={{ fontWeight: 800, fontSize: '0.98rem' }}>{site.name}</span>
                   </div>
                   <span className="badge badge-subtle font-mono" style={{ fontSize: '0.7rem' }}>

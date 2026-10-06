@@ -29,24 +29,24 @@ export default function DashboardOverview({ uptimeData, latencyData, failureData
         <div className="stat-card">
           <div className="stat-info">
             <h4>System Uptime</h4>
-            <div className="stat-value" style={{ color: overallUptime > 95 ? 'var(--success-text)' : 'var(--warning-text)' }}>
+            <div className="stat-value">
               {overallUptime}%
             </div>
           </div>
-          <div className="stat-icon" style={{ background: 'var(--success-bg)', color: 'var(--success)' }}>
-            <CheckCircle2 size={24} />
+          <div className="stat-icon" style={{ background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', color: 'var(--success)' }}>
+            <CheckCircle2 size={22} />
           </div>
         </div>
 
         <div className="stat-card">
           <div className="stat-info">
             <h4>Average Latency</h4>
-            <div className="stat-value" style={{ color: 'var(--primary)' }}>
-              {avgLatency} <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>ms</span>
+            <div className="stat-value">
+              {avgLatency} <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-muted)' }}>ms</span>
             </div>
           </div>
-          <div className="stat-icon" style={{ background: 'var(--primary-light)', color: 'var(--primary)' }}>
-            <Clock size={24} />
+          <div className="stat-icon" style={{ background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', color: 'var(--text-main)' }}>
+            <Clock size={22} />
           </div>
         </div>
 
@@ -57,20 +57,20 @@ export default function DashboardOverview({ uptimeData, latencyData, failureData
               {activeEndpoints} <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>/ {totalEndpoints}</span>
             </div>
           </div>
-          <div className="stat-icon" style={{ background: 'var(--bg-subtle)', color: 'var(--text-main)' }}>
-            <Radio size={24} />
+          <div className="stat-icon" style={{ background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', color: 'var(--text-main)' }}>
+            <Radio size={22} />
           </div>
         </div>
 
         <div className="stat-card">
           <div className="stat-info">
             <h4>Schema Drift Alerts</h4>
-            <div className="stat-value" style={{ color: driftCount > 0 ? 'var(--purple-text)' : 'var(--text-muted)' }}>
+            <div className="stat-value" style={{ color: driftCount > 0 ? 'var(--purple-text)' : 'var(--text-main)' }}>
               {driftCount}
             </div>
           </div>
-          <div className="stat-icon" style={{ background: 'var(--purple-bg)', color: 'var(--purple)' }}>
-            <FileSearch size={24} />
+          <div className="stat-icon" style={{ background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', color: driftCount > 0 ? 'var(--purple)' : 'var(--text-muted)' }}>
+            <FileSearch size={22} />
           </div>
         </div>
       </div>

@@ -208,7 +208,7 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
               height: 24,
               borderRadius: '50%',
               background: '#FFFFFF',
-              color: '#0078D4',
+              color: '#0A0A0A',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -247,10 +247,6 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
           <button
             className={`nav-btn ${activeTab === 'lucidflow' ? 'active' : ''}`}
             onClick={() => setActiveTab('lucidflow')}
-            style={{
-              color: activeTab === 'lucidflow' ? 'var(--primary)' : 'var(--text-main)',
-              fontWeight: 700
-            }}
           >
             <Layers size={14} />
             Lucid Flow Studio

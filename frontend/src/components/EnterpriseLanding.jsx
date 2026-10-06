@@ -272,25 +272,25 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
         boxShadow: 'var(--shadow-sm)'
       }}>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '2rem', fontWeight: 900, color: 'var(--primary)' }}>99.9%</div>
+          <div style={{ fontSize: '2rem', fontWeight: 900, color: '#FFFFFF' }}>99.9%</div>
           <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-muted)', marginTop: '0.2rem' }}>
             API Availability SLA
           </div>
         </div>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '2rem', fontWeight: 900, color: '#10B981' }}>24/7</div>
+          <div style={{ fontSize: '2rem', fontWeight: 900, color: '#FFFFFF' }}>24/7</div>
           <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-muted)', marginTop: '0.2rem' }}>
             Continuous Monitoring
           </div>
         </div>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '2rem', fontWeight: 900, color: '#8B5CF6' }}>&lt;200ms</div>
+          <div style={{ fontSize: '2rem', fontWeight: 900, color: '#FFFFFF' }}>&lt;200ms</div>
           <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-muted)', marginTop: '0.2rem' }}>
             Average Response Tracking
           </div>
         </div>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '2rem', fontWeight: 900, color: '#F59E0B' }}>Real-Time</div>
+          <div style={{ fontSize: '2rem', fontWeight: 900, color: '#FFFFFF' }}>Real-Time</div>
           <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-muted)', marginTop: '0.2rem' }}>
             Failure & Drift Detection
           </div>
@@ -312,7 +312,7 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
           {/* Problem 1 */}
           <div className="card">
-            <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'rgba(239, 68, 68, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#EF4444', marginBottom: '1rem' }}>
+            <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFFFFF', marginBottom: '1rem' }}>
               <ShieldAlert size={20} />
             </div>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
@@ -325,7 +325,7 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
 
           {/* Problem 2 */}
           <div className="card">
-            <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'rgba(245, 158, 11, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#F59E0B', marginBottom: '1rem' }}>
+            <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFFFFF', marginBottom: '1rem' }}>
               <Clock size={20} />
             </div>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
@@ -338,7 +338,7 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
 
           {/* Problem 3 */}
           <div className="card">
-            <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'rgba(139, 92, 246, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#8B5CF6', marginBottom: '1rem' }}>
+            <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFFFFF', marginBottom: '1rem' }}>
               <GitBranch size={20} />
             </div>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
@@ -351,7 +351,7 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
 
           {/* Problem 4 */}
           <div className="card">
-            <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'rgba(14, 165, 233, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0EA5E9', marginBottom: '1rem' }}>
+            <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-md)', background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFFFFF', marginBottom: '1rem' }}>
               <Layers size={20} />
             </div>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '0.4rem' }}>
@@ -373,7 +373,7 @@ export default function EnterpriseLanding({ endpoints, uptimeData, latencyData, 
         boxShadow: 'var(--shadow-sm)'
       }}>
         <div style={{ maxWidth: '800px', marginBottom: '2rem' }}>
-          <div className="eyebrow" style={{ color: '#A78BFA', marginBottom: '0.65rem' }}>
+          <div className="eyebrow" style={{ marginBottom: '0.65rem' }}>
             CORE VALUE DIFFERENTIATION
           </div>
           <h2 style={{ fontSize: '2.5rem', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.2 }}>
@@ -794,11 +794,11 @@ role:    string    ✓`}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
               <div style={{ padding: '0.75rem', background: 'var(--bg-main)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
                 <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Worker Slots</div>
-                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary)' }}>5 Active</div>
+                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF' }}>5 Active</div>
               </div>
               <div style={{ padding: '0.75rem', background: 'var(--bg-main)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
                 <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Deduplication Window</div>
-                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#10B981' }}>5,000 ms</div>
+                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF' }}>5,000 ms</div>
               </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
@@ -901,31 +901,31 @@ role:    string    ✓`}
           fontFamily: 'var(--font-mono)',
           fontSize: '0.82rem'
         }}>
-          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid var(--primary)', borderRadius: 'var(--radius-sm)', color: 'var(--primary)', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
+          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
             Client / Dashboard
           </div>
           <span style={{ color: 'var(--text-muted)' }}>→</span>
-          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
+          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
             REST API Gateway
           </div>
           <span style={{ color: 'var(--text-muted)' }}>→</span>
-          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
+          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
             Job Queue (BullMQ)
           </div>
           <span style={{ color: 'var(--text-muted)' }}>→</span>
-          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid #10B981', borderRadius: 'var(--radius-sm)', color: '#059669', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
+          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
             API Workers
           </div>
           <span style={{ color: 'var(--text-muted)' }}>→</span>
-          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid #8B5CF6', borderRadius: 'var(--radius-sm)', color: '#7C3AED', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
+          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
             Validation Engine
           </div>
           <span style={{ color: 'var(--text-muted)' }}>→</span>
-          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
+          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
             Time-Series Store
           </div>
           <span style={{ color: 'var(--text-muted)' }}>→</span>
-          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid #EF4444', borderRadius: 'var(--radius-sm)', color: '#DC2626', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
+          <div style={{ padding: '0.65rem 1rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', color: '#FFFFFF', fontWeight: 700, boxShadow: 'var(--shadow-sm)' }}>
             Alert Adapters
           </div>
         </div>
@@ -933,19 +933,19 @@ role:    string    ✓`}
         {/* Technology Stack Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', marginTop: '2rem' }}>
           <div style={{ padding: '1rem', background: 'var(--bg-subtle)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--primary)' }}>NODE.JS & EXPRESS</div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#FFFFFF' }}>NODE.JS & EXPRESS</div>
             <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>37+ REST endpoints managing CRUD, contracts & metrics</div>
           </div>
           <div style={{ padding: '1rem', background: 'var(--bg-subtle)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--primary)' }}>BULLMQ ENGINE</div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#FFFFFF' }}>BULLMQ ENGINE</div>
             <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>Concurrency control, duplicate suppression & retries</div>
           </div>
           <div style={{ padding: '1rem', background: 'var(--bg-subtle)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--primary)' }}>OPENAPI / AJV</div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#FFFFFF' }}>OPENAPI / AJV</div>
             <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>Contract compilation & structural diff identification</div>
           </div>
           <div style={{ padding: '1rem', background: 'var(--bg-subtle)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--primary)' }}>DOCKER & CI/CD</div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#FFFFFF' }}>DOCKER & CI/CD</div>
             <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>Multi-stage container builds & GitHub Actions pipeline</div>
           </div>
         </div>

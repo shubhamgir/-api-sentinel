@@ -66,7 +66,7 @@ export default function ContractDriftInspector({ endpoints, contracts, onSaveCon
       {selectedEndpoint && (
         <div>
           {/* Drift Status Banner */}
-          <div className="card" style={{ marginBottom: '1.5rem', background: selectedEndpoint.hasDrift ? 'var(--purple-bg)' : 'var(--success-bg)', borderColor: selectedEndpoint.hasDrift ? '#DDD6FE' : 'var(--success-border)' }}>
+          <div className="card" style={{ marginBottom: '1.5rem', background: selectedEndpoint.hasDrift ? 'var(--purple-bg)' : 'var(--success-bg)', borderColor: selectedEndpoint.hasDrift ? 'rgba(168, 85, 247, 0.3)' : 'var(--success-border)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
               <div style={{ padding: '0.5rem', borderRadius: '50%', background: selectedEndpoint.hasDrift ? 'var(--purple)' : 'var(--success)', color: 'white' }}>
                 {selectedEndpoint.hasDrift ? <AlertOctagon size={24} /> : <CheckCircle2 size={24} />}
@@ -83,13 +83,13 @@ export default function ContractDriftInspector({ endpoints, contracts, onSaveCon
 
             {/* List specific diff items if drift exists */}
             {selectedEndpoint.hasDrift && driftDetails?.diffs && (
-              <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid #DDD6FE' }}>
+              <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid var(--border-color)' }}>
                 <h4 style={{ fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--purple-text)', marginBottom: '0.5rem' }}>
                   Identified Structural Differences:
                 </h4>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                   {driftDetails.diffs.map((diff, idx) => (
-                    <div key={idx} style={{ background: 'var(--bg-card)', padding: '0.65rem 0.85rem', borderRadius: 'var(--radius-md)', border: '1px solid #E9D5FF', fontSize: '0.85rem' }}>
+                    <div key={idx} style={{ background: 'var(--bg-card)', padding: '0.65rem 0.85rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', fontSize: '0.85rem' }}>
                       <span className={`diff-tag ${diff.type === 'UNEXPECTED_FIELDS' ? 'diff-tag-added' : diff.type === 'MISSING_FIELDS' ? 'diff-tag-missing' : 'diff-tag-mismatch'}`}>
                         {diff.type}
                       </span>
@@ -128,7 +128,7 @@ export default function ContractDriftInspector({ endpoints, contracts, onSaveCon
                 <textarea
                   className="form-textarea font-mono"
                   rows={16}
-                  style={{ background: '#0F172A', color: '#38BDF8', fontSize: '0.85rem' }}
+                  style={{ background: 'var(--bg-main)', color: 'var(--text-main)', border: '1px solid var(--border-color)', fontSize: '0.85rem' }}
                   value={schemaText}
                   onChange={(e) => setSchemaText(e.target.value)}
                 />
