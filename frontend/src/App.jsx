@@ -10,6 +10,7 @@ import AlertCenter from './components/AlertCenter';
 import MockSuiteLoader from './components/MockSuiteLoader';
 import QueueDashboard from './components/QueueDashboard';
 import EnterpriseLanding from './components/EnterpriseLanding';
+import LucidFlowStudio from './components/LucidFlowStudio';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('landing');
@@ -157,6 +158,13 @@ export default function App() {
             uptimeData={uptimeData}
             latencyData={latencyData}
             onNavigateDashboard={setActiveTab}
+          />
+        )}
+
+        {activeTab === 'lucidflow' && (
+          <LucidFlowStudio
+            endpoints={endpoints}
+            onSelectTab={setActiveTab}
           />
         )}
 

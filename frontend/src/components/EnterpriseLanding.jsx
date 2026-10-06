@@ -553,6 +553,38 @@ role:    string    ✓`}
             </div>
           </div>
         </div>
+
+        {/* Lucid Flow Studio Jump Banner */}
+        <div style={{
+          padding: '1rem 1.5rem',
+          borderRadius: 'var(--radius-md)',
+          background: 'rgba(0, 120, 212, 0.12)',
+          border: '1px solid rgba(0, 120, 212, 0.35)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '1rem'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <Layers size={22} color="#38BDF8" />
+            <div>
+              <div style={{ fontSize: '0.92rem', fontWeight: 800, color: '#FFFFFF' }}>
+                Interactive Lucid Flow Studio
+              </div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                Simulate real-time packet tracing, inspect node connection pins, and visualize the 8-phase pipeline on an interactive Lucidchart canvas.
+              </div>
+            </div>
+          </div>
+          <button
+            className="btn btn-primary btn-sm"
+            onClick={() => onNavigateDashboard('lucidflow')}
+            style={{ fontWeight: 700, padding: '0.5rem 1rem' }}
+          >
+            Open Lucid Flow Studio <ArrowRight size={14} />
+          </button>
+        </div>
       </section>
 
       {/* ================= 6. CORE FEATURES GRID ================= */}
