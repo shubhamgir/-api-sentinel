@@ -2,9 +2,15 @@ const store = require('../db/store');
 const { executeCheck } = require('./checker');
 const { validateContract } = require('./contractValidator');
 const { processAlerts } = require('./alertService');
+const jobQueue = require('./jobQueue');
 
 const lastRunTimes = new Map();
 let schedulerInterval = null;
+
+// Register jobQueue handler
+jobQueue.registerHandler(async (payload) => {
+  return await runCheckForEndpoint(payload);
+});
 
 async function runCheckForEndpoint(endpoint) {
   try {
@@ -44,13 +50,13 @@ async function runCheckForEndpoint(endpoint) {
 function startScheduler() {
   if (schedulerInterval) return;
 
-  console.log('[MONITORING ENGINE] Starting background scheduler loop...');
+  console.log('[MONITORING ENGINE] Starting BullMQ Job Queue scheduler loop...');
 
   // Run initial check for all active endpoints on launch
   setTimeout(async () => {
     const endpoints = store.getEndpoints().filter(e => e.active);
     for (const ep of endpoints) {
-      await runCheckForEndpoint(ep);
+      jobQueue.addJob('HEALTH_CHECK', ep, { retryCount: ep.retryCount });
     }
   }, 1000);
 
@@ -65,7 +71,7 @@ function startScheduler() {
 
       if (now - lastRun >= intervalMs) {
         lastRunTimes.set(ep.id, now); // Prevent duplicate simultaneous triggers
-        await runCheckForEndpoint(ep);
+        jobQueue.addJob('HEALTH_CHECK', ep, { retryCount: ep.retryCount });
       }
     }
   }, 5000);

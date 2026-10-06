@@ -7,7 +7,8 @@ import {
   History,
   BellRing,
   FlaskConical,
-  RefreshCw
+  RefreshCw,
+  Server
 } from 'lucide-react';
 
 export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefreshAll }) {
@@ -67,6 +68,13 @@ export default function Navbar({ activeTab, setActiveTab, globalStatus, onRefres
         >
           <FlaskConical size={16} />
           Mock Suite
+        </button>
+        <button
+          className={`nav-btn ${activeTab === 'queue' ? 'active' : ''}`}
+          onClick={() => setActiveTab('queue')}
+        >
+          <Server size={16} />
+          Queue & Docs
         </button>
       </nav>
 

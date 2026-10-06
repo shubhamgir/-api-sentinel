@@ -88,5 +88,33 @@
     "timeoutMs": 3000,
     "intervalSeconds": 15,
     "retryCount": 2
+  },
+  {
+    "id": "0e5e5598-8c6f-436b-a0fb-b0203f5d39ca",
+    "active": true,
+    "createdAt": "2026-10-06T08:51:41.635Z",
+    "name": "gmail",
+    "url": "https://mail.google.com/mail/u/0/#inbox",
+    "method": "GET",
+    "headers": {},
+    "payload": null,
+    "expectedStatus": 200,
+    "timeoutMs": 3000,
+    "intervalSeconds": 15,
+    "retryCount": 2
+  },
+  {
+    "id": "78628c6a-7f56-4a3d-af2a-fc9d3ce07029",
+    "active": true,
+    "createdAt": "2026-10-06T08:59:07.315Z",
+    "name": "JSONPLACEHOLDER",
+    "url": "https://jsonplaceholder.typicode.com/",
+    "method": "POST",
+    "headers": {},
+    "payload": null,
+    "expectedStatus": 200,
+    "timeoutMs": 3000,
+    "intervalSeconds": 15,
+    "retryCount": 2
   }
 ]

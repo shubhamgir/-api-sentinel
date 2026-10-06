@@ -7,6 +7,7 @@ import ContractDriftInspector from './components/ContractDriftInspector';
 import MonitoringHistoryLogs from './components/MonitoringHistoryLogs';
 import AlertCenter from './components/AlertCenter';
 import MockSuiteLoader from './components/MockSuiteLoader';
+import QueueDashboard from './components/QueueDashboard';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -194,6 +195,10 @@ export default function App() {
           <MockSuiteLoader
             onRefreshAll={fetchAllData}
           />
+        )}
+
+        {activeTab === 'queue' && (
+          <QueueDashboard />
         )}
       </main>
     </div>
