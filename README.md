@@ -59,5 +59,10 @@ The dashboard runs on `http://localhost:5173`.
 
 ---
 
+## 🔗 GitHub Repository
+**[https://github.com/shubhamgir/-api-sentinel](https://github.com/shubhamgir/-api-sentinel)**
+
+---
+
 ## 👤 Author
 **Shubham Giri**
