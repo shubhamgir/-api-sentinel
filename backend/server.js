@@ -21,6 +21,27 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Serve Frontend in Production / Unified Deployment
+const path = require('path');
+const fs = require('fs');
+const possibleDistPaths = [
+  path.join(__dirname, '../frontend/dist'),
+  path.join(__dirname, 'dist'),
+  path.join(__dirname, 'public')
+];
+const distPath = possibleDistPaths.find(p => fs.existsSync(p));
+
+if (distPath) {
+  console.log(`📦 Serving static frontend from: ${distPath}`);
+  app.use(express.static(distPath));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api') || req.path === '/health') {
+      return next();
+    }
+    res.sendFile(path.join(distPath, 'index.html'));
+  });
+}
+
 app.listen(PORT, () => {
   console.log(`=======================================================`);
   console.log(`🚀 API Sentinel Backend Server running on port ${PORT}`);

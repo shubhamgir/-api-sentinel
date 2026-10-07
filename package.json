@@ -1,0 +1,27 @@
+{
+  "name": "api-sentinel",
+  "version": "1.0.0",
+  "description": "Automated API Monitoring, Contract Validation & Reliability Platform",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm install --prefix backend && npm install --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "start": "node backend/server.js",
+    "server": "node backend/server.js",
+    "client": "npm run dev --prefix frontend",
+    "dev": "node backend/server.js"
+  },
+  "keywords": [
+    "api-monitoring",
+    "contract-validation",
+    "schema-drift",
+    "bullmq",
+    "observability",
+    "reliability"
+  ],
+  "author": "Shubham Gir",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
